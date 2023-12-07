@@ -1,0 +1,79 @@
+.about-register {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+}
+
+.about-register-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.about-register-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5em;
+  margin-bottom: 2rem;
+}
+
+.img-about-register {
+  border-radius: 5em;
+}
+
+.button.register {
+  background-color: var(--green-color);
+  &:hover {
+    box-shadow: none;
+    background-color: var(--orange-color);
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .about-register-text {
+    margin-left: 1rem;
+  }
+  .about-register-text p {
+    font-size: 1.3rem;
+  }
+  .img-about-register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+  }
+  .img-about-register {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .about-register {
+    flex-direction: column;
+  }
+  .about-register-info {
+    width: 100%;
+  }
+  .about-register-text {
+    margin-left: 0;
+    text-align: center;
+  }
+  .img-about-register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+  }
+  .img-about-register {
+    width: 100%;
+  }
+}
