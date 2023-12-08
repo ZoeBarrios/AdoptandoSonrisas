@@ -2,7 +2,6 @@
   height: fit-content;
   border-radius: 10px;
   position: relative;
-  width: 80%;
   overflow: hidden;
 }
 
@@ -18,7 +17,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   width: 100%;
   top: 50%;
   left: 50%;
@@ -29,17 +27,14 @@
 
 .slider-button {
   width: 2em;
-  height: 2em;
-  background: var(--white-color);
-  border-radius: 50%;
-  border: none;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
   font-size: 2em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.slider-button:hover {
-  background: var(--green-color);
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
 }
 
 @media screen and (max-width: 868px) {
@@ -48,6 +43,9 @@
   }
   .slider-image {
     width: 100%;
-    object-fit: contain;
+  }
+
+  .slider-button {
+    height: 10rem;
   }
 }

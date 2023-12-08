@@ -28,6 +28,11 @@
   font-weight: 500;
 }
 
+.donation-info-text h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
 .buttons-container {
   display: flex;
   flex-direction: row;

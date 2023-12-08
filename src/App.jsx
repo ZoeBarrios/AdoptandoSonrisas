@@ -1,14 +1,18 @@
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
-import Home from "./pages/Home/Home";
+import Routes from "./Routes.jsx";
+import { QueryClient, QueryClientProvider } from "react-query";
 
+const queryClient = new QueryClient();
 function App() {
   return (
     <>
-      <Header />
-      <Home />
-      <Footer />
+      <QueryClientProvider client={queryClient}>
+        <Header />
+        <Routes />
+        <Footer />
+      </QueryClientProvider>
     </>
   );
 }

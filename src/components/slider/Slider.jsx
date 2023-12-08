@@ -1,29 +1,20 @@
-import { useState } from "react";
 import "./Slider.css";
+import useSlider from "../../hooks/useSlider";
 
 const Slider = ({ images }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { current, nextSlide, prevSlide } = useSlider(images.length);
 
-  const nextSlide = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
+  console.log(images.length);
   return (
     <div className="slider">
       <img
-        src={images[currentImageIndex]}
-        alt={`Slide ${currentImageIndex + 1}`}
+        src={images[current]}
+        alt={`Slide ${current + 1}`}
         className="slider-image"
       />
-      <div className="slider-buttons">
+      <div
+        className={`slider-buttons ${images.length === 1 ? "opacity-0" : ""}`}
+      >
         <button onClick={prevSlide} className="slider-button">
           <i
             className="fa-solid fa-arrow-right fa-rotate-180 fa-2xl"
