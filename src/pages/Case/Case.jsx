@@ -2,7 +2,8 @@ import { useParams } from "wouter";
 import { getCase } from "../../services/cases";
 import { useQuery } from "react-query";
 import Slider from "../../components/slider/Slider";
-import { GENDERS } from "../../utils/constants";
+import SexItem from "../../components/sexItem/SexItem";
+import getAge from "../../utils/getAge";
 
 export default function Case() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ export default function Case() {
 
   const { birthdate, sex, size, organization_id } = data.animal;
   const imgs = data?.imgs?.map((img) => img.img_url);
-  const age = new Date().getFullYear() - new Date(birthdate).getFullYear();
+  const age = getAge(birthdate);
 
   return (
     <div className="mt-40 w-full  lg:h-screen flex items-center justify-center">
@@ -28,13 +29,7 @@ export default function Case() {
         <div className="flex flex-col items-center h-1/4">
           <Slider images={imgs} />
           <div className="w-full flex items-center justify-around mt-3 font-bold">
-            <i
-              className={
-                sex && sex === GENDERS.H
-                  ? "fa-solid fa-venus fa-lg"
-                  : "fa-solid fa-mars fa-lg"
-              }
-            ></i>
+            <SexItem sex={sex} />
             <span className="ml-2">{size}</span>
             <span className="ml-2">{age} años</span>
           </div>
