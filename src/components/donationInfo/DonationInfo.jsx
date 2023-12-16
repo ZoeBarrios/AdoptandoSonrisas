@@ -1,4 +1,5 @@
 import "./DonationInfo.css";
+import { Link } from "wouter";
 import Perro1 from "/imgs/perro1.png";
 import Perro2 from "/imgs/perro2.png";
 import Gato1 from "/imgs/gato1.png";
@@ -21,8 +22,12 @@ export default function DonationInfo() {
         </div>
         <Slider images={images} />
         <div className="buttons-container">
-          <button className="button">Donar</button>
-          <button className="button">Voluntariado</button>
+          <Link to="/donar" className="button">
+            Donar
+          </Link>
+          <Link to="/register" className="button">
+            Voluntariado
+          </Link>
         </div>
       </section>
     </div>

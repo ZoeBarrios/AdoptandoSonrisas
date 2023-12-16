@@ -11,3 +11,8 @@ export const getAnimals = async (search) => {
   const response = await fetch(url);
   return checkResponse(response);
 };
+
+export const getAnimal = (id) => {
+  const url = new URL(`${API_URL}/animals/animal/${id}`);
+  return fetch(url).then(checkResponse);
+};

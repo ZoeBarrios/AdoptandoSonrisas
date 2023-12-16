@@ -3,6 +3,6 @@ export const checkResponse = async (response) => {
     const responseBody = await response.json();
     return responseBody.data;
   } else {
-    throw await response.json();
+    throw await response;
   }
 };

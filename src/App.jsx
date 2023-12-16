@@ -1,6 +1,6 @@
 import "./App.css";
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Routes from "./Routes.jsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -9,9 +9,8 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Header />
+        <ToastContainer />
         <Routes />
-        <Footer />
       </QueryClientProvider>
     </>
   );

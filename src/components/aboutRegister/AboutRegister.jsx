@@ -1,5 +1,6 @@
 import Perro3 from "/imgs/perro3.png";
 import "./AboutRegister.css";
+import { Link } from "wouter";
 export default function AboutRegister() {
   return (
     <section className="about-register">
@@ -13,9 +14,9 @@ export default function AboutRegister() {
             verificar la información que nos has proporcionado.
           </p>
           <div className="button-container">
-            <button className="button register">
+            <Link to="/register/organizacion" className="button register">
               Registrar mi organización
-            </button>
+            </Link>
           </div>
         </div>
       </div>

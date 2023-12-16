@@ -1,0 +1,86 @@
+import { checkResponse } from "../utils/checkResponse";
+import { ROLES } from "../utils/constants";
+import { getFromLocalStorage } from "../utils/localStorageFunctions";
+const API_URL = import.meta.env.VITE_API_URL;
+
+export const registerUser = async (person) => {
+  const response = await fetch(`${API_URL}/auth/register?role=${ROLES.USER}`, {
+    method: "POST",
+    body: JSON.stringify(person),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return checkResponse(response);
+};
+
+export const getUserById = async (id) => {
+  const token = getFromLocalStorage("token");
+
+  const response = await fetch(`${API_URL}/persons/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return checkResponse(response);
+};
+
+export const updateUser = async (person) => {
+  const token = getFromLocalStorage("token");
+
+  const response = await fetch(`${API_URL}/persons/${person.person_id}`, {
+    method: "PUT",
+    body: JSON.stringify(person),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return checkResponse(response);
+};
+
+export const applyToOrganization = async (person_organization) => {
+  const token = getFromLocalStorage("token");
+
+  const response = await fetch(`${API_URL}/persons/apply`, {
+    method: "POST",
+    body: JSON.stringify(person_organization),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return checkResponse(response);
+};
+
+export const getAppliedOrganizations = async (id) => {
+  const token = getFromLocalStorage("token");
+  const response = await fetch(`${API_URL}/persons/apply/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return checkResponse(response);
+};
+
+export const deletePersonFromOrganization = async (person_organization) => {
+  const token = getFromLocalStorage("token");
+
+  const response = await fetch(`${API_URL}/persons/apply`, {
+    method: "DELETE",
+    body: JSON.stringify(person_organization),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return checkResponse(response);
+};

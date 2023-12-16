@@ -1,18 +1,27 @@
+import InfoUser from "../components/InfoUser/InfoUser";
+
 export const GENDERS = {
-  H: "H",
+  F: "F",
   M: "M",
 };
 
 export const SIZES = {
-  PEQUEÑO: "PEQUEÑO",
-  MEDIANO: "MEDIANO",
-  GRANDE: "GRANDE",
+  SMALL: "SMALL",
+  MEDIUM: "MEDIUM",
+  BIG: "BIG",
 };
 
 export const AGE = {
-  CACHORRO: "CACHORRO",
-  ADULTO: "ADULTO",
-  ANCIANO: "ANCIANO",
+  PUPPY: "PUPPY",
+  ADULT: "ADULT",
+  OLD: "OLD",
+};
+
+export const ROLES = {
+  ADMIN: "Admin",
+  USER: "User",
+  SUPERADMIN: "SuperAdmin",
+  MODERATOR: "Moderator",
 };
 export const SEARCH_ACTIONS = {
   SET_PAGE: "SET_PAGE",
@@ -20,4 +29,26 @@ export const SEARCH_ACTIONS = {
   SET_GENRE: "SET_GENRE",
   SET_AGE: "SET_AGE",
   RESTART: "RESTART",
+};
+
+export const SECCIONES_ES = {
+  PERFIL: "Perfil",
+  VOLUNTARIADOS: "Voluntariados",
+  ORGANIZACIONES: "Organizaciones",
+  ADOPCIONES: "Adopciones",
+};
+
+export const PANEL_ACTIONS = {
+  USER: {
+    PROFILE: {
+      id: 1,
+      es: SECCIONES_ES.PERFIL,
+    },
+    VOLUNTEER: {
+      id: 2,
+      es: SECCIONES_ES.VOLUNTARIADOS,
+    },
+    ORGANIZATIONS: { id: 3, es: SECCIONES_ES.ORGANIZACIONES },
+    ADOPTIONS: { id: 4, es: SECCIONES_ES.ADOPCIONES },
+  },
 };

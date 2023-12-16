@@ -1,20 +1,16 @@
-import { Router, Route, Switch } from "wouter";
-import Home from "./pages/Home/Home";
-import Cases from "./pages/Cases/Cases";
-import Case from "./pages/Case/Case";
-import Adopt from "./pages/Adoptions/Adopt";
+import { Route, Router } from "wouter";
+import useAuthStore from "./stores/useAuthStore";
+import PublicRoutes from "./routes/PublicRoutes";
+import UsersRouters from "./routes/UsersRoutes";
+import { ROLES } from "./utils/constants";
 export default function Routes() {
+  const { user, isAuthenticated } = useAuthStore();
   return (
     <Router>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/casos" component={Cases} />
-        <Route path="/casos/:id" component={Case} />
-        <Route path="/adoptar" component={Adopt} />
-        {/*<Route path="/donar" component={Donar} />
-        <Route path="/voluntarios" component={Voluntarios} />
-  */}
-      </Switch>
+      {isAuthenticated && user.role === ROLES.USER && <UsersRouters />}
+      <PublicRoutes />
+
+      <Route>Error</Route>
     </Router>
   );
 }

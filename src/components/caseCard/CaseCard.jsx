@@ -15,7 +15,7 @@ export default function CaseCard({ itemcase }) {
         <h5 className="font-bold text-xl mb-2">{itemcase?.title}</h5>
         <p className="text-gray-700 overflow-auto">{description}</p>
         <Link
-          to={`/casos/${itemcase.id}`}
+          to={`/casos/${itemcase.case_id}`}
           className="mt-3 self-center lg:self-start bg-orange w-28 text-center text-lg rounded-md shadow-md hover:bg-white transition-colors duration-300 ease-in-out"
         >
           Ver mas
