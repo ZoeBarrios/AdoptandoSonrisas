@@ -36,6 +36,7 @@
 
 .button.register {
   background-color: var(--green-color);
+  font-size: 1.5rem;
   &:hover {
     box-shadow: none;
     background-color: var(--orange-color);

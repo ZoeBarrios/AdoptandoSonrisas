@@ -1,21 +1,22 @@
 import { useCallback, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
-export default function Modal({ children, isOpen, setIsOpen }) {
+export default function Modal({ children, isOpen, setClose }) {
   const modalRef = useRef();
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
-      setIsOpen(false);
+      setClose();
     }
   };
 
   const keyPress = useCallback(
     (e) => {
       if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
+        setClose();
       }
     },
-    [setIsOpen, isOpen]
+    [setClose, isOpen]
   );
 
   useEffect(() => {
@@ -23,15 +24,20 @@ export default function Modal({ children, isOpen, setIsOpen }) {
     return () => document.removeEventListener("keydown", keyPress);
   }, [keyPress]);
 
-  return isOpen ? (
-    <div
-      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
-      ref={modalRef}
-      onClick={closeModal}
-    >
-      <div className="mt-40 bg-white w-11/12 h-3/5 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-        {children}
-      </div>
-    </div>
-  ) : null;
+  return isOpen
+    ? createPortal(
+        <div
+          className="z-50 fixed p-5 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
+          onClick={closeModal}
+        >
+          <div
+            className="mt-10 min-h-64 max-h-96  bg-white w-full  md:max-w-md mx-auto rounded shadow-lg  overflow-y-auto"
+            ref={modalRef}
+          >
+            {children}
+          </div>
+        </div>,
+        window.document.body
+      )
+    : null;
 }

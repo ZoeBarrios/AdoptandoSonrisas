@@ -7,7 +7,7 @@ export default function Input({
   disabled = false,
 }) {
   return (
-    <div className="w-8/12 flex flex-col">
+    <div className="w-9/12 flex flex-col">
       <label htmlFor={name} className="text-base font-bold text-darkOrange">
         {label}
       </label>

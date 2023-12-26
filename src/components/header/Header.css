@@ -8,7 +8,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  margin-bottom: 10em;
+  height: 6em;
+  z-index: 50;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -38,10 +40,21 @@
 }
 
 .header.shrink {
+  height: 5em;
   & .logo-img {
     width: 4em;
     height: 4em;
   }
+}
+
+/* Estilos para el espacio reservado que imita el encabezado para que los elementos no se queden debajo del header */
+.content-padding {
+  height: 6em;
+  position: relative;
+}
+
+.content-padding.shrink {
+  height: 5em;
 }
 
 @media screen and (max-width: 868px) {

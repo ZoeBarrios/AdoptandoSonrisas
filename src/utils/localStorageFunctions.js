@@ -18,3 +18,9 @@ export const setToLocalStorage = (key, value) => {
 export const removeFromLocalStorage = (key) => {
   localStorage.removeItem(key);
 };
+
+export const closeSession = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("organization");
+};

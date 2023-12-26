@@ -1,31 +1,29 @@
-import { useQuery } from "react-query";
-import { getAppliedOrganizations } from "../../services/user";
-import useAuthStore from "../../stores/useAuthStore";
 import VolunteerCard from "../volunteerCard/VolunteerCard";
-import Loader from "../loader/Loader";
+import { ROLES } from "../../utils/constants";
+import useAuthStore from "../../stores/useAuthStore";
 
-export default function ListOfVolunteering() {
+export default function ListOfVolunteering({ data, refetch }) {
   const { user } = useAuthStore();
-  const { data, refetch, isLoading } = useQuery("volunteering", () =>
-    getAppliedOrganizations(user.id)
-  );
 
   return (
-    <section className="p-5 bg-white shadow-card rounded-lg w-8/12 mb-5 flex flex-col items-center ">
-      <h2 className="text-darkOrange font-bold">Lista de voluntariados</h2>
-      {isLoading ? (
-        <Loader />
+    <div className="list-card shadow-card">
+      {data?.length <= 0 ? (
+        <h2 className="title-no-info">No hay voluntariados registrados</h2>
       ) : (
         <>
           {data?.map((volunteering) => (
             <VolunteerCard
-              key={volunteering.organization_id}
+              key={
+                user.role == ROLES.USER
+                  ? volunteering.organization_id
+                  : volunteering.person_id
+              }
               volunteering={volunteering}
               refetch={refetch}
             />
           ))}
         </>
       )}
-    </section>
+    </div>
   );
 }

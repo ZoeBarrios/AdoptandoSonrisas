@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 export const loginValidationSchema = Yup.object().shape({
-  name: Yup.string().required("Nombre requerido"),
+  nameOrEmail: Yup.string().required("Nombre o Email requerido"),
   password: Yup.string().required("Contraseña requerida"),
 });
 
@@ -19,4 +19,14 @@ export const registerOrganizationValidationSchema = Yup.object().shape({
   phone: Yup.string().optional(),
   instagram_link: Yup.string().optional(),
   facebook_link: Yup.string().optional(),
+});
+
+export const registerAnimalValidationSchema = Yup.object().shape({
+  name: Yup.string().required("Nombre requerido"),
+  description: Yup.string().required("Descripcion requerida"),
+  sex: Yup.string().required("Sexo requerido"),
+  birthdate: Yup.string().required("Fecha de nacimiento requerida"),
+  size: Yup.string().required("Tamaño requerido"),
+  image: Yup.string().required("Imagen requerida"),
+  organization_id: Yup.number().required("Organizacion requerida"),
 });

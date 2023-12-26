@@ -1,13 +1,31 @@
+import { useState, useEffect } from "react";
+import { useSpring, animated } from "@react-spring/web";
 import "./Slider.css";
 import useSlider from "../../hooks/useSlider";
 
 const Slider = ({ images }) => {
   const { current, nextSlide, prevSlide } = useSlider(images.length);
+  const [animate, setAnimate] = useState(false);
 
-  console.log(images.length);
+  useEffect(() => {
+    setAnimate(true); // Activar la animación al cambiar la imagen
+    const timeout = setTimeout(() => {
+      setAnimate(false); // Desactivar la animación después de un tiempo
+    }, 500); // Cambia este valor para ajustar la duración de la animación
+
+    return () => clearTimeout(timeout);
+  }, [current]);
+
+  const springProps = useSpring({
+    opacity: animate ? 0 : 1,
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+  });
+
   return (
     <div className="slider">
-      <img
+      <animated.img
+        style={springProps}
         src={images[current]}
         alt={`Slide ${current + 1}`}
         className="slider-image"

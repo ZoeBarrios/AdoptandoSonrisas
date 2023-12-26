@@ -1,13 +1,11 @@
-import { useLocation } from "wouter";
-export default function BackButton() {
-  const [location, setLocation] = useLocation();
+export default function BackButton({ color = "white" }) {
   const handleBack = () => {
-    setLocation("/");
+    window.history.back();
   };
   return (
     <button className="absolute top-5 left-5 ">
       <i
-        className="fa-solid fa-arrow-right fa-rotate-180 text-white text-4xl cursor-pointer"
+        className={`fa-solid fa-arrow-right fa-rotate-180 text-${color} text-4xl cursor-pointer`}
         onClick={handleBack}
       ></i>
     </button>

@@ -12,4 +12,26 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-family);
+  scrollbar-width: thin;
+  scrollbar-color: #ffa500 #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffa500;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffa500;
 }

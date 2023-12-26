@@ -3,9 +3,9 @@ import "./About.css";
 export default function About() {
   return (
     <section className="about-section">
-      <div className="about">
+      <div className="about w-full md:w-10/12 lg:w-8/12">
         <h1>Adoptando Sonrisas</h1>
-        <p>
+        <p className="leading-8">
           Somos una plataforma dedicada a hacer una diferencia en la vida de las
           mascotas y las personas que desean darles un hogar amoroso. En
           colaboración con diversas organizaciones de San Nicolás, hemos creado

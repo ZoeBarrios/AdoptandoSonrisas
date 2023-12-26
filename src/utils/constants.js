@@ -1,5 +1,3 @@
-import InfoUser from "../components/InfoUser/InfoUser";
-
 export const GENDERS = {
   F: "F",
   M: "M",
@@ -36,6 +34,11 @@ export const SECCIONES_ES = {
   VOLUNTARIADOS: "Voluntariados",
   ORGANIZACIONES: "Organizaciones",
   ADOPCIONES: "Adopciones",
+  MODERADORES: "Moderadores",
+  CASOS: "Casos",
+  ANIMALES: "Animales",
+  CONTROL_ORGANIZACIONES: "Control de estado",
+  FINANCIAL_SECTION: "Sección financiera",
 };
 
 export const PANEL_ACTIONS = {
@@ -43,12 +46,83 @@ export const PANEL_ACTIONS = {
     PROFILE: {
       id: 1,
       es: SECCIONES_ES.PERFIL,
+      icon: "fa-solid fa-user",
     },
     VOLUNTEER: {
       id: 2,
       es: SECCIONES_ES.VOLUNTARIADOS,
+      icon: "fa-solid fa-hands-helping",
     },
-    ORGANIZATIONS: { id: 3, es: SECCIONES_ES.ORGANIZACIONES },
-    ADOPTIONS: { id: 4, es: SECCIONES_ES.ADOPCIONES },
+    ORGANIZATIONS: {
+      id: 3,
+      es: SECCIONES_ES.ORGANIZACIONES,
+      icon: "fa-solid fa-hand-holding-heart",
+    },
+    ADOPTIONS: {
+      id: 4,
+      es: SECCIONES_ES.ADOPCIONES,
+      icon: "fa-solid fa-heart",
+    },
+  },
+  ADMIN: {
+    PROFILE: {
+      id: 1,
+      es: SECCIONES_ES.PERFIL,
+      icon: "fa-solid fa-user",
+    },
+    FINANCIAL_INFO: {
+      id: 7,
+      es: SECCIONES_ES.FINANCIAL_SECTION,
+      icon: "fa-solid fa-hand-holding-heart",
+    },
+
+    MODERATORS: {
+      id: 2,
+      es: SECCIONES_ES.MODERADORES,
+      icon: "fa-solid fa-user-shield",
+    },
+    CASES: { id: 3, es: SECCIONES_ES.CASOS, icon: "fa-solid fa-heart" },
+    ANIMALS: { id: 4, es: SECCIONES_ES.ANIMALES, icon: "fa-solid fa-paw" },
+    ADOPCIONES: {
+      id: 5,
+      es: SECCIONES_ES.ADOPCIONES,
+      icon: "fa-solid fa-heart",
+    },
+    VOLUNTEER: {
+      id: 6,
+      es: SECCIONES_ES.VOLUNTARIADOS,
+      icon: "fa-solid fa-hands-helping",
+    },
+  },
+  MODERATOR: {
+    PROFILE: {
+      id: 1,
+      es: SECCIONES_ES.PERFIL,
+      icon: "fa-solid fa-user",
+    },
+    CASES: { id: 2, es: SECCIONES_ES.CASOS, icon: "fa-solid fa-heart" },
+    ANIMALS: { id: 3, es: SECCIONES_ES.ANIMALES, icon: "fa-solid fa-paw" },
+    ADOPCIONES: {
+      id: 4,
+      es: SECCIONES_ES.ADOPCIONES,
+      icon: "fa-solid fa-heart",
+    },
+    VOLUNTEER: {
+      id: 5,
+      es: SECCIONES_ES.VOLUNTARIADOS,
+      icon: "fa-solid fa-hands-helping",
+    },
+  },
+  SUPERADMIN: {
+    PROFILE: {
+      id: 1,
+      es: SECCIONES_ES.PERFIL,
+      icon: "fa-solid fa-user",
+    },
+    MANAGE_ORGANIZATIONS: {
+      id: 2,
+      es: SECCIONES_ES.CONTROL_ORGANIZACIONES,
+      icon: "fa-solid fa-hand-holding-heart",
+    },
   },
 };

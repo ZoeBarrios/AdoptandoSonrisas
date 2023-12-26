@@ -3,11 +3,10 @@ import { getCases } from "../../services/cases";
 import CaseCard from "../caseCard/CaseCard";
 import { useEffect, useState } from "react";
 import PaginationButtons from "../paginationButtons/PaginationButtons";
-import FetchInfo from "../fetchInfo/FetchInfo";
 
 export default function CaseContainer() {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isError, refetch } = useQuery("cases", () =>
+  const { data, isLoading, refetch } = useQuery("cases", () =>
     getCases(page, 3)
   );
 
@@ -25,19 +24,17 @@ export default function CaseContainer() {
     setPage(page - 1);
   };
 
-  if (isError || isLoading) {
-    return <FetchInfo error={isError} loading={isLoading} />;
-  }
-
   return (
-    <div className="w-10/12 flex flex-row items-center justify-around flex-wrap gap-5">
-      {data?.length > 0 && data ? (
-        data?.map((item) => <CaseCard key={item?.id} itemcase={item} />)
-      ) : (
-        <h2 className="text-3xl p-40 text-center">
-          No hay mas casos registrados
-        </h2>
-      )}
+    <div className="w-full h-full flex flex-col items-center justify-around flex-wrap">
+      <div className="w-full  md:w-9/12  flex flex-row items-center justify-around flex-wrap gap-5">
+        {data?.length > 0 && data ? (
+          data?.map((item) => <CaseCard key={item?.id} itemcase={item} />)
+        ) : (
+          <h2 className="text-3xl p-40 text-center">
+            No hay mas casos registrados
+          </h2>
+        )}
+      </div>
       <PaginationButtons
         page={page}
         setPage={setPage}

@@ -10,17 +10,19 @@ const PanelMenu = ({ items, sectionActive, handleSectionActive }) => {
 
   return (
     <div
-      className={`bg-ligthOrange w-60 h-screen pt-32 relative ${
+      className={`bg-grey h-full w-72 fixed md:relative shadow-2xl z-30 flex flex-col items-center  ${
         panelIsShown ? "showPanel" : "hidePanel"
-      }`}
+      } group`}
     >
-      <div className="h-full flex flex-col justify-around ml-10">
+      <div className="h-full flex flex-col self-center justify-around ml-5 rounded ">
         {Object.keys(items).map((key) => {
           return (
             <PanelItem
               key={key}
               isActive={sectionActive.id === items[key].id}
               onClick={() => handleSectionActive(items[key])}
+              panelIsShow={`${!panelIsShown ? "opacity-0" : ""}`}
+              icon={items[key].icon}
             >
               {items[key].es}
             </PanelItem>

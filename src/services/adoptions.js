@@ -26,6 +26,19 @@ export const registerAdoption = async (adoption) => {
   return checkResponse(response);
 };
 
+export const acceptAdoption = async (adoption) => {
+  const token = getFromLocalStorage("token");
+  const response = await fetch(`${API_URL}/adoptions/accept`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(adoption),
+  });
+  return checkResponse(response);
+};
+
 export const cancelAdoption = async (adoption) => {
   const token = getFromLocalStorage("token");
   const response = await fetch(`${API_URL}/adoptions/cancel`, {
@@ -36,5 +49,20 @@ export const cancelAdoption = async (adoption) => {
     },
     body: JSON.stringify(adoption),
   });
+  return checkResponse(response);
+};
+
+export const getAdoptionsByOrganizationId = async (organizationId) => {
+  const token = getFromLocalStorage("token");
+  const response = await fetch(
+    `${API_URL}/adoptions/organization/${organizationId}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return checkResponse(response);
 };

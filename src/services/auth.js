@@ -11,3 +11,14 @@ export const handleLogin = async (person) => {
   });
   return checkResponse(response);
 };
+
+export const changePassword = async ({ token, password }) => {
+  const response = await fetch(`${API_URL}/auth/new-password/${token}`, {
+    method: "PUT",
+    body: JSON.stringify({ password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return checkResponse(response);
+};

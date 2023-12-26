@@ -1,4 +1,4 @@
-import FormRegister from "../../components/formUsers/FormRegister";
+import FormRegister from "../../components/forms/create/FormRegister";
 import BackButton from "../../components/backButton/BackButton";
 
 export default function Volunteers() {

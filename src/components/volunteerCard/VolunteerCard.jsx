@@ -3,8 +3,13 @@ import { getActivity } from "../../services/activity";
 import { deletePersonFromOrganization } from "../../services/user";
 import { toast } from "react-toastify";
 import Loader from "../loader/Loader";
+import useAuthStore from "../../stores/useAuthStore";
+import { ROLES } from "../../utils/constants";
+import { Link } from "wouter";
+import { showError, showSuccess } from "../../utils/userMessages";
 
 export default function VolunteerCard({ volunteering, refetch }) {
+  const { user, organization: org } = useAuthStore();
   const { organization } = volunteering;
   const { data, isLoading } = useQuery("activity", () =>
     getActivity(volunteering.activity_id)
@@ -12,31 +17,52 @@ export default function VolunteerCard({ volunteering, refetch }) {
 
   const { mutate } = useMutation(deletePersonFromOrganization, {
     onSuccess: () => {
-      refetch();
+      showSuccess("Voluntariado eliminado", refetch);
     },
-    onError: async (error) => {
-      const { message } = await error.json();
-      toast.error(message);
-    },
+    onError: showError,
   });
+
+  console.log(volunteering);
 
   const handleDelete = () => {
     mutate({
-      organization_id: organization.organization_id,
+      organization_id:
+        user.role == ROLES.USER ? organization.organization_id : org,
       person_id: volunteering.person_id,
     });
   };
 
   return (
-    <div className="flex flex-row items-center justify-around p-5 bg-ligthOrange rounded-lg w-full shadow-card">
+    <div className="flex flex-col md:flex-row text-center items-center justify-around p-5 bg-ligthOrange rounded w-full">
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <p>{organization?.name}</p>
+          {user.role == ROLES.USER ? (
+            <Link
+              to={`/organizacion/${organization.organization_id}`}
+              className="font-bold"
+            >
+              {organization?.name}
+            </Link>
+          ) : (
+            <Link
+              to={`/usuario/${volunteering?.person?.person_id}`}
+              className="font-bold"
+            >
+              {volunteering?.person?.name}
+            </Link>
+          )}
+
           <p>Ingreso: {volunteering.joinedDate}</p>
           <p>Actividad: {data?.data.activity_name}</p>
-          <button onClick={handleDelete}>Quitar voluntariado</button>
+          {volunteering.isActive ? (
+            <button onClick={handleDelete} className="buttons-form">
+              Quitar voluntariado
+            </button>
+          ) : (
+            <p className="text-red-500 font-bold">Voluntariado eliminado</p>
+          )}
         </>
       )}
     </div>

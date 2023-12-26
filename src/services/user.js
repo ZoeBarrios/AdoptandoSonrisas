@@ -14,7 +14,17 @@ export const registerUser = async (person) => {
 
   return checkResponse(response);
 };
+export const createAdminOrModerator = async ({ person, role }) => {
+  const response = await fetch(`${API_URL}/auth/register?role=${role}`, {
+    method: "POST",
+    body: JSON.stringify(person),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
+  return checkResponse(response);
+};
 export const getUserById = async (id) => {
   const token = getFromLocalStorage("token");
 
@@ -77,6 +87,19 @@ export const deletePersonFromOrganization = async (person_organization) => {
   const response = await fetch(`${API_URL}/persons/apply`, {
     method: "DELETE",
     body: JSON.stringify(person_organization),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return checkResponse(response);
+};
+
+export const getPersonsVolunteersByOrganization = async (id) => {
+  const token = getFromLocalStorage("token");
+
+  const response = await fetch(`${API_URL}/persons/organization/${id}`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

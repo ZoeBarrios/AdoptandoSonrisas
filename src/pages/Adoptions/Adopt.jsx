@@ -1,4 +1,4 @@
-import ListOfAnimals from "../../components/ListOfAnimals.jsx/ListOfAnimals";
+import ListOfAnimals from "../../components/listOfAnimals/ListOfAnimals";
 import { SEARCH_ACTIONS } from "../../utils/constants";
 import { useQuery } from "react-query";
 import { getAnimals } from "../../services/animals";
@@ -42,7 +42,7 @@ export default function Adopt() {
   }, [refetch, search]);
   return (
     <DefaultPage>
-      <section className="mt-40 flex flex-col w-full md:w-auto items-center justify-center mb-10">
+      <section className="mt-10 flex flex-col w-full md:w-auto items-center justify-center mb-10">
         <h1 className="text-3xl text-orange mb-5 font-bold">
           Adoptando Sonrisas
         </h1>

@@ -1,14 +1,20 @@
 import { useSpring, animated } from "@react-spring/web";
 import "./HamburgerMenu.css";
 
-export default function HamburgerMenu({ children, isOpen, setIsOpen }) {
+export default function HamburgerMenu({
+  children,
+  isOpen,
+  openModal,
+  closeModal,
+}) {
   const [menuProps, setMenuProps] = useSpring(() => ({
     opacity: isOpen ? 1 : 0,
     display: isOpen ? "block" : "none",
   }));
 
   const handleOpen = () => {
-    setIsOpen(!isOpen);
+    isOpen ? closeModal() : openModal();
+
     setMenuProps.start({
       opacity: isOpen ? 1 : 0,
       display: isOpen ? "block" : "none",

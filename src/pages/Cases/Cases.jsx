@@ -3,7 +3,7 @@ import DefaultPage from "../defaultPage/DefaultPage";
 export default function Cases() {
   return (
     <DefaultPage>
-      <div className="w-full h-full mb-5 md:h-screen flex flex-row items-center justify-around mt-32">
+      <div className="w-full h-screen mb-5  flex flex-row items-center justify-around ">
         <CaseContainer />
       </div>
     </DefaultPage>
