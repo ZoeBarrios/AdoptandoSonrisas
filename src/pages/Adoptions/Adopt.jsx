@@ -43,9 +43,7 @@ export default function Adopt() {
   return (
     <DefaultPage>
       <section className="mt-10 flex flex-col w-full md:w-auto items-center justify-center mb-10">
-        <h1 className="text-3xl text-orange mb-5 font-bold">
-          Adoptando Sonrisas
-        </h1>
+        <h1 className="title mb-10">Adoptando Sonrisas</h1>
         <Filters dispatch={dispatchSearch} state={search} />
         <ListOfAnimals data={data} error={error} loading={loading} />
         <PaginationButtons

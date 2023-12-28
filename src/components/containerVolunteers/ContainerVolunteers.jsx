@@ -6,19 +6,32 @@ import {
   getAppliedOrganizations,
   getPersonsVolunteersByOrganization,
 } from "../../services/user";
+import SelectActivity from "../selectActivity/SelectActivity";
+import { useEffect, useState } from "react";
 
 export default function ContainerVolunteeers() {
   const { user, organization } = useAuthStore();
+  const [activity, setActivity] = useState("");
+
   const { data, refetch } = useQuery("volunteering", () => {
     if (user.role === ROLES.USER) {
-      return getAppliedOrganizations(user.id);
+      return getAppliedOrganizations(user.id, activity);
     }
-    return getPersonsVolunteersByOrganization(organization);
+    return getPersonsVolunteersByOrganization(organization, activity);
   });
+
+  useEffect(() => {
+    refetch();
+  }, [activity, refetch]);
+
+  const handleChanges = (e) => {
+    setActivity(e.target.value);
+  };
 
   return (
     <section className="flex-container gap-5 h-screen md:h-4/5">
       <h2 className="title">Lista de voluntariados</h2>
+      <SelectActivity onChange={handleChanges} />
       <ListOfVolunteering data={data} refetch={refetch} />
     </section>
   );

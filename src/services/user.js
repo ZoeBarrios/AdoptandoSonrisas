@@ -69,9 +69,14 @@ export const applyToOrganization = async (person_organization) => {
   return checkResponse(response);
 };
 
-export const getAppliedOrganizations = async (id) => {
+export const getAppliedOrganizations = async (id, activity_id) => {
   const token = getFromLocalStorage("token");
-  const response = await fetch(`${API_URL}/persons/apply/${id}`, {
+  let url = `${API_URL}/persons/apply/${id}`;
+  if (activity_id) {
+    url = `${API_URL}/persons/apply/${id}?activity_id=${activity_id}`;
+  }
+
+  const response = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -95,10 +100,14 @@ export const deletePersonFromOrganization = async (person_organization) => {
   return checkResponse(response);
 };
 
-export const getPersonsVolunteersByOrganization = async (id) => {
+export const getPersonsVolunteersByOrganization = async (id, activity_id) => {
   const token = getFromLocalStorage("token");
+  let url = `${API_URL}/persons/organization/${id}`;
+  if (activity_id) {
+    url = `${API_URL}/persons/organization/${id}?activity_id=${activity_id}`;
+  }
 
-  const response = await fetch(`${API_URL}/persons/organization/${id}`, {
+  const response = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

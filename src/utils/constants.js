@@ -29,6 +29,13 @@ export const SEARCH_ACTIONS = {
   RESTART: "RESTART",
 };
 
+export const FILTERS_ACTIONS = {
+  SET_PENDING: "SET_PENDING",
+  SET_REJECTED: "SET_REJECTED",
+  SET_APPROVED: "SET_APPROVED",
+  RESET: "RESET",
+};
+
 export const SECCIONES_ES = {
   PERFIL: "Perfil",
   VOLUNTARIADOS: "Voluntariados",

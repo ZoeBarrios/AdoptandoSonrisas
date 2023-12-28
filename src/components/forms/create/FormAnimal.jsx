@@ -44,12 +44,13 @@ export default function FormAnimal({ closeModal, refetch }) {
             Crea un nuevo animal
           </h2>
           <FormField name="name" type="text" label="Nombre" />
-          <TextArea name="description" label="Descripción" />
+          <TextArea name="description" label="Descripción" isRequired={true} />
           <YearInput />
           <SelectSex
             onChange={(e) => setFieldValue("sex", e.target.value)}
             defaultValue={values.sex}
           />
+
           <SelectSize
             onChange={(e) => setFieldValue("size", e.target.value)}
             defaultValue={values.size}
@@ -59,6 +60,7 @@ export default function FormAnimal({ closeModal, refetch }) {
             values={values}
             setFieldValue={setFieldValue}
             multiple={false}
+            isRequired={true}
           />
           <div className="flex flex-row w-full items-center justify-around">
             <button type="button" className="buttons-form" onClick={closeModal}>

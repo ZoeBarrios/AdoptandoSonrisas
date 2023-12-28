@@ -23,7 +23,7 @@ export default function Animal() {
 
   return (
     <DefaultPage>
-      <section className="mt-40 w-full flex items-center justify-center mb-5">
+      <section className="w-full h-full flex items-center justify-center p-5">
         {isLoading ? (
           <Loader />
         ) : (

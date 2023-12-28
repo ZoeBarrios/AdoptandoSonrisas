@@ -30,3 +30,9 @@ export const registerAnimalValidationSchema = Yup.object().shape({
   image: Yup.string().required("Imagen requerida"),
   organization_id: Yup.number().required("Organizacion requerida"),
 });
+
+export const registerCaseValidationSchema = Yup.object().shape({
+  title: Yup.string().required("Titulo requerido"),
+  description: Yup.string().required("Descripcion requerida"),
+  images: Yup.array().min(1, "Debe subir al menos una imagen"),
+});

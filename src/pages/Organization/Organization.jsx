@@ -19,10 +19,10 @@ export default function Organization() {
 
     switch (name) {
       case "instagram":
-        window.open(data.instagram_url, "_blank");
+        window.open(data.instagram_link, "_blank");
         break;
       case "facebook":
-        window.open(data.facebook_ulr, "_blank");
+        window.open(data.facebook_link, "_blank");
         break;
       case "email":
         console.log("email");
@@ -47,16 +47,16 @@ export default function Organization() {
               {data?.description}
             </p>
 
-            <div className=" w-9/12 md:w-6/12 flex flex-col md:flex-row items-center justify-between mt-10 gap-10">
+            <div className=" w-9/12 flex flex-col md:flex-row items-center justify-between mt-10 gap-10">
               <div className="w-full flex items-center justify-evenly">
-                {data?.instagram_url && (
+                {data?.instagram_link && (
                   <i
                     className="fa-brands fa-instagram fa-2xl icon"
                     name="instagram"
                     onClick={handleSocialMedia}
                   ></i>
                 )}
-                {data?.facebook_ulr && (
+                {data?.facebook_link && (
                   <i
                     className="fa-brands fa-facebook fa-2xl icon"
                     name="facebook"

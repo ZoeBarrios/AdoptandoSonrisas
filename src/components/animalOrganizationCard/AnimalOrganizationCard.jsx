@@ -37,7 +37,7 @@ export default function AnimalOrganizationCard({ animal, refetch }) {
       </Link>
 
       <div className="flex items-center">
-        {animal.eliminated ? (
+        {animal.isDeleted ? (
           <p className="text-center p-5 font-bold text-black">Eliminado</p>
         ) : (
           <button onClick={handleDelete} className="delete-button mr-3">
@@ -51,10 +51,13 @@ export default function AnimalOrganizationCard({ animal, refetch }) {
           Agregar caso
         </button>
       </div>
-      <Modal setClose={closeModal} isOpen={showModal}>
-        <FormNewCase animal={animal.animal_id} />
-        <button onClick={closeModal}>X</button>
-      </Modal>
+
+      <FormNewCase
+        animal={animal.animal_id}
+        showModal={showModal}
+        closeModal={closeModal}
+        refetch={refetch}
+      />
     </div>
   );
 }

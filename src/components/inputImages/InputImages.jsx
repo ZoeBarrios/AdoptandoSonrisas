@@ -1,14 +1,21 @@
-export default function InputImages({ values, setFieldValue, multiple }) {
+import { ErrorMessage } from "formik";
+
+export default function InputImages({
+  values,
+  setFieldValue,
+  multiple = false,
+  isRequired = false,
+}) {
   return (
     <>
       <label
-        htmlFor="images"
+        htmlFor={multiple ? "images" : "image"}
         className="bg-orange p-2 rounded font-bold text-white cursor-pointer hover:bg-lightOrange transition-all"
       >
         {multiple ? "Agregar imágenes" : "Agregar imagen"}
       </label>
       <input
-        id="images"
+        id={multiple ? "images" : "image"}
         name={multiple ? "images" : "image"}
         type="file"
         multiple={multiple}
@@ -22,6 +29,11 @@ export default function InputImages({ values, setFieldValue, multiple }) {
           }
         }}
       />
+      {isRequired && (
+        <ErrorMessage name={multiple ? "images" : "image"}>
+          {(msg) => <p className="text-red-500 font-bold">{msg}</p>}
+        </ErrorMessage>
+      )}
 
       <div className="flex flex-wrap gap-4 mt-4">
         {multiple

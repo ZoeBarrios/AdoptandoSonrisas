@@ -16,7 +16,11 @@ export default function YearInput() {
         max={new Date().toISOString().split("T")[0]}
         defaultValue={new Date().toISOString().split("T")[0]}
       />
-      <ErrorMessage name="birthdate" component="div" className="text-red-500" />
+      <ErrorMessage
+        name="birthdate"
+        component="div"
+        className="text-red-500 font-bold"
+      />
     </div>
   );
 }

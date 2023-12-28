@@ -13,8 +13,14 @@ export const getCase = async (id) => {
   return checkResponse(response);
 };
 
-export const getCasesByOrganizationId = async (id) => {
-  const response = await fetch(`${API_URL}/cases/organization/${id}`);
+export const getCasesByOrganizationId = async (id, deleted) => {
+  console.log(deleted);
+  let url = new URL(`${API_URL}/cases/organization/${id}`);
+  if (deleted) {
+    url.searchParams.append("deleted", deleted);
+  }
+
+  const response = await fetch(url);
   return checkResponse(response);
 };
 

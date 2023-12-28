@@ -18,9 +18,16 @@ export const getAnimal = (id) => {
   return fetch(url).then(checkResponse);
 };
 
-export const getAnimalsByOrganizationId = async (id) => {
+export const getAnimalsByOrganizationId = async (id, filters) => {
   const token = getFromLocalStorage("token");
-  const response = await fetch(`${API_URL}/animals/organization/${id}`, {
+  let url = new URL(`${API_URL}/animals/organization/${id}`);
+  for (let term in filters) {
+    if (filters[term]) {
+      url.searchParams.append(term, filters[term]);
+    }
+  }
+  console.log(url);
+  const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

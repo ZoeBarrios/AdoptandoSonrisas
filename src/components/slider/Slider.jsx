@@ -1,45 +1,53 @@
 import { useState, useEffect } from "react";
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring, animated, config } from "@react-spring/web";
 import "./Slider.css";
 import useSlider from "../../hooks/useSlider";
 
 const Slider = ({ images }) => {
   const { current, nextSlide, prevSlide } = useSlider(images.length);
-  const [animate, setAnimate] = useState(false);
-
+  const [direction, setDirection] = useState("left");
+  const [key, setKey] = useState(Date.now());
   useEffect(() => {
-    setAnimate(true); // Activar la animación al cambiar la imagen
-    const timeout = setTimeout(() => {
-      setAnimate(false); // Desactivar la animación después de un tiempo
-    }, 500); // Cambia este valor para ajustar la duración de la animación
-
-    return () => clearTimeout(timeout);
+    setKey(Date.now());
   }, [current]);
 
-  const springProps = useSpring({
-    opacity: animate ? 0 : 1,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
+  const handleSlide = (direction) => {
+    setDirection(direction);
+    if (direction === "left") {
+      prevSlide();
+    } else {
+      nextSlide();
+    }
+  };
+
+  const slideProps = useSpring({
+    reset: true,
+    from: {
+      transform: `translateX(${direction === "left" ? "100%" : "-100%"})`,
+    },
+    to: { transform: "translateX(0%)" },
+    config: config.default,
   });
 
   return (
     <div className="slider">
       <animated.img
-        style={springProps}
+        key={key}
         src={images[current]}
         alt={`Slide ${current + 1}`}
         className="slider-image"
+        style={slideProps}
       />
       <div
         className={`slider-buttons ${images.length === 1 ? "opacity-0" : ""}`}
       >
-        <button onClick={prevSlide} className="slider-button">
+        <button onClick={() => handleSlide("right")} className="slider-button">
           <i
             className="fa-solid fa-arrow-right fa-rotate-180 fa-2xl"
             style={{ color: "#ffc93c" }}
           ></i>
         </button>
-        <button onClick={nextSlide} className="slider-button">
+        <button onClick={() => handleSlide("left")} className="slider-button">
           <i
             className="fa-solid fa-arrow-right fa-2xl"
             style={{ color: "#ffc93c" }}

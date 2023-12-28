@@ -21,19 +21,21 @@ export default function CaseMiniCard({ caseInfo, refetch }) {
   };
 
   return (
-    <div className="flex flex-col gap-5 md:gap-2 md:flex-row items-center justify-between p-2 w-full bg-ligthOrange rounded">
+    <div className="flex flex-col gap-5 md:gap-2 md:flex-row items-center justify-between p-2 w-full bg-ligthOrange rounded ">
       {caseInfo.isDeleted ? (
-        <p className="font-bold p-2 text-xl text-red-500">{caseInfo.title}</p>
+        <p className="font-bold p-2 text-xl text-red-500 flex-1">
+          {caseInfo.title}
+        </p>
       ) : (
         <Link
           to={`/casos/${caseInfo.case_id}`}
-          className="font-bold p-2 text-xl"
+          className="font-bold p-2 text-xl flex-1"
         >
           {caseInfo?.title}
         </Link>
       )}
 
-      <p>Nombre animal: {animal?.name}</p>
+      <p className="flex-1">Nombre animal: {animal?.name}</p>
       {caseInfo.isDeleted ? (
         <p className="font-bold p-2">Eliminado</p>
       ) : (

@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from "react-query";
 import { getActivity } from "../../services/activity";
 import { deletePersonFromOrganization } from "../../services/user";
-import { toast } from "react-toastify";
 import Loader from "../loader/Loader";
 import useAuthStore from "../../stores/useAuthStore";
 import { ROLES } from "../../utils/constants";
@@ -22,8 +21,6 @@ export default function VolunteerCard({ volunteering, refetch }) {
     onError: showError,
   });
 
-  console.log(volunteering);
-
   const handleDelete = () => {
     mutate({
       organization_id:
@@ -40,7 +37,7 @@ export default function VolunteerCard({ volunteering, refetch }) {
         <>
           {user.role == ROLES.USER ? (
             <Link
-              to={`/organizacion/${organization.organization_id}`}
+              to={`/organizacion/${organization?.organization_id}`}
               className="font-bold"
             >
               {organization?.name}
