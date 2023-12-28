@@ -31,7 +31,10 @@ export default function ContainerVolunteeers() {
   return (
     <section className="flex-container gap-5 h-screen md:h-4/5">
       <h2 className="title">Lista de voluntariados</h2>
-      <SelectActivity onChange={handleChanges} />
+      <div className="w-10/12 self-center">
+        <SelectActivity onChange={handleChanges} />
+      </div>
+
       <ListOfVolunteering data={data} refetch={refetch} />
     </section>
   );

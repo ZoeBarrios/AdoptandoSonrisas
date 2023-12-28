@@ -55,10 +55,7 @@ export default function Filters({ state, dispatch }) {
         </select>
       </div>
       <div className="flex items-end gap-5 w-full md:w-auto">
-        <button
-          onClick={cleanFilters}
-          className="bg-orange p-3 w-full rounded hover:bg-gray-200 transition-all duration-300"
-        >
+        <button onClick={cleanFilters} className="buttons-form">
           Limpiar filtros
         </button>
       </div>

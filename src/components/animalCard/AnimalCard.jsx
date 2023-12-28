@@ -20,9 +20,7 @@ export default function AnimalCard({ animal }) {
         <span>{age} años</span>
       </div>
       <Link to={`/adoptar/${animal.animal_id}`}>
-        <button className="bg-orange p-3 mt-5 w-full rounded text-lg hover:bg-gray-200 transition-colors duration-300 ease-in-out">
-          Ver más
-        </button>
+        <button className="buttons-form w-full mt-5">Ver más</button>
       </Link>
     </div>
   );
