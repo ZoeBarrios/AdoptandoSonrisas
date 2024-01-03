@@ -3,6 +3,7 @@ import FormField from "../../formField/FormField";
 import { useMutation } from "react-query";
 import { createAdminOrModerator } from "../../../services/user";
 import { showError, showSuccess } from "../../../utils/userMessages";
+import { registerValidationSchema } from "../../../validationSchemas/validationSchemas";
 
 export default function FormCreateAdminModerator({
   initialValues,
@@ -30,8 +31,12 @@ export default function FormCreateAdminModerator({
     refetch();
   };
   return (
-    <Formik initialValues={initialValues} onSubmit={handleCreateAdmin}>
-      <Form className="flex flex-col items-center justify-around p-5">
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleCreateAdmin}
+      validationSchema={registerValidationSchema}
+    >
+      <Form className="flex flex-col items-center justify-center p-5 gap-5 w-full">
         <FormField label="Nombre" name="name" type="text" />
         <FormField label="Apellido" name="surname" type="text" />
         <FormField label="Email" name="email" type="email" />
@@ -40,7 +45,9 @@ export default function FormCreateAdminModerator({
           <button type="submit" className="buttons-form">
             Agregar
           </button>
-          <button className="buttons-form">Volver</button>
+          <button className="buttons-form" onClick={closeModal}>
+            Volver
+          </button>
         </div>
       </Form>
     </Formik>

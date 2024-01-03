@@ -26,16 +26,14 @@ export default function User() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-auto md:h-screen bg-ligthOrange">
+    <div className="flex flex-col items-center justify-center w-full h-auto md:h-screen bg-orange">
       <BackButton />
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="mt-24 mb-10 md:mt-10 shadow-card bg-white w-11/12  flex flex-col md:flex-row items-center rounded">
+        <div className="p-5 mt-24 mb-10 md:mt-16 shadow-card bg-white w-11/12  flex flex-col md:flex-row items-center rounded">
           <div className="w-full">
-            <h2 className="my-5 m-auto text-center text-2xl font-bold ">
-              Información del usuario
-            </h2>
+            <h2 className="title">Información del usuario</h2>
             <div className="m-auto  w-9/12 rounded gap-5 flex flex-col items-start justify-evenly p-5">
               <div className="flex flex-row w-full items-center gap-3">
                 <img
@@ -54,7 +52,10 @@ export default function User() {
               <ItemUser label="Teléfono" value={data.phone} />
               {starsArray.length > 0 ? (
                 <>
-                  <ItemUser label="Calificación promedio" value={average} />
+                  <ItemUser
+                    label="Calificación promedio"
+                    value={Math.ceil(average)}
+                  />
                   <div className="flex flex-row items-center gap-5 md:gap-10">
                     {starsArray.map((star) => star)}
                   </div>

@@ -21,14 +21,14 @@ export default function CasesContainer() {
   return (
     <section className="flex-container gap-5 h-5/6">
       <h2 className="title">Casos</h2>
-      <select
-        onChange={handleChangeFilters}
-        className="w-fit self-start ml-16 md:ml-20 lg:ml-28"
-      >
-        <option value={""}>Todos</option>
-        <option value={false}>Activos</option>
-        <option value={true}>Eliminados</option>
-      </select>
+      <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
+        <select onChange={handleChangeFilters} className="w-full md:w-fit">
+          <option value={""}>Todos</option>
+          <option value={false}>Activos</option>
+          <option value={true}>Eliminados</option>
+        </select>
+      </div>
+
       <ListOfCases data={data} refetch={refetch} />
     </section>
   );

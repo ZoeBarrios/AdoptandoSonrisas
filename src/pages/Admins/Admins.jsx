@@ -1,9 +1,10 @@
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { useParams } from "wouter";
 import { getAdminsByOrganizationId } from "../../services/organization";
 import PersonCard from "../../components/personCard/PersonCard";
 import Modal from "../../components/modal/Modal";
 import useModal from "../../hooks/useModal";
+import BackButton from "../../components/backButton/BackButton";
 
 import FormCreateAdminModerator from "../../components/forms/create/FormCreateAdminModerator";
 import { ROLES } from "../../utils/constants";
@@ -16,9 +17,10 @@ export default function Admins() {
   );
 
   return (
-    <>
-      <h1>Admins</h1>
-      <div className="list-card shadow-card">
+    <section className="bg-grey w-full min-h-screen flex flex-col items-center justify-evenly">
+      <BackButton color="darkOrange" />
+      <h1 className="title">Admins</h1>
+      <div className="list-card shadow-card" style={{ minHeight: "25rem" }}>
         {data?.length > 0 ? (
           data.map((admin) => (
             <PersonCard
@@ -29,10 +31,10 @@ export default function Admins() {
             />
           ))
         ) : (
-          <h2>No hay administradores</h2>
+          <h2 className="title-no-info">No hay administradores</h2>
         )}
       </div>
-      <button className="bg-orange p-2 rounded font-bold" onClick={openModal}>
+      <button className="buttons-form" onClick={openModal}>
         Agregar Administrador
       </button>
       <Modal isOpen={showModal} setClose={closeModal}>
@@ -50,14 +52,8 @@ export default function Admins() {
             closeModal={closeModal}
             refetch={refetch}
           />
-          <button
-            className="bg-orange p-2 rounded font-bold"
-            onClick={closeModal}
-          >
-            Volver
-          </button>
         </div>
       </Modal>
-    </>
+    </section>
   );
 }

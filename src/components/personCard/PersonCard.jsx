@@ -38,19 +38,22 @@ export default function PersonCard({
     });
   };
   return (
-    <div className="w-full rounded flex flex-col md:flex-row items-center justify-between bg-ligthOrange p-3">
-      <p className="text-lg font-bold">{person.person_id}</p>
-      <Link to={`/usuario/${person.person_id}`}>
+    <div className="w-full rounded flex flex-col md:flex-row items-center justify-between bg-ligthOrange p-2">
+      <Link
+        to={`/usuario/${person.person_id}`}
+        className="flex flex-row gap-3 flex-1"
+      >
+        <p className="text-lg font-bold ">{person.person_id}</p>
         <p className="text-lg cursor-pointer">{person.name.toUpperCase()}</p>
       </Link>
-      <p className="text-lg">{person.email}</p>
-      <p className="text-lg">{person.phone || "Sin telefono"}</p>
+      <p className="text-lg flex-1">{person.email}</p>
+      <p className="text-lg flex-1">{person.phone || "Sin telefono"}</p>
       {data.isActive ? (
-        <button className="buttons-form" onClick={handleDelete}>
+        <button className="buttons-form flex-1" onClick={handleDelete}>
           Eliminar de la organización
         </button>
       ) : (
-        <button className="buttons-form" onClick={handleReactivate}>
+        <button className="buttons-form flex-1" onClick={handleReactivate}>
           Reactivar
         </button>
       )}

@@ -47,7 +47,7 @@ export default function Organization() {
               {data?.description}
             </p>
 
-            <div className=" w-9/12 flex flex-col md:flex-row items-center justify-between mt-10 gap-10">
+            <div className=" w-full flex flex-col md:flex-row items-center justify-between mt-10 gap-10">
               <div className="w-full flex items-center justify-evenly">
                 {data?.instagram_link && (
                   <i
@@ -81,16 +81,16 @@ export default function Organization() {
 
               <Link
                 to={`/donar/${id}`}
-                className="w-full text-center bg-orange px-7 py-1 rounded text-white bold hover:bg-green"
+                className="buttons-form w-7/12 text-center"
               >
                 Donar
               </Link>
-              {user?.role == ROLES.SUPERADMIN && (
+              {user?.role == ROLES.SUPERADMIN && data?.isAccepted && (
                 <Link
                   to={`/organizacion/admins/${id}`}
-                  className="bg-orange px-7 py-1 rounded text-white bold hover:bg-green"
+                  className="buttons-form text-center w-7/12"
                 >
-                  Ver administradores
+                  Administradores
                 </Link>
               )}
             </div>

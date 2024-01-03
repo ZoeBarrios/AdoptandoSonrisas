@@ -60,7 +60,7 @@ export default function FormRegisterOrganizartion() {
                 className="w-full h-full object-cover object-center rounded "
               />
             </div>
-            <div className="w-full gap-2 flex flex-col items-center justify-center h-full">
+            <div className="w-full flex flex-col items-center justify-center gap-3 h-full">
               <FormField type="text" name="name" label="Nombre" />
               <TextArea
                 type="text"
@@ -70,22 +70,11 @@ export default function FormRegisterOrganizartion() {
               />
               <FormField type="email" name="email" label="Email" />
               <FormField type="phone" name="phone" label="Telefono(Opcional)" />
-              <div className="flex flex-col md:flex-row md:gap-2 w-full md:w-6/12 items-center justify-center">
-                <FormField
-                  type="text"
-                  name="instagram_link"
-                  label="Instagram(Opcional)"
-                />
-                <FormField
-                  type="text"
-                  name="facebook_link"
-                  label="Facebook(Opcional)"
-                />
-              </div>
+
               <div className="flex flex-col w-full items-center justify-center text-center">
                 <button
                   type="submit"
-                  className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white"
+                  className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white hover:bg-orange hover:transition-colors duration-300"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? <Loader /> : "Registrarse"}

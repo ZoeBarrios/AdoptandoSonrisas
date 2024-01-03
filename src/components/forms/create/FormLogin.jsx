@@ -85,30 +85,32 @@ export default function FormLogin() {
               <div className="flex flex-col w-full items-center justify-center">
                 <button
                   type="submit"
-                  className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5"
+                  className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5 hover:bg-orange hover:transition-colors duration-300"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? <Loader /> : "Ingresar"}
                 </button>
                 <a
-                  className="text-base text-start cursor-pointer"
+                  className="text-base text-start cursor-pointer text-darkOrange"
                   onClick={openModal}
                 >
                   Olvide mi contraseña
                 </a>
               </div>
-              <a
-                onClick={handleOrganization}
-                className="text-base text-darkOrange cursor-pointer"
-              >
-                Quiero registrar mi organización
-              </a>
-              <a
-                onClick={handleVolunteer}
-                className="text-base text-darkOrange cursor-pointer"
-              >
-                Quiero registrarme
-              </a>
+              <div className="flex flex-col items-center justify-center gap-2 mt-10 w-full">
+                <a
+                  onClick={handleOrganization}
+                  className="text-base text-black cursor-pointer hover:text-darkOrange"
+                >
+                  Registrar organización
+                </a>
+                <a
+                  onClick={handleVolunteer}
+                  className="text-base text-blacke cursor-pointer hover:text-darkOrange"
+                >
+                  Registrarme
+                </a>
+              </div>
             </div>
             <div className="w-full h-2/5 hidden md:block md:w-full md:h-full overflow-hidden">
               <img

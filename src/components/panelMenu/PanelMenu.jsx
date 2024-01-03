@@ -28,6 +28,7 @@ const PanelMenu = ({ items, sectionActive, handleSectionActive }) => {
             </PanelItem>
           );
         })}
+
         <i
           className={`fa-solid ${
             panelIsShown ? "fa-arrow-left" : "fa-arrow-right"

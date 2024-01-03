@@ -11,10 +11,8 @@ export default function Recover({ showModal, closeModal, openModal }) {
 
   return (
     <Modal isOpen={showModal} setIsOpen={openModal} setClose={closeModal}>
-      <div className="flex flex-col items-center justify-center gap-5">
-        <h1 className="text-3xl font-bold text-darkOrange">
-          Recuperar contraseña
-        </h1>
+      <div className="flex flex-col items-center justify-center gap-5 p-5">
+        <h1 className="title">Recuperar contraseña</h1>
         <p className="text-base text-darkOrange">
           Ingresa tu correo electrónico para recuperar tu contraseña
         </p>
@@ -26,6 +24,9 @@ export default function Recover({ showModal, closeModal, openModal }) {
           onChange={handleEmailChange}
         />
         <ChangePasswordInput email={email} />
+        <button onClick={closeModal} className="buttons-form">
+          Volver
+        </button>
       </div>
     </Modal>
   );

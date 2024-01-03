@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
+import { Link } from "wouter";
 import "./Banner.css";
 
 export default function Banner() {
@@ -22,7 +23,11 @@ export default function Banner() {
       <div className="banner__content">
         <h1>Adoptando Sonrisas</h1>
         <p>Encuentra tu compañero peludo y llena tu vida de amor y alegría.</p>
-        <button className="btn btn--primary">Adoptar</button>
+        <Link to="/adoptar">
+          <span className="buttons-form cursor-pointer w-3/12 text-xl text-center">
+            Adoptar
+          </span>
+        </Link>
       </div>
     </animated.div>
   );

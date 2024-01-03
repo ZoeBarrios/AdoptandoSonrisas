@@ -116,3 +116,16 @@ export const getPersonsVolunteersByOrganization = async (id, activity_id) => {
   });
   return checkResponse(response);
 };
+
+export const deletePersonAccount = async (id) => {
+  const token = getFromLocalStorage("token");
+
+  const response = await fetch(`${API_URL}/persons/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return checkResponse(response);
+};

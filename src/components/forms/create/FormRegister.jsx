@@ -60,7 +60,7 @@ export default function FormRegister() {
             <div className="flex flex-col items-center justify-center w-full">
               <button
                 type="submit"
-                className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5"
+                className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5 hover:bg-orange hover:transition-colors duration-300"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? <Loader /> : "Registrarse"}

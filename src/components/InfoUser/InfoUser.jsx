@@ -3,19 +3,31 @@ import useAuthStore from "../../stores/useAuthStore";
 import { ROLES } from "../../utils/constants";
 import FormUpdateOrganization from "../forms/update/FormUpdateOrganization";
 import FormUpdateUser from "../forms/update/FormUpdateUser";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { getOrganizacionByAdminOrModerator } from "../../services/organization";
 import { setToLocalStorage } from "../../utils/localStorageFunctions";
 import { useLocation } from "wouter";
 import Loader from "../loader/Loader";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { deletePersonAccount } from "../../services/user";
+import { showError } from "../../utils/userMessages";
+import Modal from "../modal/Modal";
+import useModal from "../../hooks/useModal";
 
 export default function InfoUser() {
   const { user, setOrganization } = useAuthStore();
   const { handleLogout } = useAuth();
   const [showOrgForm, setShowOrgForm] = useState(false);
+  const { showModal, closeModal, openModal } = useModal();
   const [__, setLocation] = useLocation();
+  const { mutate } = useMutation(deletePersonAccount, {
+    onSuccess: () => {
+      handleLogout();
+      setLocation("/");
+    },
+    onError: showError,
+  });
   const { data, refetch, isLoading } = useQuery(
     "organization",
     () => {
@@ -38,6 +50,10 @@ export default function InfoUser() {
       },
     }
   );
+
+  const handleDeleteAccount = () => {
+    mutate(user.id);
+  };
 
   const handleClicked = () => {
     setShowOrgForm(!showOrgForm);
@@ -70,6 +86,33 @@ export default function InfoUser() {
           )}
         </>
       )}
+      <button
+        className="absolute bottom-5 rigth-1/2 md:right-5 delete-button"
+        onClick={openModal}
+      >
+        <i className="fa-solid fa-trash"></i> Eliminar cuenta
+      </button>
+      <Modal isOpen={showModal} setClose={closeModal}>
+        <div className="flex flex-col items-center justify-center p-5">
+          <h1 className="title">
+            ¿Estás seguro que deseas eliminar tu cuenta?
+          </h1>
+          <div className="w-full flex flex-row justify-around">
+            <button
+              className="button-style mt-2 px-2 md:px-5 py-2 text-base"
+              onClick={handleDeleteAccount}
+            >
+              Sí
+            </button>
+            <button
+              className="button-style mt-2 px-2 md:px-5 py-2 text-base"
+              onClick={closeModal}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </Modal>
     </section>
   );
 }
