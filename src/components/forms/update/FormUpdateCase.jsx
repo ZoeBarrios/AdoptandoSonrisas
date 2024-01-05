@@ -5,6 +5,8 @@ import { useMutation } from "react-query";
 import { updateCase } from "../../../services/cases";
 import { showError, showSuccess } from "../../../utils/userMessages";
 import useUpdateForm from "../../../hooks/useUpdateForm";
+import useLanguageStore from "../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../utils/languajes";
 
 export default function FormUpdateCase({
   data,
@@ -12,10 +14,11 @@ export default function FormUpdateCase({
   showModal,
   closeModal,
 }) {
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(updateCase, {
     onSuccess: () => {
       closeModal();
-      showSuccess("Caso actualizado correctamente", refetch);
+      showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
     },
     onError: showError,
   });
@@ -28,17 +31,25 @@ export default function FormUpdateCase({
           setFormRef.current = setValues;
           return (
             <Form className="flex flex-col items-center justify-center gap-5 w-full p-5">
-              <FormField type="text" name="title" label="Titulo" />
-              <FormField type="text" name="description" label="Descripcion" />
+              <FormField
+                type="text"
+                name="title"
+                label={TRANSLATES[language].LABELS.TITLE}
+              />
+              <FormField
+                type="text"
+                name="description"
+                label={TRANSLATES[language].LABELS.DESCRIPTION}
+              />
               <button
                 type="button"
                 onClick={closeModal}
                 className="buttons-form w-1/2"
               >
-                Volver
+                {TRANSLATES[language].BUTTONS.CANCEL}
               </button>
               <button type="submit" className="buttons-form w-1/2">
-                Actualizar
+                {TRANSLATES[language].BUTTONS.UPDATE}
               </button>
             </Form>
           );

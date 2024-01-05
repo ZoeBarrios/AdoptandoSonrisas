@@ -10,8 +10,11 @@ import {
 } from "../../services/adoptions";
 import { useEffect, useReducer } from "react";
 import { adoptionsReducer } from "../../utils/reducers";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function ContainerAdoptions() {
+  const { language } = useLanguageStore();
   const { user, organization } = useAuthStore();
   const [state, dispatch] = useReducer(adoptionsReducer, {
     isAccepted: "",
@@ -37,20 +40,30 @@ export default function ContainerAdoptions() {
   }, [refetch, state]);
   return (
     <section className="flex-container gap-5 h-screen md:h-5/6">
-      <h2 className="title">Lista de adopciones</h2>
+      <h2 className="title">{TRANSLATES[language].ADOPTIONS.TITLE}</h2>
       <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
         <select onClick={handleChangeFilters} className="w-full md:w-fit">
-          <option value={FILTERS_ACTIONS.RESET}>Todos</option>
-          <option value={FILTERS_ACTIONS.SET_REJECTED}>Canceladas</option>
-          <option value={FILTERS_ACTIONS.SET_PENDING}>Pendientes</option>
-          <option value={FILTERS_ACTIONS.SET_APPROVED}>Aceptadas</option>
+          <option value={FILTERS_ACTIONS.RESET}>
+            {TRANSLATES[language].FILTERS.ALL}
+          </option>
+
+          <option value={FILTERS_ACTIONS.SET_REJECTED}>
+            {TRANSLATES[language].FILTERS.CANCELS}
+          </option>
+
+          <option value={FILTERS_ACTIONS.SET_PENDING}>
+            {TRANSLATES[language].FILTERS.PENDING}
+          </option>
+          <option value={FILTERS_ACTIONS.SET_APPROVED}>
+            {TRANSLATES[language].FILTERS.ACCEPTED}
+          </option>
         </select>
       </div>
 
       <ListOfAdoptions data={data} refetch={refetch} isLoading={isLoading} />
       {user.role == ROLES.USER || user.role == ROLES.SUPERADMIN ? null : (
         <button onClick={openModal} className="buttons-form">
-          Añadir calificacion de adopción
+          {TRANSLATES[language].BUTTONS.ADD_CALIFICATION}
         </button>
       )}
 

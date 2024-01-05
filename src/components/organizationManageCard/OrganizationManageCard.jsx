@@ -5,12 +5,15 @@ import {
   deleteOrganization,
 } from "../../services/organization";
 import { toast } from "react-toastify";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function OrganizationManageCard({
   organization,
   active = false,
   refetch,
 }) {
+  const { language } = useLanguageStore();
   const { mutate: deleteOrg } = useMutation(deleteOrganization, {
     onSuccess: () => {
       toast.success("Organización eliminada");
@@ -41,15 +44,15 @@ export default function OrganizationManageCard({
       <p>{organization.email}</p>
       {active ? (
         <button onClick={handleDelete} className="delete-button">
-          Eliminar
+          {TRANSLATES[language].BUTTONS.DELETE}
         </button>
       ) : (
         <div className="flex w-full md:w-3/6 items-center justify-around flex-row">
           <button onClick={handleAccept} className="buttons-form">
-            Aceptar
+            {TRANSLATES[language].BUTTONS.ACCEPT}
           </button>
           <button onClick={handleDelete} className="delete-button">
-            Eliminar
+            {TRANSLATES[language].BUTTONS.DELETE}
           </button>
         </div>
       )}

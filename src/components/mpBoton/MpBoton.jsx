@@ -1,8 +1,8 @@
-export default function MpBoton({ mp_link }) {
+export default function MpBoton({ mp_link, title }) {
   return (
     <div className="bg-blue-500 w-9/12 p-4 rounded-md shadow-md flex flex-col items-center ">
       <h2 className="text-white text-lg font-semibold mb-2 text-center">
-        Donar con Mercado Pago
+        {title}
       </h2>
       {mp_link && (
         <a href={mp_link} target="_blank" rel="noreferrer">

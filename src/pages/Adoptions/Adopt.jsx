@@ -7,7 +7,10 @@ import { INITIAL_SEARCH_STATE, searchReducer } from "../../utils/reducers";
 import Filters from "../../components/filters/Filters";
 import PaginationButtons from "../../components/paginationButtons/PaginationButtons";
 import DefaultPage from "../defaultPage/DefaultPage";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 export default function Adopt() {
+  const { language } = useLanguageStore();
   const [search, dispatchSearch] = useReducer(
     searchReducer,
     INITIAL_SEARCH_STATE
@@ -43,7 +46,7 @@ export default function Adopt() {
   return (
     <DefaultPage>
       <section className="mt-10 flex flex-col w-full md:w-auto items-center justify-center mb-10">
-        <h1 className="title mb-10">Adoptando Sonrisas</h1>
+        <h1 className="title mb-10">{TRANSLATES[language].LOGO}</h1>
         <Filters dispatch={dispatchSearch} state={search} />
         <ListOfAnimals data={data} error={error} loading={loading} />
         <PaginationButtons

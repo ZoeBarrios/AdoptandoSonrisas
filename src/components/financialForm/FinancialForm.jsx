@@ -7,6 +7,8 @@ import {
 } from "../../services/financialInfo";
 import useUpdateForm from "../../hooks/useUpdateForm";
 import { showError, showSuccess } from "../../utils/userMessages";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function FinancialForm({
   update = false,
@@ -18,6 +20,7 @@ export default function FinancialForm({
   organization = 0,
   refetch,
 }) {
+  const { language } = useLanguageStore();
   const initialValues = update
     ? {
         ...financialInfo,
@@ -29,9 +32,11 @@ export default function FinancialForm({
       update ? updateFinancialInfo(params) : createFinancialInfo(params),
     {
       onSuccess: () => {
-        showSuccess("Se ha actualizado la información financiera", refetch);
+        showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
       },
-      onError: showError,
+      onError: () => {
+        showError(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
+      },
     }
   );
   const { isEditable, setFormRef, handleUpdate, handleEdit } = useUpdateForm(
@@ -59,7 +64,7 @@ export default function FinancialForm({
             />
             <FormField
               name="mp_link"
-              label="Link de Mercado Pago"
+              label={TRANSLATES[language].LABELS.MP_LINK}
               type="text"
               disabled={!isEditable}
             />
@@ -67,7 +72,7 @@ export default function FinancialForm({
               <div className="flex flex-row-reverse w-9/12 items-center justify-between">
                 {isEditable && (
                   <button type="submit" className="buttons-form">
-                    Actualizar
+                    {TRANSLATES[language].BUTTONS.UPDATE}
                   </button>
                 )}
                 <button
@@ -75,12 +80,14 @@ export default function FinancialForm({
                   onClick={handleEdit}
                   className="buttons-form"
                 >
-                  {isEditable ? "Cancelar" : "Editar"}
+                  {isEditable
+                    ? TRANSLATES[language].BUTTONS.RETURN
+                    : TRANSLATES[language].BUTTONS.UPDATE}
                 </button>
               </div>
             ) : (
               <button type="submit" className="buttons-form">
-                Crear
+                {TRANSLATES[language].BUTTONS.UPDATE}
               </button>
             )}
           </Form>

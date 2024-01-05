@@ -8,6 +8,8 @@ import InputImages from "../../inputImages/InputImages";
 import { registerCaseValidationSchema } from "../../../validationSchemas/validationSchemas";
 import Modal from "../../modal/Modal";
 import { showError, showSuccess } from "../../../utils/userMessages";
+import useLanguageStore from "../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../utils/languajes";
 
 export default function FormNewCase({
   animal,
@@ -15,6 +17,7 @@ export default function FormNewCase({
   closeModal,
   refetch,
 }) {
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(createCase, {
     onSuccess: () => {
       showSuccess("Caso creado correctamente", refetch);
@@ -40,12 +43,17 @@ export default function FormNewCase({
         {({ values, setFieldValue }) => (
           <Form className="flex flex-col items-center justify-center gap-5 p-3">
             <h2 className="text-darkOrange font-bold text-xl p-3 ">
-              Crea un nuevo caso
+              {TRANSLATES[language].FORMS.NEW_CASE.TITLE}
             </h2>
-            <FormField name="title" type="text" label="Título" />
+            <FormField
+              name="title"
+              type="text"
+              label={TRANSLATES[language].LABELS.TITLE}
+              isRequired={true}
+            />
             <TextArea
               name="description"
-              label="Descripción"
+              label={TRANSLATES[language].LABELS.DESCRIPTION}
               isRequired={true}
             />
             <InputImages
@@ -56,14 +64,14 @@ export default function FormNewCase({
             />
             <div className="flex flex-row w-full items-center justify-around">
               <button type="submit" className="buttons-form">
-                Agregar
+                {TRANSLATES[language].BUTTONS.ADD_CASE}
               </button>
               <button
                 type="button"
                 className="buttons-form"
                 onClick={closeModal}
               >
-                Volver
+                {TRANSLATES[language].BUTTONS.CANCEL}
               </button>
             </div>
           </Form>

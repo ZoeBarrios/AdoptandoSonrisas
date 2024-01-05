@@ -14,9 +14,12 @@ import { deletePersonAccount } from "../../services/user";
 import { showError } from "../../utils/userMessages";
 import Modal from "../modal/Modal";
 import useModal from "../../hooks/useModal";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { LANGUAGES, TRANSLATES } from "../../utils/languajes";
 
 export default function InfoUser() {
   const { user, setOrganization } = useAuthStore();
+  const { language } = useLanguageStore();
   const { handleLogout } = useAuth();
   const [showOrgForm, setShowOrgForm] = useState(false);
   const { showModal, closeModal, openModal } = useModal();
@@ -78,7 +81,14 @@ export default function InfoUser() {
                 onClick={handleClicked}
                 className="absolute top-0 left-50  md:right-1 button-style mt-2 px-2 md:px-5 py-2 text-base"
               >
-                Editar {showOrgForm ? "mi información" : "organización"}
+                {TRANSLATES[language].BUTTONS.UPDATE}{" "}
+                {showOrgForm
+                  ? language == LANGUAGES.ES
+                    ? "mi perfil"
+                    : "my profile"
+                  : language === LANGUAGES.ES
+                  ? "organización"
+                  : "organization"}
               </button>
             </>
           ) : (
@@ -90,25 +100,24 @@ export default function InfoUser() {
         className="absolute bottom-5 rigth-1/2 md:right-5 delete-button"
         onClick={openModal}
       >
-        <i className="fa-solid fa-trash"></i> Eliminar cuenta
+        <i className="fa-solid fa-trash"></i>{" "}
+        {TRANSLATES[language].INFO_USER.DELETE_ACCOUNT}
       </button>
       <Modal isOpen={showModal} setClose={closeModal}>
         <div className="flex flex-col items-center justify-center p-5">
-          <h1 className="title">
-            ¿Estás seguro que deseas eliminar tu cuenta?
-          </h1>
+          <h1 className="title">{TRANSLATES[language].INFO_USER.WARNING}</h1>
           <div className="w-full flex flex-row justify-around">
             <button
               className="button-style mt-2 px-2 md:px-5 py-2 text-base"
               onClick={handleDeleteAccount}
             >
-              Sí
+              {TRANSLATES[language].BUTTONS.YES}
             </button>
             <button
               className="button-style mt-2 px-2 md:px-5 py-2 text-base"
               onClick={closeModal}
             >
-              No
+              {TRANSLATES[language].BUTTONS.CANCEL}
             </button>
           </div>
         </div>

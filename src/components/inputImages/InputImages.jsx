@@ -1,4 +1,6 @@
 import { ErrorMessage } from "formik";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function InputImages({
   values,
@@ -6,13 +8,16 @@ export default function InputImages({
   multiple = false,
   isRequired = false,
 }) {
+  const { language } = useLanguageStore();
   return (
     <>
       <label
         htmlFor={multiple ? "images" : "image"}
         className="bg-orange p-2 rounded font-bold text-white cursor-pointer hover:bg-lightOrange transition-all"
       >
-        {multiple ? "Agregar imágenes" : "Agregar imagen"}
+        {multiple
+          ? TRANSLATES[language].IMAGES.MULTIPLE
+          : TRANSLATES[language].IMAGES.SINGLE}
       </label>
       <input
         id={multiple ? "images" : "image"}

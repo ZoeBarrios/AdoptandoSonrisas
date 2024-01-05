@@ -6,11 +6,14 @@ import Gato1 from "/imgs/gato1.png";
 import curva from "/imgs/curva.svg";
 import Slider from "../slider/Slider";
 import useAuthStore from "../../stores/useAuthStore";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 const images = [Perro1, Gato1, Perro2];
 
 export default function DonationInfo() {
   const { user } = useAuthStore();
+  const { language } = useLanguageStore();
   return (
     <div className="donation-info-section">
       <div>
@@ -19,16 +22,16 @@ export default function DonationInfo() {
 
       <section className="donation-info">
         <div className="donation-info-text">
-          <h2>Donación y voluntariado</h2>
-          <p>Si quieres ayudar a la causa, puedes hacerlo de varias formas:</p>
+          <h2>{TRANSLATES[language].DONATION_SECTION.TITLE}</h2>
+          <p>{TRANSLATES[language].DONATION_SECTION.DESCRIPTION}</p>
         </div>
         <Slider images={images} />
         <div className="buttons-container">
           <Link to="/donar" className="button">
-            Donar
+            {TRANSLATES[language].BUTTONS.DONATE}
           </Link>
           <Link to={user ? "/perfil" : "/register"} className="button">
-            Voluntariado
+            {TRANSLATES[language].BUTTONS.VOLUNTEERING}
           </Link>
         </div>
       </section>

@@ -8,6 +8,8 @@ import { registerUser } from "../../../services/user";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import { useLocation } from "wouter";
+import useLanguageStore from "../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../utils/languajes";
 
 const initialValues = {
   name: "",
@@ -19,14 +21,19 @@ const initialValues = {
 
 export default function FormRegister() {
   const [location, setLocation] = useLocation();
+  const { language } = useLanguageStore();
   const toggleForm = () => setLocation("/login");
   const { mutate } = useMutation(registerUser, {
     onError: async (error) => {
-      const { message } = await error.json();
-      toast.error(message);
+      const err = await error.json();
+      err.name == "UsuarioExistente"
+        ? toast.error(
+            TRANSLATES[language].MESSAGES.REGISTER.USER_ALREADY_EXISTS
+          )
+        : toast.error(TRANSLATES[language].MESSAGES.REGISTER.ERROR);
     },
     onSuccess: () => {
-      toast.success("Registro exitoso");
+      toast.success(TRANSLATES[language].MESSAGES.REGISTER.SUCCESS);
 
       toggleForm();
     },
@@ -51,11 +58,31 @@ export default function FormRegister() {
             />
           </div>
           <div className="w-full flex flex-col items-center justify-center gap-3 h-full">
-            <FormField type="text" name="name" label="Nombre" />
-            <FormField type="text" name="surname" label="Apellido" />
-            <FormField type="email" name="email" label="Email" />
-            <FormField type="password" name="password" label="Contraseña" />
-            <FormField type="phone" name="phone" label="Telefono" />
+            <FormField
+              type="text"
+              name="name"
+              label={TRANSLATES[language].LABELS.NAME}
+            />
+            <FormField
+              type="text"
+              name="surname"
+              label={TRANSLATES[language].LABELS.SURNAME}
+            />
+            <FormField
+              type="email"
+              name="email"
+              label={TRANSLATES[language].LABELS.EMAIL}
+            />
+            <FormField
+              type="password"
+              name="password"
+              label={TRANSLATES[language].LABELS.PASSWORD}
+            />
+            <FormField
+              type="phone"
+              name="phone"
+              label={TRANSLATES[language].LABELS.PHONE}
+            />
 
             <div className="flex flex-col items-center justify-center w-full">
               <button
@@ -63,13 +90,17 @@ export default function FormRegister() {
                 className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5 hover:bg-orange hover:transition-colors duration-300"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? <Loader /> : "Registrarse"}
+                {isSubmitting ? (
+                  <Loader />
+                ) : (
+                  TRANSLATES[language].BUTTONS.REGISTER
+                )}
               </button>
               <a
                 onClick={toggleForm}
                 className="text-base text-darkOrange cursor-pointer"
               >
-                Ya tengo una cuenta
+                {TRANSLATES[language].LABELS.ALREADY_REGISTERED}
               </a>
             </div>
           </div>

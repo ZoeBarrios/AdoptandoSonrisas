@@ -11,13 +11,13 @@ export default function PaginationButtons({
         className={`pagination-button ${page === 1 ? "inactive" : ""}`}
         onClick={prevPage}
       >
-        Anterior
+        <i className="fas fa-chevron-left"></i>
       </button>
       <button
         className={`pagination-button ${dataLength < limit ? "inactive" : ""}`}
         onClick={nextPage}
       >
-        Siguiente
+        <i className="fas fa-chevron-right"></i>
       </button>
     </div>
   );

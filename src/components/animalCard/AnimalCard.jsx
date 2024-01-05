@@ -3,9 +3,12 @@ import getAge from "../../utils/getAge";
 import SexItem from "../sexItem/SexItem";
 import "../caseCard/CaseCard.css";
 import { SIZE_TRANSLATE } from "../../utils/translate";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { LANGUAGES, TRANSLATES } from "../../utils/languajes";
 
 export default function AnimalCard({ animal }) {
   const { name, sex, size, birthdate, img_url } = animal;
+  const { language } = useLanguageStore();
 
   const age = getAge(birthdate);
   return (
@@ -16,11 +19,19 @@ export default function AnimalCard({ animal }) {
       <h3>{name}</h3>
       <div className="flex flex-row w-full items-center justify-around text-center">
         <SexItem sex={sex} />
-        <span>{SIZE_TRANSLATE[size]}</span>
-        <span>{age} años</span>
+        <span>
+          {language === LANGUAGES.ES
+            ? SIZE_TRANSLATE[size]
+            : size.charAt(0) + size.slice(1).toLowerCase()}
+        </span>
+        <span>
+          {age} {TRANSLATES[language].CASES.YEARS}
+        </span>
       </div>
       <Link to={`/adoptar/${animal.animal_id}`}>
-        <button className="buttons-form w-full mt-5">Ver más</button>
+        <button className="buttons-form w-full mt-5">
+          {TRANSLATES[language].BUTTONS.MORE}
+        </button>
       </Link>
     </div>
   );

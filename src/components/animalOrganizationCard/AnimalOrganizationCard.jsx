@@ -5,8 +5,11 @@ import { Link } from "wouter";
 import { useMutation } from "react-query";
 import { deleteAnimal } from "../../services/animals";
 import { showError, showSuccess } from "../../utils/userMessages";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 export default function AnimalOrganizationCard({ animal, refetch }) {
   const { showModal, openModal, closeModal } = useModal();
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(deleteAnimal, {
     onSuccess: () => {
       showSuccess("Animal eliminado", refetch);
@@ -16,8 +19,6 @@ export default function AnimalOrganizationCard({ animal, refetch }) {
   const handleDelete = () => {
     mutate(animal.animal_id);
   };
-
-  console.log(animal);
 
   return (
     <div className="bg-ligthOrange w-full p-5 rounded flex flex-col md:flex-row gap-5 md:gap-2 justify-between items-center">
@@ -38,17 +39,19 @@ export default function AnimalOrganizationCard({ animal, refetch }) {
 
       <div className="flex items-center">
         {animal.isDeleted ? (
-          <p className="text-center p-5 font-bold text-black">Eliminado</p>
+          <p className="text-center p-5 font-bold text-black">
+            {TRANSLATES[language].BUTTONS.DELETED}
+          </p>
         ) : (
           <button onClick={handleDelete} className="delete-button mr-3">
-            Eliminar
+            {TRANSLATES[language].BUTTONS.DELETE}
           </button>
         )}
         <button
           className="bg-orange p-2 rounded font-bold text-white hover:bg-ligthOrange transition-all"
           onClick={openModal}
         >
-          Agregar caso
+          {TRANSLATES[language].BUTTONS.ADD_CASE}
         </button>
       </div>
 

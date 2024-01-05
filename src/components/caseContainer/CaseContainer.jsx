@@ -4,9 +4,11 @@ import CaseCard from "../caseCard/CaseCard";
 import { useEffect, useState } from "react";
 import PaginationButtons from "../paginationButtons/PaginationButtons";
 import Loader from "../loader/Loader";
-
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 export default function CaseContainer() {
   const [page, setPage] = useState(1);
+  const { language } = useLanguageStore();
   const { data, isLoading, refetch } = useQuery("cases", () =>
     getCases(page, 3)
   );
@@ -36,7 +38,7 @@ export default function CaseContainer() {
               data?.map((item) => <CaseCard key={item?.id} itemcase={item} />)
             ) : (
               <h2 className="text-3xl p-40 text-center">
-                No hay mas casos registrados
+                {TRANSLATES[language].CASES.NO_CASES}
               </h2>
             )}
           </div>

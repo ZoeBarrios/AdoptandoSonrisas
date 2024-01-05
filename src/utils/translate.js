@@ -9,3 +9,9 @@ export const SIZE_TRANSLATE = {
   MEDIUM: "Mediano",
   BIG: "Grande",
 };
+
+export const ACTIVITY_TRANSLATE = {
+  Gestion: "Management",
+  Alimentos: "Food",
+  Transitar: "Transit",
+};

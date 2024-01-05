@@ -6,11 +6,15 @@ import { showError, showSuccess } from "../../utils/userMessages";
 import { Field, Form, Formik } from "formik";
 import useAuthStore from "../../stores/useAuthStore";
 import FormField from "../formField/FormField";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
+
 export default function RatingForm({ data, closeModal, showModal }) {
   const { user } = useAuthStore();
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(createRating, {
     onSuccess: () => {
-      showSuccess("Calificación enviada");
+      showSuccess(TRANSLATES[language].MESSAGES.CALIFICATION.SUCCESS);
     },
     onError: showError,
   });
@@ -30,7 +34,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
     <Modal isOpen={showModal} setClose={closeModal}>
       <div className="mt-5 flex flex-col items-center justify-center gap-5">
         <h2 className="text-xl text-darkOrange font-bold">
-          Calificar adopción
+          {TRANSLATES[language].FORMS.NEW_CALIFICATION.TITLE}
         </h2>
 
         <Formik
@@ -51,7 +55,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
                 className="w-9/12 bg-white rounded-md border border-darkOrange focus:outline-orange focus:ring-darkOrange focus:border-transparent transition duration-300 ease-in-out"
               >
                 <option value="" disabled>
-                  Seleccione una adopción
+                  {TRANSLATES[language].FORMS.NEW_CALIFICATION.DESCRIPTION}
                 </option>
                 {data?.map(
                   (adoption) =>
@@ -70,25 +74,29 @@ export default function RatingForm({ data, closeModal, showModal }) {
               <FormField
                 name="rating"
                 type="number"
-                label="Calificación"
+                label={TRANSLATES[language].LABELS.CALIFICATION}
                 min="1"
                 max="5"
               />
-              <TextArea name="comment" id="comment" label="Comentario" />
+              <TextArea
+                name="comment"
+                id="comment"
+                label={TRANSLATES[language].LABELS.COMMENT}
+              />
               <div className="flex flex-row w-full items-center justify-around">
                 <button
                   type="submit"
                   disabled={isSubmitting}
                   className="buttons-form"
                 >
-                  Enviar
+                  {TRANSLATES[language].BUTTONS.ADD_CALIFICATION}
                 </button>
                 <button
                   type="button"
                   onClick={closeModal}
                   className="buttons-form"
                 >
-                  Cancelar
+                  {TRANSLATES[language].BUTTONS.CANCEL}
                 </button>
               </div>
             </Form>

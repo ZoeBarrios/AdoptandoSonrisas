@@ -1,4 +1,4 @@
-import { SECCIONES_ES } from "../../utils/constants";
+import { SECTION_NAMES } from "../../utils/constants";
 import InfoUser from "../InfoUser/InfoUser";
 import CasesContainer from "../casesContainer/CasesContainer";
 import ContainerAdoptions from "../containerAdoptions/ContainerAdoptions";
@@ -8,27 +8,29 @@ import ContainerVolunteeers from "../containerVolunteers/ContainerVolunteers";
 import FinancialContainer from "../financialContainer/FinancialContainer";
 import ManageOrganizations from "../manageOrganizations/ManageOrganizations";
 import ModeratorContainer from "../moderatorsContainer/ModeratorsContainer";
+import useLanguageStore from "../../stores/useLanguageStore";
 export default function ComponentToShow({ section }) {
-  switch (section.es) {
-    case SECCIONES_ES.PERFIL:
+  const { language } = useLanguageStore();
+  switch (section) {
+    case SECTION_NAMES[language].PROFILE:
       return <InfoUser />;
-    case SECCIONES_ES.ORGANIZACIONES:
+    case SECTION_NAMES[language].ORGANIZATIONS:
       return <ContainerOrganizations />;
-    case SECCIONES_ES.VOLUNTARIADOS:
+    case SECTION_NAMES[language].VOLUNTEERS:
       return <ContainerVolunteeers />;
-    case SECCIONES_ES.ADOPCIONES:
+    case SECTION_NAMES[language].ADOPTIONS:
       return <ContainerAdoptions />;
-    case SECCIONES_ES.MODERADORES:
+    case SECTION_NAMES[language].MODERATORS:
       return <ModeratorContainer />;
-    case SECCIONES_ES.CASOS:
+    case SECTION_NAMES[language].CASES:
       return <CasesContainer />;
-    case SECCIONES_ES.ANIMALES:
+    case SECTION_NAMES[language].ANIMALS:
       return <ContainerAnimals />;
-    case SECCIONES_ES.CONTROL_ORGANIZACIONES:
+    case SECTION_NAMES[language].CONTROL_ORGANIZATIONS:
       return <ManageOrganizations />;
-    case SECCIONES_ES.FINANCIAL_SECTION:
+    case SECTION_NAMES[language].FINANCIAL_SECTION:
       return <FinancialContainer />;
     default:
-      return <h1>NO HAY NADA</h1>;
+      return <h1>Error</h1>;
   }
 }

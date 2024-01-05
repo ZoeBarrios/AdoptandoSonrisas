@@ -1,8 +1,10 @@
 import { useState } from "react";
 import PanelItem from "../panelItem/PanelItem";
+import useLanguageStore from "../../stores/useLanguageStore";
 
 const PanelMenu = ({ items, sectionActive, handleSectionActive }) => {
   const [panelIsShown, setPanelIsShown] = useState(false);
+  const { language } = useLanguageStore();
 
   const handlePanelIsShown = () => {
     setPanelIsShown(!panelIsShown);
@@ -14,17 +16,17 @@ const PanelMenu = ({ items, sectionActive, handleSectionActive }) => {
         panelIsShown ? "showPanel" : "hidePanel"
       } group`}
     >
-      <div className="h-full flex flex-col self-center justify-around ml-5 rounded ">
+      <div className="h-5/6 md:h-full flex flex-col self-center justify-around ml-5 rounded ">
         {Object.keys(items).map((key) => {
           return (
             <PanelItem
               key={key}
               isActive={sectionActive.id === items[key].id}
-              onClick={() => handleSectionActive(items[key])}
+              onClick={() => handleSectionActive(items[key][language])}
               panelIsShow={`${!panelIsShown ? "opacity-0" : ""}`}
               icon={items[key].icon}
             >
-              {items[key].es}
+              {items[key][language]}
             </PanelItem>
           );
         })}

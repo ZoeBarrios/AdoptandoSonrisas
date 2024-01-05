@@ -12,9 +12,12 @@ import { ROLES } from "../../utils/constants";
 import FormUpdateCase from "../../components/forms/update/FormUpdateCase";
 import useModal from "../../hooks/useModal";
 import Loader from "../../components/loader/Loader";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { LANGUAGES, TRANSLATES } from "../../utils/languajes";
 
 export default function Case() {
   const { id } = useParams();
+  const { language } = useLanguageStore();
   const { showModal, openModal, closeModal } = useModal();
   const { user, organization } = useAuthStore();
   const { data, isLoading, refetch } = useQuery(["case", { id }], () =>
@@ -38,8 +41,15 @@ export default function Case() {
               <Slider images={imgs} />
               <div className="w-full flex items-center justify-around mt-3 font-bold">
                 <SexItem sex={sex} />
-                <span className="ml-2">{SIZE_TRANSLATE[size]}</span>
-                <span className="ml-2">{age} años</span>
+                <span className="ml-2">
+                  {language == LANGUAGES.ES
+                    ? SIZE_TRANSLATE[size]
+                    : size.charAt(0).toUpperCase() +
+                      size.slice(1).toLowerCase()}
+                </span>
+                <span className="ml-2">
+                  {age} {TRANSLATES[language].CASES.YEARS}
+                </span>
               </div>
             </div>
             <div className="w-full lg:w-8/12 flex flex-row bg-white shadow-2xl p-4 rounded-lg overflow-hidden">
@@ -60,7 +70,7 @@ export default function Case() {
                       onClick={openModal}
                       className="buttons-form bg-green mt-5"
                     >
-                      Actualizar
+                      {TRANSLATES[language].BUTTONS.UPDATE}
                     </button>
                     <FormUpdateCase
                       data={data}
@@ -74,7 +84,7 @@ export default function Case() {
                     to={`/organizacion/${organization_id}`}
                     className="bg-green p-3 mt-5 rounded md:self-center lg:self-end text-lg hover:bg-gray-200 transition-colors duration-300 ease-in-out"
                   >
-                    Ver organización
+                    {TRANSLATES[language].BUTTONS.SEE_ORGANIZATION}
                   </Link>
                 )}
               </div>

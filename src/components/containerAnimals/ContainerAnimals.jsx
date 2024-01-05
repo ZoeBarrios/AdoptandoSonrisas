@@ -6,9 +6,12 @@ import useModal from "../../hooks/useModal";
 import FormAnimal from "../forms/create/FormAnimal";
 import Modal from "../modal/Modal";
 import { useEffect, useState } from "react";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function ContainerAnimals() {
   const { organization } = useAuthStore();
+  const { language } = useLanguageStore();
   const [filters, setFilters] = useState({
     name: "",
     isDeleted: "",
@@ -37,20 +40,20 @@ export default function ContainerAnimals() {
 
   return (
     <section className="flex-container gap-5 h-4/5">
-      <h2 className="title">Animales</h2>
+      <h2 className="title">{TRANSLATES[language].ANIMALS.TITLE}</h2>
       <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
         <select
           onChange={handleChangeFilters}
           name="isDeleted"
           className="w-full md:w-fit"
         >
-          <option value="">Todos</option>
-          <option value={true}>Eliminado</option>
-          <option value={false}>Activo</option>
+          <option value="">{TRANSLATES[language].FILTERS.ALL}</option>
+          <option value={true}>{TRANSLATES[language].FILTERS.DELETED}</option>
+          <option value={false}>{TRANSLATES[language].FILTERS.ACTIVE}</option>
         </select>
         <input
           type="text"
-          placeholder="Buscar por nombre"
+          placeholder={TRANSLATES[language].ANIMALS.PLACEHOLDER}
           name="name"
           onKeyDown={handleChangeFilters}
           className="border border-gray-300 rounded-md w-full md:w-1/2 h-10 px-5 pr-16 text-sm focus:outline-none"
@@ -59,7 +62,7 @@ export default function ContainerAnimals() {
 
       <ListOfAnimalsOrganization data={data} refetch={refetch} />
       <button className="buttons-form" onClick={openModal}>
-        Agregar animal
+        {TRANSLATES[language].BUTTONS.ADD_ANIMAL}
       </button>
       <Modal isOpen={showModal} setClose={closeModal}>
         <FormAnimal closeModal={closeModal} refetch={refetch} />

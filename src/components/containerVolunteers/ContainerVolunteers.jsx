@@ -2,12 +2,14 @@ import { useQuery } from "react-query";
 import useAuthStore from "../../stores/useAuthStore";
 import ListOfVolunteering from "../listOfVolunteering/ListOfVolunteering";
 import { ROLES } from "../../utils/constants";
+import useLanguageStore from "../../stores/useLanguageStore";
 import {
   getAppliedOrganizations,
   getPersonsVolunteersByOrganization,
 } from "../../services/user";
 import SelectActivity from "../selectActivity/SelectActivity";
 import { useEffect, useState } from "react";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function ContainerVolunteeers() {
   const { user, organization } = useAuthStore();
@@ -27,10 +29,11 @@ export default function ContainerVolunteeers() {
   const handleChanges = (e) => {
     setActivity(e.target.value);
   };
+  const { language } = useLanguageStore();
 
   return (
     <section className="flex-container gap-5 h-screen md:h-4/5">
-      <h2 className="title">Lista de voluntariados</h2>
+      <h2 className="title">{TRANSLATES[language].VOLUNTEERS.TITLE}</h2>
       <div className="w-10/12 self-center">
         <SelectActivity onChange={handleChanges} />
       </div>

@@ -5,12 +5,14 @@ import PersonCard from "../../components/personCard/PersonCard";
 import Modal from "../../components/modal/Modal";
 import useModal from "../../hooks/useModal";
 import BackButton from "../../components/backButton/BackButton";
-
 import FormCreateAdminModerator from "../../components/forms/create/FormCreateAdminModerator";
 import { ROLES } from "../../utils/constants";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function Admins() {
   const { id } = useParams();
+  const { language } = useLanguageStore();
   const { showModal, closeModal, openModal } = useModal();
   const { data, refetch } = useQuery("admins", () =>
     getAdminsByOrganizationId(id)
@@ -31,11 +33,13 @@ export default function Admins() {
             />
           ))
         ) : (
-          <h2 className="title-no-info">No hay administradores</h2>
+          <h2 className="title-no-info">
+            {TRANSLATES[language].ADMINS.NO_ADMINS}
+          </h2>
         )}
       </div>
       <button className="buttons-form" onClick={openModal}>
-        Agregar Administrador
+        {TRANSLATES[language].BUTTONS.ADD_ADMIN}
       </button>
       <Modal isOpen={showModal} setClose={closeModal}>
         <div className="p-5 h-full w-full bg-white flex flex-col items-center justify-around rounded-lg">

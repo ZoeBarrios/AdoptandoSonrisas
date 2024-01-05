@@ -10,9 +10,12 @@ import { registerAnimalValidationSchema } from "../../../validationSchemas/valid
 import YearInput from "../../yearInput/YearInput";
 import SelectSize from "../../selectSize/SelectSize";
 import SelectSex from "../../selectSex/SelectSex";
+import useLanguageStore from "../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../utils/languajes";
 
 export default function FormAnimal({ closeModal, refetch }) {
   const { organization } = useAuthStore();
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(createAnimal, {
     onSuccess: () => {
       showSuccess("Animal creado", refetch);
@@ -41,10 +44,19 @@ export default function FormAnimal({ closeModal, refetch }) {
       {({ values, setFieldValue }) => (
         <Form className="flex flex-col items-center p-3 gap-5">
           <h2 className="text-darkOrange font-bold text-xl p-3 ">
-            Crea un nuevo animal
+            {TRANSLATES[language].FORMS.NEW_ANIMAL.TITLE}
           </h2>
-          <FormField name="name" type="text" label="Nombre" />
-          <TextArea name="description" label="Descripción" isRequired={true} />
+          <FormField
+            name="name"
+            type="text"
+            label={TRANSLATES[language].LABELS.NAME}
+            isRequired={true}
+          />
+          <TextArea
+            name="description"
+            label={TRANSLATES[language].LABELS.DESCRIPTION}
+            isRequired={true}
+          />
           <YearInput />
           <SelectSex
             onChange={(e) => setFieldValue("sex", e.target.value)}
@@ -64,11 +76,11 @@ export default function FormAnimal({ closeModal, refetch }) {
           />
           <div className="flex flex-row w-full items-center justify-around">
             <button type="button" className="buttons-form" onClick={closeModal}>
-              Volver
+              {TRANSLATES[language].BUTTONS.CANCEL}
             </button>
 
             <button type="submit" className="buttons-form">
-              Agregar
+              {TRANSLATES[language].BUTTONS.ADD_ANIMAL}
             </button>
           </div>
         </Form>

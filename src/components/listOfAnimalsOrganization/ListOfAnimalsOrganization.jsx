@@ -1,6 +1,9 @@
 import AnimalOrganizationCard from "../animalOrganizationCard/AnimalOrganizationCard";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function ListOfAnimalsOrganization({ data, refetch }) {
+  const { language } = useLanguageStore();
   return (
     <div className="list-card shadow-card">
       {data?.length > 0 ? (
@@ -12,7 +15,9 @@ export default function ListOfAnimalsOrganization({ data, refetch }) {
           />
         ))
       ) : (
-        <h3 className="title-no-info">No hay animales</h3>
+        <h3 className="title-no-info">
+          {TRANSLATES[language].ANIMALS.NO_ANIMALS}
+        </h3>
       )}
     </div>
   );

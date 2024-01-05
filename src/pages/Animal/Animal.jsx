@@ -7,14 +7,16 @@ import getAge from "../../utils/getAge";
 import DefaultPage from "../defaultPage/DefaultPage";
 import { SIZE_TRANSLATE } from "../../utils/translate";
 import useAuthStore from "../../stores/useAuthStore";
-import Modal from "../../components/modal/Modal";
 import { ROLES } from "../../utils/constants";
 import AdoptForm from "../../components/forms/create/AdoptForm";
 import useModal from "../../hooks/useModal";
 import UpdateAnimalForm from "../../components/forms/update/UpdateAnimalForm";
 import Loader from "../../components/loader/Loader";
+import { LANGUAGES, TRANSLATES } from "../../utils/languajes";
+import useLanguageStore from "../../stores/useLanguageStore";
 export default function Animal() {
   const { id } = useParams();
+  const { language } = useLanguageStore();
   const { user, organization } = useAuthStore();
   const { data, isLoading, refetch } = useQuery(["animal", { id }], () =>
     getAnimal(Number(id))
@@ -38,8 +40,14 @@ export default function Animal() {
               </div>
               <div className="flex flex-row w-full md:w-9/12 justify-between items-center h-38">
                 <SexItem sex={data.sex} />
-                <span>{SIZE_TRANSLATE[data.size]}</span>
-                <span>{getAge(data?.birthdate)} años</span>
+                <span>
+                  {language === LANGUAGES.ES
+                    ? SIZE_TRANSLATE[data.size]
+                    : data.size.charAt(0) + data.size.slice(1).toLowerCase()}
+                </span>
+                <span>
+                  {getAge(data?.birthdate)} {TRANSLATES[language].CASES.YEARS}
+                </span>
               </div>
             </div>
 
@@ -56,7 +64,7 @@ export default function Animal() {
                   to={`/organizacion/${data?.organization.organization_id}`}
                   className="cursor-pointer text-base text-center md:text-start font-base hover:text-grey transition-colors duration-300 ease-in-out"
                 >
-                  Organización {data?.organization.name}
+                  {data?.organization.name}
                 </Link>
                 {user?.role !== ROLES.USER &&
                 user &&
@@ -64,7 +72,7 @@ export default function Animal() {
                 organization === data?.organization?.organization_id ? (
                   <div>
                     <button onClick={openModal} className="buttons-form">
-                      Editar
+                      {TRANSLATES[language].BUTTONS.UPDATE}
                     </button>
 
                     <UpdateAnimalForm
@@ -77,7 +85,7 @@ export default function Animal() {
                 ) : (
                   <div>
                     <button className="buttons-form" onClick={openModal}>
-                      Adoptar
+                      {TRANSLATES[language].BUTTONS.ADOPT}
                     </button>
                     <AdoptForm
                       name={data.name}

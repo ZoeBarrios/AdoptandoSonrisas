@@ -6,9 +6,12 @@ import useAuthStore from "../../stores/useAuthStore";
 import { ROLES } from "../../utils/constants";
 import { Link } from "wouter";
 import { showError, showSuccess } from "../../utils/userMessages";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function VolunteerCard({ volunteering, refetch }) {
   const { user, organization: org } = useAuthStore();
+  const { language } = useLanguageStore();
   const { organization } = volunteering;
   const { data, isLoading } = useQuery("activity", () =>
     getActivity(volunteering.activity_id)
@@ -16,7 +19,7 @@ export default function VolunteerCard({ volunteering, refetch }) {
 
   const { mutate } = useMutation(deletePersonFromOrganization, {
     onSuccess: () => {
-      showSuccess("Voluntariado eliminado", refetch);
+      showSuccess(TRANSLATES[language].MESSAGES.VOLUNTEERING.SUCCESS, refetch);
     },
     onError: showError,
   });
@@ -51,14 +54,22 @@ export default function VolunteerCard({ volunteering, refetch }) {
             </Link>
           )}
 
-          <p>Ingreso: {volunteering.joinedDate}</p>
-          <p>Actividad: {data?.data.activity_name}</p>
+          <p>
+            {TRANSLATES[language].VOLUNTEERS.ADMISSION}:{" "}
+            {volunteering.joinedDate}
+          </p>
+          <p>
+            {TRANSLATES[language].VOLUNTEERS.ACTIVITY}:{" "}
+            {data?.data.activity_name}
+          </p>
           {volunteering.isActive ? (
             <button onClick={handleDelete} className="buttons-form">
-              Quitar voluntariado
+              {TRANSLATES[language].BUTTONS.REMOVE_VOLUNTEERING}
             </button>
           ) : (
-            <p className="text-red-500 font-bold">Voluntariado eliminado</p>
+            <p className="text-red-500 font-bold">
+              {TRANSLATES[language].BUTTONS.REMOVED_VOLUNTEERING}
+            </p>
           )}
         </>
       )}

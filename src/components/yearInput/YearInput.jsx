@@ -1,13 +1,16 @@
 import { ErrorMessage } from "formik";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function YearInput() {
+  const { language } = useLanguageStore();
   return (
     <div className="w-full flex flex-col items-center">
       <label
         htmlFor="birthdate"
         className="w-9/12 text-base font-bold text-darkOrange text-start"
       >
-        Fecha de nacimiento
+        {TRANSLATES[language].LABELS.DATEBIRTH}
       </label>
       <input
         type="date"

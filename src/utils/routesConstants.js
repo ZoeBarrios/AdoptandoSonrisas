@@ -1,18 +1,23 @@
 export const ROUTES = [
   {
-    path: "/",
-    name: "Inicio",
-  },
-  {
     path: "/casos",
-    name: "Casos",
+    name: {
+      ES: "Casos",
+      ENG: "Cases",
+    },
   },
   {
     path: "/adoptar",
-    name: "Adoptar",
+    name: {
+      ES: "Adoptar",
+      ENG: "Adopt",
+    },
   },
   {
     path: "/donar",
-    name: "Donar",
+    name: {
+      ES: "Donar",
+      ENG: "Donate",
+    },
   },
 ];

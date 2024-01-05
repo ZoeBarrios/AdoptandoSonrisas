@@ -4,6 +4,9 @@ import useAuthStore from "../../stores/useAuthStore";
 import { applyToOrganization } from "../../services/user";
 import { showError, showSuccess } from "../../utils/userMessages";
 import { Link } from "wouter";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
+import { toast } from "react-toastify";
 
 export default function PersonCard({
   person: data,
@@ -11,18 +14,21 @@ export default function PersonCard({
   organization_id = null,
 }) {
   const { person } = data;
+  const { language } = useLanguageStore();
   const { organization } = useAuthStore();
   const { mutate } = useMutation(deletePersonFromOrganization, {
     onSuccess: () => {
-      showSuccess("Persona eliminada de la organización con éxito", refetch);
+      showSuccess(TRANSLATES[language].MESSAGES.PERSON.SUCCESS, refetch);
     },
     onError: showError,
   });
   const { mutate: reactivate } = useMutation(applyToOrganization, {
     onSuccess: () => {
-      showSuccess("Persona reactivada con éxito", refetch);
+      showSuccess(TRANSLATES[language].MESSAGES.PERSON.REACTIVATE, refetch);
     },
-    onError: showError,
+    onError: () => {
+      toast.error(TRANSLATES[language].MESSAGES.PERSON.ERROR);
+    },
   });
   const handleDelete = () => {
     mutate({
@@ -47,14 +53,14 @@ export default function PersonCard({
         <p className="text-lg cursor-pointer">{person.name.toUpperCase()}</p>
       </Link>
       <p className="text-lg flex-1">{person.email}</p>
-      <p className="text-lg flex-1">{person.phone || "Sin telefono"}</p>
+      <p className="text-lg flex-1">{person.phone || ""}</p>
       {data.isActive ? (
         <button className="buttons-form flex-1" onClick={handleDelete}>
-          Eliminar de la organización
+          {TRANSLATES[language].BUTTONS.DEACTIVATE}
         </button>
       ) : (
         <button className="buttons-form flex-1" onClick={handleReactivate}>
-          Reactivar
+          {TRANSLATES[language].BUTTONS.ACTIVATE}
         </button>
       )}
     </div>

@@ -1,8 +1,11 @@
 import { Link } from "wouter";
 import SliderCard from "../sliderCard/SliderCard";
 import "./CaseCard.css";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function CaseCard({ itemcase }) {
+  const { language } = useLanguageStore();
   const onlyImages = itemcase?.imgs?.map((img) => img.img_url) || [];
   const description =
     itemcase?.description.length > 150
@@ -18,7 +21,7 @@ export default function CaseCard({ itemcase }) {
           to={`/casos/${itemcase.case_id}`}
           className="mt-3 self-center lg:self-start bg-orange w-28 text-center text-lg rounded-md shadow-md hover:bg-white transition-colors duration-300 ease-in-out"
         >
-          Ver mas
+          {TRANSLATES[language].BUTTONS.MORE}
         </Link>
       </div>
     </div>

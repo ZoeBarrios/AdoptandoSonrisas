@@ -6,18 +6,21 @@ import FormField from "../../formField/FormField";
 import useUpdateForm from "../../../hooks/useUpdateForm";
 import { toast } from "react-toastify";
 import TextArea from "../../textArea/TextArea";
+import useLanguageStore from "../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../utils/languajes";
 
 export default function FormUpdateOrganization({ data, refetch }) {
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(updateOrganization, {
     onSuccess: () => {
-      toast.success("Organización actualizada");
+      toast.success(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS);
       refetch();
     },
-    onError: async (error) => {
-      const { message } = await error.json();
-      toast.error(message);
+    onError: async () => {
+      toast.error(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
     },
   });
+
   const { setFormRef, handleUpdate, handleEdit, isEditable } = useUpdateForm(
     mutate,
     {
@@ -33,7 +36,9 @@ export default function FormUpdateOrganization({ data, refetch }) {
         <Loader />
       ) : (
         <div className="bg-white p-2 mt-5 shadow-card w-10/12 md:w-7/12  rounded-lg flex flex-col items-center justify-center">
-          <h2 className="title mt-3">Mi organización</h2>
+          <h2 className="title mt-3">
+            {TRANSLATES[language].FORMS.UPDATE_ORGANIZATION.TITLE}
+          </h2>
           <Formik
             initialValues={{
               ...data[0],
@@ -48,18 +53,18 @@ export default function FormUpdateOrganization({ data, refetch }) {
                 <Form className="gap-5 md:gap-2 w-full flex flex-row items-center justify-center flex-wrap">
                   <TextArea
                     isEditable={isEditable}
-                    label="Descripción"
+                    label={TRANSLATES[language].LABELS.DESCRIPTION}
                     name="description"
                   />
                   <FormField
                     type="phone"
-                    label="Telefono"
+                    label={TRANSLATES[language].LABELS.PHONE}
                     name="phone"
                     disabled={!isEditable}
                   />
                   <FormField
                     type="email"
-                    label="Email"
+                    label={TRANSLATES[language].LABELS.EMAIL}
                     name="email"
                     disabled={!isEditable}
                   />
@@ -77,11 +82,13 @@ export default function FormUpdateOrganization({ data, refetch }) {
                   />
                   <div className="flex flex-row-reverse items-center justify-between w-8/12">
                     <button onClick={handleEdit} className="buttons-form">
-                      {isEditable ? "Volver" : "Editar"}
+                      {isEditable
+                        ? TRANSLATES[language].BUTTONS.RETURN
+                        : TRANSLATES[language].BUTTONS.UPDATE}
                     </button>
                     {isEditable && (
                       <button type="submit" className="buttons-form">
-                        Guardar
+                        {TRANSLATES[language].BUTTONS.SAVE}
                       </button>
                     )}
                   </div>

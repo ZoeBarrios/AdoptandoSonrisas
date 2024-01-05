@@ -10,6 +10,8 @@ import { registerOrganization } from "../../../services/organization";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import BackButton from "../../backButton/BackButton";
+import { TRANSLATES } from "../../../utils/languajes";
+import useLanguageStore from "../../../stores/useLanguageStore";
 
 const initialValues = {
   name: "",
@@ -21,6 +23,7 @@ const initialValues = {
 };
 export default function FormRegisterOrganizartion() {
   const [location, setLocation] = useLocation();
+  const { language } = useLanguageStore();
   const toggleForm = () => setLocation("/login");
   const { mutate } = useMutation(registerOrganization, {
     onError: async (error) => {
@@ -29,12 +32,9 @@ export default function FormRegisterOrganizartion() {
       toast.error(message);
     },
     onSuccess: () => {
-      toast.success(
-        "Se te contactara a la brevedad para confirmar el registro",
-        {
-          position: "top-center",
-        }
-      );
+      toast.success(TRANSLATES[language].MESSAGES.REGISTER.ORGANIZATION, {
+        position: "top-center",
+      });
       toggleForm();
     },
   });
@@ -61,15 +61,27 @@ export default function FormRegisterOrganizartion() {
               />
             </div>
             <div className="w-full flex flex-col items-center justify-center gap-3 h-full">
-              <FormField type="text" name="name" label="Nombre" />
+              <FormField
+                type="text"
+                name="name"
+                label={TRANSLATES[language].LABELS.NAME}
+              />
               <TextArea
                 type="text"
                 name="description"
-                label="Descripción"
+                label={TRANSLATES[language].LABELS.DESCRIPTION}
                 isRequired={true}
               />
-              <FormField type="email" name="email" label="Email" />
-              <FormField type="phone" name="phone" label="Telefono(Opcional)" />
+              <FormField
+                type="email"
+                name="email"
+                label={TRANSLATES[language].LABELS.EMAIL}
+              />
+              <FormField
+                type="phone"
+                name="phone"
+                label={TRANSLATES[language].LABELS.PHONE}
+              />
 
               <div className="flex flex-col w-full items-center justify-center text-center">
                 <button
@@ -77,7 +89,11 @@ export default function FormRegisterOrganizartion() {
                   className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white hover:bg-orange hover:transition-colors duration-300"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? <Loader /> : "Registrarse"}
+                  {isSubmitting ? (
+                    <Loader />
+                  ) : (
+                    TRANSLATES[language].BUTTONS.REGISTER
+                  )}
                 </button>
               </div>
             </div>

@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PanelMenu from "../../components/panelMenu/PanelMenu";
 import useAuthStore from "../../stores/useAuthStore";
 import { PANEL_ACTIONS } from "../../utils/constants";
 import ComponentToShow from "../../components/componentToShow/ComponentToShow";
 import Header from "../../components/header/Header";
+import useLanguageStore from "../../stores/useLanguageStore";
 
 export default function Profile() {
   const { user } = useAuthStore();
   const role = user?.role.toUpperCase();
+  const { language } = useLanguageStore();
   const [sectionActive, setSectionActive] = useState(
-    PANEL_ACTIONS[role].PROFILE
+    PANEL_ACTIONS[role].PROFILE[language]
   );
+
+  useEffect(() => {
+    setSectionActive(PANEL_ACTIONS[role].PROFILE[language]);
+  }, [language, role]);
 
   const handleSectionActive = (section) => {
     setSectionActive(section);

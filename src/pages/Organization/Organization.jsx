@@ -6,9 +6,12 @@ import DefaultPage from "../defaultPage/DefaultPage";
 import useAuthStore from "../../stores/useAuthStore";
 import { ROLES } from "../../utils/constants";
 import Loader from "../../components/loader/Loader";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 export default function Organization() {
   const { id } = useParams();
   const { user } = useAuthStore();
+  const { language } = useLanguageStore();
 
   const { data, isLoading, isError } = useQuery(["organization", id], () =>
     getOrganization(id)
@@ -83,14 +86,14 @@ export default function Organization() {
                 to={`/donar/${id}`}
                 className="buttons-form w-7/12 text-center"
               >
-                Donar
+                {TRANSLATES[language].BUTTONS.DONATE}
               </Link>
               {user?.role == ROLES.SUPERADMIN && data?.isAccepted && (
                 <Link
                   to={`/organizacion/admins/${id}`}
                   className="buttons-form text-center w-7/12"
                 >
-                  Administradores
+                  {TRANSLATES[language].BUTTONS.ADMINS}
                 </Link>
               )}
             </div>

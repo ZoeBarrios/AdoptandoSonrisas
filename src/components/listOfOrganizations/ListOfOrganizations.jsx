@@ -1,7 +1,10 @@
 import Loader from "../loader/Loader";
 import OrganizationCard from "../organizationCard/OrganizationCard";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function ListOfOrganizations({ data, isLoading, refetch }) {
+  const { language } = useLanguageStore();
   return (
     <>
       {isLoading ? (
@@ -19,7 +22,9 @@ export default function ListOfOrganizations({ data, isLoading, refetch }) {
               );
             })
           ) : (
-            <h2 className="title-no-info">No hay organizaciones disponibles</h2>
+            <h2 className="title-no-info">
+              {TRANSLATES[language].ORGANIZATIONS.NO_ORGANIZATIONS}
+            </h2>
           )}
         </div>
       )}

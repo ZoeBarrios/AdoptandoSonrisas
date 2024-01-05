@@ -6,6 +6,9 @@ import { updateAnimal } from "../../../services/animals";
 import { toast } from "react-toastify";
 import InputImages from "../../inputImages/InputImages";
 import TextArea from "../../textArea/TextArea";
+import useLanguageStore from "../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../utils/languajes";
+import { showSuccess } from "../../../utils/userMessages";
 
 export default function UpdateAnimalForm({
   animal,
@@ -13,16 +16,14 @@ export default function UpdateAnimalForm({
   showModal,
   closeModal,
 }) {
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(updateAnimal, {
     onSuccess: () => {
-      toast.success("Animal actualizado");
-      refetch();
+      showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
       closeModal();
     },
-    onError: async (error) => {
-      const { message } = await error.json();
-
-      toast.error(message || "Ha ocurrido un error, intenta de nuevo");
+    onError: async () => {
+      toast.error(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
     },
   });
   const handleSubmit = (values) => {
@@ -47,14 +48,14 @@ export default function UpdateAnimalForm({
 
             <div className="w-full flex flex-row justify-around">
               <button type="submit" className="buttons-form">
-                Actualizar
+                {TRANSLATES[language].BUTTONS.UPDATE}
               </button>
               <button
                 type="reset"
                 className="buttons-form"
                 onClick={closeModal}
               >
-                Cancelar
+                {TRANSLATES[language].BUTTONS.CANCEL}
               </button>
             </div>
           </Form>
