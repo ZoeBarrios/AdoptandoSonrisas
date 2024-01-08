@@ -10,7 +10,7 @@ export default function AnimalCard({ animal }) {
   const { name, sex, size, birthdate, img_url } = animal;
   const { language } = useLanguageStore();
 
-  const age = getAge(birthdate);
+  const age = getAge(birthdate,language);
   return (
     <div className="flex w-4/5 md:w-2/5 items-center flex-col h-2/5 bg-white shadow-card p-5 rounded-md">
       <div className="w-40 h-40 rounded-lg overflow-hidden">
@@ -24,9 +24,7 @@ export default function AnimalCard({ animal }) {
             ? SIZE_TRANSLATE[size]
             : size.charAt(0) + size.slice(1).toLowerCase()}
         </span>
-        <span>
-          {age} {TRANSLATES[language].CASES.YEARS}
-        </span>
+        <span>{age}</span>
       </div>
       <Link to={`/adoptar/${animal.animal_id}`}>
         <button className="buttons-form w-full mt-5">

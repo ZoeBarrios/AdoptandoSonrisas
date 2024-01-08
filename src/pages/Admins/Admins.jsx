@@ -34,7 +34,7 @@ export default function Admins() {
           ))
         ) : (
           <h2 className="title-no-info">
-            {TRANSLATES[language].ADMINS.NO_ADMINS}
+            {TRANSLATES[language].FORMS.ADMINS.NO_ADMINS}
           </h2>
         )}
       </div>
@@ -49,7 +49,7 @@ export default function Admins() {
               surname: "",
               email: "",
               phone: "",
-              password: "admin",
+              password: "administrador",
               organization_id: id,
             }}
             role={ROLES.ADMIN}

@@ -41,7 +41,7 @@ export default function FormCreateAdminModerator({
     <Formik
       initialValues={initialValues}
       onSubmit={handleCreateAdmin}
-      validationSchema={registerValidationSchema}
+      validationSchema={() => registerValidationSchema(language)}
     >
       <Form className="flex flex-col items-center justify-center p-5 gap-5 w-full">
         <FormField

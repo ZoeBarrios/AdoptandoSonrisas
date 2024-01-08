@@ -7,21 +7,24 @@ import { Form, Formik } from "formik";
 import FormField from "../../components/formField/FormField";
 import useAuthStore from "../../stores/useAuthStore";
 import { closeSession } from "../../utils/localStorageFunctions";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function Reset() {
   const { token } = useParams();
   const { logout } = useAuthStore();
   const [__, setLocation] = useLocation();
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(changePassword, {
     onSuccess: () => {
-      toast.success("Contraseña cambiada correctamente");
+      toast.success(TRANSLATES[language].FORMS.RECOVER.SUCCESS);
       logout();
       closeSession();
       setLocation("/");
     },
     onError: async (error) => {
-      const { message } = await error.json();
-      toast.error(message);
+      console.error(error);
+      toast.error(TRANSLATES[language].FORMS.RECOVER.ERROR);
     },
   });
 
@@ -32,42 +35,53 @@ export default function Reset() {
 
   const validate = (values) => {
     console.log(values);
+
     const errors = {};
     if (!values.newPassword) {
-      errors.newPassword = "Campo obligatorio";
+      errors.newPassword = TRANSLATES[language].FORMS.RECOVER.REQUIRED_FIELD;
     }
     if (!values.confirmPassword) {
-      errors.confirmPassword = "Campo obligatorio";
+      errors.confirmPassword =
+        TRANSLATES[language].FORMS.RECOVER.REQUIRED_FIELD;
     } else if (values.confirmPassword !== values.newPassword) {
-      errors.confirmPassword = "Las contraseñas no coinciden";
+      errors.confirmPassword =
+        TRANSLATES[language].FORMS.RECOVER.PASSWORD_MISSMATCH;
     }
     return errors;
   };
 
   return (
-    <Formik
-      initialValues={{
-        newPassword: "",
-        confirmPassword: "",
-      }}
-      onSubmit={handleSubmit}
-      validate={validate}
-    >
-      {({ isSubmitting }) => (
-        <Form>
-          <FormField
-            type="password"
-            label="Nueva contraseña"
-            name="newPassword"
-          />
-          <FormField
-            type="password"
-            label="Confirmar contraseña"
-            name="confirmPassword"
-          />
-          <button type="submit">Cambiar contraseña</button>
-        </Form>
-      )}
-    </Formik>
+    <section className="w-full min-h-screen bg-ligthOrange flex flex-col items-center justify-center">
+      <Formik
+        initialValues={{
+          newPassword: "",
+          confirmPassword: "",
+        }}
+        onSubmit={handleSubmit}
+        validate={validate}
+      >
+        {({ isSubmitting }) => (
+          <Form className="p-5 bg-white w-9/12 md:w-6/12 h-96 rounded-lg gap-5 flex flex-col items-center justify-center">
+            <FormField
+              type="password"
+              label={TRANSLATES[language].LABELS.NEW_PASSWORD}
+              name="newPassword"
+            />
+            <FormField
+              type="password"
+              label={TRANSLATES[language].LABELS.CONFIRM_PASSWORD}
+              name="confirmPassword"
+            />
+            <button type="submit" className="buttons-form">
+              {
+                TRANSLATES[language].BUTTONS[
+                  isSubmitting ? "CHANGING_PASSWORD" : "CHANGE_PASSWORD"
+                ]
+              }
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </section>
   );
 }

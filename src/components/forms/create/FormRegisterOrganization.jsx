@@ -47,7 +47,7 @@ export default function FormRegisterOrganizartion() {
     <div className="h-screen p-5 flex flex-col items-center justify-center bg-orange">
       <BackButton />
       <Formik
-        validationSchema={registerOrganizationValidationSchema}
+        validationSchema={() => registerOrganizationValidationSchema(language)}
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >

@@ -26,7 +26,7 @@ export default function Case() {
 
   const { sex, size, organization_id } = data?.animal ?? {};
   const imgs = data?.imgs?.map((img) => img.img_url);
-  const age = getAge(data?.animal.birthdate);
+  const age = getAge(data?.animal.birthdate, language);
 
   console.log(data);
 
@@ -47,9 +47,7 @@ export default function Case() {
                     : size.charAt(0).toUpperCase() +
                       size.slice(1).toLowerCase()}
                 </span>
-                <span className="ml-2">
-                  {age} {TRANSLATES[language].CASES.YEARS}
-                </span>
+                <span className="ml-2">{age}</span>
               </div>
             </div>
             <div className="w-full lg:w-8/12 flex flex-row bg-white shadow-2xl p-4 rounded-lg overflow-hidden">

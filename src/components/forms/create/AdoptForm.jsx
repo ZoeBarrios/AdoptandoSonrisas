@@ -2,7 +2,6 @@ import { useMutation } from "react-query";
 import Modal from "../../modal/Modal";
 import { registerAdoption } from "../../../services/adoptions";
 import { toast } from "react-toastify";
-import { showError } from "../../../utils/userMessages";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
 
@@ -21,13 +20,13 @@ export default function AdoptForm({
       toast.success(TRANSLATES[language].MESSAGES.ADOPT.SUCCESS);
     },
     onError: () => {
-      TRANSLATES[language].MESSAGES.ADOPT.ERROR;
+      toast.error(TRANSLATES[language].MESSAGES.ADOPT.ERROR);
     },
   });
 
   const handleAdopt = () => {
     if (!person_id) {
-      toast.error("Debes iniciar sesión para poder adoptar");
+      toast.error(TRANSLATES[language].MESSAGES.ADOPT.NEED_LOGIN);
       return;
     }
     mutate({

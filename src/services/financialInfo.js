@@ -21,7 +21,6 @@ export const createFinancialInfo = async (financialInfo) => {
 };
 
 export const updateFinancialInfo = async (financialInfo) => {
-  console.log("financialInfo", financialInfo);
   const token = getFromLocalStorage("token");
   const response = await fetch(
     `${API_URL}/financialInfo/${financialInfo.organization_id}`,

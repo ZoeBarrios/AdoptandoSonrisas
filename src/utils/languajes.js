@@ -3,6 +3,25 @@ export const LANGUAGES = {
   ENG: "ENG",
 };
 
+export const TIME = {
+  ES: {
+    MONTHS: "meses",
+    MONTH: "mes",
+    YEARS: "años",
+    YEAR: "año",
+    DAYS: "días",
+    DAY: "día",
+  },
+  ENG: {
+    MONTHS: "months",
+    MONTH: "month",
+    YEARS: "years",
+    YEAR: "year",
+    DAYS: "days",
+    DAY: "day",
+  },
+};
+
 export const FLAG = {
   ES: "/imgs/arg.png",
   ENG: "/imgs/eeuu.png",
@@ -52,6 +71,8 @@ export const TRANSLATES = {
       REMOVE_VOLUNTEERING: "Eliminar voluntariado",
       REMOVED_VOLUNTEERING: "Voluntariado eliminado",
       APPLY: "Aplicar",
+      CHANGE_PASSWORD: "Cambiar contraseña",
+      CHANGING_PASSWORD: "Cambiando contraseña",
     },
     ABOUT:
       "Somos una plataforma dedicada a hacer una diferencia en la vida de las mascotas y las personas que desean darles un hogar amoroso. En colaboración con diversas organizaciones de San Nicolás, hemos creado un espacio centralizado donde puedes descubrir una amplia gama de animales adorables esperando ser adoptados. Imagina tener acceso a una variedad de perros, gatos, y otras mascotas, todos en un solo lugar.Al registrarse en nuestra plataforma, estas organizaciones tienen la oportunidad de presentar a estos maravillosos compañeros con descripciones detalladas, fotos encantadoras y toda la información necesaria para encontrar el compañero perfecto para ti. Ya sea que estés buscando un compañero leal, un amigo peludo o un nuevo miembro para tu familia, 'Adoptando Sonrisas' te brinda la oportunidad de cambiar vidas, llenarlas de amor y, por supuesto, ¡adoptar sonrisas!",
@@ -107,6 +128,7 @@ export const TRANSLATES = {
           "La organización ha sido notificada de tu solicitud de adopción",
         ERROR:
           "No cuenta con los permisos necesarios para realizar esta acción",
+        NEED_LOGIN: "Necesitas iniciar sesión para realizar esta acción",
       },
       UPDATE: {
         SUCCESS: "Se ha actualizado la información correctamente",
@@ -114,7 +136,7 @@ export const TRANSLATES = {
       },
       EXPIRED: "Sesion expirada, por favor vuelva a iniciar sesion",
       NEW_USER: {
-        SUCCESS: "se ha registrado correctamente",
+        SUCCESS: "Se ha registrado correctamente el ",
         ERROR: "Ha ocurrido un error al registrarse",
       },
       PERSON: {
@@ -130,8 +152,11 @@ export const TRANSLATES = {
       },
       LOGIN: {
         SUCCESS: "Bienvenido",
-
-        ERRROR: "Usuario o contraseña incorrectos",
+        ERROR: "Usuario o contraseña incorrectos",
+      },
+      RECOVER: {
+        SUCCESS: "Contraseña cambiada correctamente",
+        ERROR: "Ha ocurrido un error al cambiar la contraseña",
       },
     },
     FORMS: {
@@ -149,6 +174,9 @@ export const TRANSLATES = {
       NEW_ANIMAL: {
         TITLE: "Nuevo animal",
       },
+      NEW_CASE: {
+        TITLE: "Nuevo caso",
+      },
       NEW_CALIFICATION: {
         TITLE: "Agregar calificación",
         DESCRIPTION: "Selecciona una adopción para calificar",
@@ -156,6 +184,8 @@ export const TRANSLATES = {
       RECOVER: {
         TITLE: "Recuperar contraseña",
         DESCRIPTION: "Ingresa tu email para recuperar tu contraseña",
+        REQUIRED_FIELD: "Campo requerido",
+        PASSWORD_MISSMATCH: "Las contraseñas no coinciden",
       },
       ADMINS: {
         NO_ADMINS: "No hay administradores disponibles",
@@ -186,6 +216,8 @@ export const TRANSLATES = {
       PASSWORD: "Contraseña",
       FORGOT_PASSWORD: "¿Olvidaste tu contraseña?",
       ALREADY_REGISTERED: "¿Ya estas registrado? Inicia sesión",
+      NEW_PASSWORD: "Nueva contraseña",
+      CONFIRM_PASSWORD: "Confirmar contraseña",
     },
     INFO_USER: {
       DELETE_ACCOUNT: "Eliminar cuenta",
@@ -283,6 +315,8 @@ export const TRANSLATES = {
       REMOVE_VOLUNTEERING: "Remove volunteering",
       REMOVED_VOLUNTEERING: "Volunteering removed",
       APPLY: "Apply",
+      CHANGE_PASSWORD: "Change password",
+      CHANGING_PASSWORD: "Changing password",
     },
     ABOUT:
       "We are a platform dedicated to making a difference in the lives of pets and people who wish to give them a loving home. In collaboration with various organizations in San Nicolas, we have created a centralized space where you can discover a wide range of adorable animals waiting to be adopted. Imagine having access to a variety of dogs, cats, and other pets, all in one place. By registering on our platform, these organizations have the opportunity to present these wonderful companions with detailed descriptions, lovely photos, and all the information needed to find the perfect companion for you. Whether you are looking for a loyal companion, a furry friend, or a new member for your family, 'Adopting Smiles' gives you the opportunity to change lives, fill them with love, and of course, adopt smiles!",
@@ -338,6 +372,7 @@ export const TRANSLATES = {
         SUCCESS: "The organization has been notified of your adoption request",
         ERROR:
           "You do not have the necessary permissions to perform this action",
+        NEED_LOGIN: "You need to log in to perform this action",
       },
       UPDATE: {
         SUCCESS: "The information has been updated correctly",
@@ -372,6 +407,10 @@ export const TRANSLATES = {
         SUCCESS: "Welcome",
         ERROR: "Incorrect user or password",
       },
+      RECOVER: {
+        SUCCESS: "Password changed correctly",
+        ERROR: "An error has occurred while changing the password",
+      },
     },
     FORMS: {
       NEW_ADOPTION: {
@@ -398,6 +437,8 @@ export const TRANSLATES = {
       RECOVER: {
         TITLE: "Recover password",
         DESCRIPTION: "Enter your email to recover your password",
+        REQUIRED_FIELD: "Required field",
+        PASSWORD_MISSMATCH: "Passwords do not match",
       },
     },
     LABELS: {
@@ -421,6 +462,8 @@ export const TRANSLATES = {
       PASSWORD: "Password",
       FORGOT_PASSWORD: "Forgot your password?",
       ALREADY_REGISTERED: "Already registered? Log in",
+      NEW_PASSWORD: "New password",
+      CONFIRM_PASSWORD: "Confirm password",
     },
     INFO_USER: {
       DELETE_ACCOUNT: "Delete account",

@@ -8,13 +8,17 @@ export default function ListOfAdoptions({ data, isLoading, refetch }) {
         <Loader />
       ) : (
         <>
-          {data?.map((adoption) => (
-            <AdoptionCard
-              adoption={adoption}
-              key={adoption.adoption_date}
-              refetch={refetch}
-            />
-          ))}
+          {data.length > 0 ? (
+            data?.map((adoption) => (
+              <AdoptionCard
+                adoption={adoption}
+                key={adoption.adoption_date}
+                refetch={refetch}
+              />
+            ))
+          ) : (
+            <h2 className="title-no-info">No hay adopciones registradas</h2>
+          )}
         </>
       )}
     </div>

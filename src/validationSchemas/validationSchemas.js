@@ -1,38 +1,67 @@
 import * as Yup from "yup";
-export const loginValidationSchema = Yup.object().shape({
-  nameOrEmail: Yup.string().required("Nombre o Email requerido"),
-  password: Yup.string().required("Contraseña requerida"),
-});
+import { LANGUAGES } from "../utils/languajes";
 
-export const registerValidationSchema = Yup.object().shape({
-  name: Yup.string().required("Nombre requerido"),
-  surname: Yup.string().required("Apellido requerido"),
-  password: Yup.string().required("Contraseña requerida"),
-  email: Yup.string().email("Email invalido").required("Email requerido"),
-  phone: Yup.string().required("Telefono requerido"),
-});
+const validationMessages = {
+  [LANGUAGES.ES]: {
+    required: "Campo requerido",
+    email: "Email inválido",
+    min: (min) => `Debe tener al menos ${min} caracteres`,
+    max: (max) => `Debe tener como máximo ${max} caracteres`,
+  },
+  [LANGUAGES.ENG]: {
+    required: "Field is required",
+    email: "Invalid email",
+    min: (min) => `Must be at least ${min} characters long`,
+    max: (max) => `Must be at most ${max} characters long`,
+  },
+};
+export const loginValidationSchema = (language) =>
+  Yup.object().shape({
+    nameOrEmail: Yup.string().required(validationMessages[language].required),
+    password: Yup.string().required(validationMessages[language].required),
+  });
 
-export const registerOrganizationValidationSchema = Yup.object().shape({
-  name: Yup.string().required("Nombre requerido"),
-  description: Yup.string().required("Descripcion requerida"),
-  email: Yup.string().email("Email invalido").required("Email requerido"),
-  phone: Yup.string().optional(),
-  instagram_link: Yup.string().optional(),
-  facebook_link: Yup.string().optional(),
-});
+export const registerValidationSchema = (language) =>
+  Yup.object().shape({
+    name: Yup.string().required(validationMessages[language].required),
+    surname: Yup.string().required(validationMessages[language].required),
+    password: Yup.string()
+      .required(validationMessages[language].required)
+      .min(6, validationMessages[language].min(6)),
+    email: Yup.string()
+      .email(validationMessages[language].email)
+      .required(validationMessages[language].required),
+    phone: Yup.string().required(validationMessages[language].required),
+  });
 
-export const registerAnimalValidationSchema = Yup.object().shape({
-  name: Yup.string().required("Nombre requerido"),
-  description: Yup.string().required("Descripcion requerida"),
-  sex: Yup.string().required("Sexo requerido"),
-  birthdate: Yup.string().required("Fecha de nacimiento requerida"),
-  size: Yup.string().required("Tamaño requerido"),
-  image: Yup.string().required("Imagen requerida"),
-  organization_id: Yup.number().required("Organizacion requerida"),
-});
+export const registerOrganizationValidationSchema = (language) =>
+  Yup.object().shape({
+    name: Yup.string().required(validationMessages[language].required),
+    description: Yup.string().required(validationMessages[language].required),
+    email: Yup.string()
+      .email(validationMessages[language].email)
+      .required(validationMessages[language].required),
+    phone: Yup.string().optional(),
+    instagram_link: Yup.string().optional(),
+    facebook_link: Yup.string().optional(),
+  });
 
-export const registerCaseValidationSchema = Yup.object().shape({
-  title: Yup.string().required("Titulo requerido"),
-  description: Yup.string().required("Descripcion requerida"),
-  images: Yup.array().min(1, "Debe subir al menos una imagen"),
-});
+export const registerAnimalValidationSchema = (language) =>
+  Yup.object().shape({
+    name: Yup.string().required(validationMessages[language].required),
+    description: Yup.string().required(validationMessages[language].required),
+    sex: Yup.string().required(validationMessages[language].required),
+    birthdate: Yup.string().required(validationMessages[language].required),
+    size: Yup.string().required(validationMessages[language].required),
+    image: Yup.string().required(validationMessages[language].required),
+    organization_id: Yup.number().required(
+      validationMessages[language].required
+    ),
+  });
+
+export const registerCaseValidationSchema = (language) =>
+  Yup.object().shape({
+    title: Yup.string().required(validationMessages[language].required),
+    description: Yup.string().required(validationMessages[language].required),
+    images: Yup.array().min(1, validationMessages[language].min(1)),
+  });

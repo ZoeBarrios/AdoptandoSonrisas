@@ -65,7 +65,7 @@ export default function FormLogin() {
       <BackButton />
       <Formik
         initialValues={initialValues}
-        validationSchema={loginValidationSchema}
+        validationSchema={() => loginValidationSchema(language)}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (

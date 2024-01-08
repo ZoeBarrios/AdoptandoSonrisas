@@ -26,12 +26,12 @@ export default function ManageOrganizations() {
   return (
     <section className="my-10 lg:m-auto w-11/12 h-full flex flex-col lg:flex-row items-center justify-around gap-5 flex-1">
       <ListOfOrganizationManage
-        title={TRANSLATES[language].MANAGE_ORGANIZATIONS.ACTIVE_TITLE}
+        title={TRANSLATES[language].FORMS.MANAGE_ORGANIZATIONS.ACTIVE_TITLE}
         data={active}
         refetchBothQueries={refetchBothQueries}
       />
       <ListOfOrganizationManage
-        title={TRANSLATES[language].MANAGE_ORGANIZATIONS.PENDING_TITLE}
+        title={TRANSLATES[language].FORMS.MANAGE_ORGANIZATIONS.PENDING_TITLE}
         data={pending}
         refetchBothQueries={refetchBothQueries}
         active={false}

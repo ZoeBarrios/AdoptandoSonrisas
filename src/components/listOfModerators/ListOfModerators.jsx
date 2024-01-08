@@ -5,7 +5,7 @@ import { TRANSLATES } from "../../utils/languajes";
 export default function ListOfModerators({ data, refetch }) {
   const { language } = useLanguageStore();
   return (
-    <section className="list-card shadow-card">
+    <section className="list-card shadow-card" style={{ minHeight: "20em" }}>
       {data?.length > 0 ? (
         data.map((moderator) => (
           <PersonCard key={moderator.id} person={moderator} refetch={refetch} />

@@ -12,6 +12,7 @@ import SelectSize from "../../selectSize/SelectSize";
 import SelectSex from "../../selectSex/SelectSex";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import Loader from "../../loader/Loader";
 
 export default function FormAnimal({ closeModal, refetch }) {
   const { organization } = useAuthStore();
@@ -23,8 +24,8 @@ export default function FormAnimal({ closeModal, refetch }) {
     },
     onError: showError,
   });
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = (values, { setSubmitting }) => {
+    setSubmitting(true);
     mutate(values);
   };
   return (
@@ -38,10 +39,10 @@ export default function FormAnimal({ closeModal, refetch }) {
         image: "",
         organization_id: organization,
       }}
-      validationSchema={registerAnimalValidationSchema}
+      validationSchema={() => registerAnimalValidationSchema(language)}
       onSubmit={handleSubmit}
     >
-      {({ values, setFieldValue }) => (
+      {({ values, setFieldValue, isSubmitting }) => (
         <Form className="flex flex-col items-center p-3 gap-5">
           <h2 className="text-darkOrange font-bold text-xl p-3 ">
             {TRANSLATES[language].FORMS.NEW_ANIMAL.TITLE}
@@ -57,7 +58,9 @@ export default function FormAnimal({ closeModal, refetch }) {
             label={TRANSLATES[language].LABELS.DESCRIPTION}
             isRequired={true}
           />
-          <YearInput />
+          <YearInput
+            onChange={(e) => setFieldValue("birthdate", e.target.value)}
+          />
           <SelectSex
             onChange={(e) => setFieldValue("sex", e.target.value)}
             defaultValue={values.sex}
@@ -79,8 +82,16 @@ export default function FormAnimal({ closeModal, refetch }) {
               {TRANSLATES[language].BUTTONS.CANCEL}
             </button>
 
-            <button type="submit" className="buttons-form">
-              {TRANSLATES[language].BUTTONS.ADD_ANIMAL}
+            <button
+              type="submit"
+              className="buttons-form"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <Loader isButtonLoader={true} />
+              ) : (
+                TRANSLATES[language].BUTTONS.ADD_ANIMAL
+              )}
             </button>
           </div>
         </Form>

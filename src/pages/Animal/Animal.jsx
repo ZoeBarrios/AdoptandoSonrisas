@@ -45,9 +45,7 @@ export default function Animal() {
                     ? SIZE_TRANSLATE[data.size]
                     : data.size.charAt(0) + data.size.slice(1).toLowerCase()}
                 </span>
-                <span>
-                  {getAge(data?.birthdate)} {TRANSLATES[language].CASES.YEARS}
-                </span>
+                <span>{getAge(data?.birthdate, language)}</span>
               </div>
             </div>
 

@@ -10,6 +10,7 @@ import Modal from "../../modal/Modal";
 import { showError, showSuccess } from "../../../utils/userMessages";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import Loader from "../../loader/Loader";
 
 export default function FormNewCase({
   animal,
@@ -25,7 +26,8 @@ export default function FormNewCase({
     },
     onError: showError,
   });
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, setSubmitting) => {
+    setSubmitting(true);
     mutate(values);
   };
   return (
@@ -38,9 +40,9 @@ export default function FormNewCase({
           animal_id: animal,
         }}
         onSubmit={handleSubmit}
-        validationSchema={registerCaseValidationSchema}
+        validationSchema={() => registerCaseValidationSchema(language)}
       >
-        {({ values, setFieldValue }) => (
+        {({ values, setFieldValue, isSubmitting }) => (
           <Form className="flex flex-col items-center justify-center gap-5 p-3">
             <h2 className="text-darkOrange font-bold text-xl p-3 ">
               {TRANSLATES[language].FORMS.NEW_CASE.TITLE}
@@ -70,8 +72,13 @@ export default function FormNewCase({
                 type="button"
                 className="buttons-form"
                 onClick={closeModal}
+                disabled={isSubmitting}
               >
-                {TRANSLATES[language].BUTTONS.CANCEL}
+                {isSubmitting ? (
+                  <Loader isButtonLoader={true} />
+                ) : (
+                  TRANSLATES[language].BUTTONS.CANCEL
+                )}
               </button>
             </div>
           </Form>

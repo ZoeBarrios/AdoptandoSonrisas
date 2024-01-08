@@ -13,7 +13,7 @@ import { TRANSLATES } from "../../utils/languajes";
 export default function FinancialForm({
   update = false,
   financialInfo = {
-    name: "",
+    cbu: "",
     alias: "",
     mp_link: "",
   },
@@ -21,12 +21,11 @@ export default function FinancialForm({
   refetch,
 }) {
   const { language } = useLanguageStore();
-  const initialValues = update
-    ? {
-        ...financialInfo,
-        organization_id: organization,
-      }
-    : financialInfo;
+  const initialValues = {
+    ...financialInfo,
+    organization_id: organization,
+  };
+
   const { mutate } = useMutation(
     (params) =>
       update ? updateFinancialInfo(params) : createFinancialInfo(params),
@@ -54,19 +53,19 @@ export default function FinancialForm({
               name="cbu"
               label="Cbu"
               type="text"
-              disabled={!isEditable}
+              disabled={update ? !isEditable : false}
             />
             <FormField
               name="alias"
               label="Alias"
               type="text"
-              disabled={!isEditable}
+              disabled={update ? !isEditable : false}
             />
             <FormField
               name="mp_link"
               label={TRANSLATES[language].LABELS.MP_LINK}
               type="text"
-              disabled={!isEditable}
+              disabled={update ? !isEditable : false}
             />
             {update ? (
               <div className="flex flex-row-reverse w-9/12 items-center justify-between">
@@ -87,7 +86,7 @@ export default function FinancialForm({
               </div>
             ) : (
               <button type="submit" className="buttons-form">
-                {TRANSLATES[language].BUTTONS.UPDATE}
+                {TRANSLATES[language].BUTTONS.CREATE}
               </button>
             )}
           </Form>

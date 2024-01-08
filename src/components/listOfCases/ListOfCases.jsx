@@ -12,7 +12,7 @@ export default function ListOfCases({ data, refetch }) {
           />
         ))
       ) : (
-        <h2 className="text-xl">No hay casos disponibles</h2>
+        <h2 className="title-no-info">No hay casos disponibles</h2>
       )}
     </div>
   );

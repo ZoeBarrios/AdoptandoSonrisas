@@ -45,7 +45,7 @@ export default function FormRegister() {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={registerValidationSchema}
+      validationSchema={() => registerValidationSchema(language)}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
