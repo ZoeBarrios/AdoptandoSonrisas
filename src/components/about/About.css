@@ -40,10 +40,10 @@
   }
 
   .about h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .about p {
-    width: 100%;
+    width: 90%;
   }
 }

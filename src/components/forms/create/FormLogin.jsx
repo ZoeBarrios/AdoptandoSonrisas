@@ -25,7 +25,7 @@ export default function FormLogin() {
   const [__, setLocation] = useLocation();
   const { showModal, openModal, closeModal } = useModal();
 
-  const { mutate } = useMutation(handleLogin, {
+  const { mutate, isLoading } = useMutation(handleLogin, {
     onSuccess: (info) => {
       const user = {
         id: info.id,
@@ -47,10 +47,8 @@ export default function FormLogin() {
     password: "",
   };
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values) => {
     mutate(values);
-
-    setSubmitting(false);
   };
 
   const handleVolunteer = () => {
@@ -95,7 +93,11 @@ export default function FormLogin() {
                   className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5 hover:bg-orange hover:transition-colors duration-300"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? <Loader /> : TRANSLATES[language].NAV.LOGIN}
+                  {isLoading ? (
+                    <Loader isButtonLoader={true} />
+                  ) : (
+                    TRANSLATES[language].NAV.LOGIN
+                  )}
                 </button>
                 <a
                   className="text-base text-start cursor-pointer text-darkOrange"
@@ -115,7 +117,11 @@ export default function FormLogin() {
                   onClick={handleVolunteer}
                   className="text-base text-blacke cursor-pointer hover:text-darkOrange"
                 >
-                  {TRANSLATES[language].BUTTONS.REGISTER}
+                  {isSubmitting ? (
+                    <Loader />
+                  ) : (
+                    TRANSLATES[language].BUTTONS.REGISTER
+                  )}
                 </a>
               </div>
             </div>

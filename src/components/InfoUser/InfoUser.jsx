@@ -40,9 +40,9 @@ export default function InfoUser() {
     },
     {
       onError: (error) => {
-        if (error.status === 401) {
+        if (error.status == 401) {
           handleLogout();
-          toast.error("Sesión expirada");
+          toast.error(LANGUAGES[language].MESSAGES.EXPIRED);
         }
 
         setLocation("/");

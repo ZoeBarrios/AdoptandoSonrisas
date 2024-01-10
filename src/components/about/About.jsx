@@ -7,8 +7,8 @@ export default function About() {
   return (
     <section className="about-section">
       <div className="about w-full md:w-10/12 lg:w-8/12">
-        <h1>{TRANSLATES[language].LOGO}</h1>
-        <p className="leading-8">{TRANSLATES[language].ABOUT}</p>
+        <h1 className="font-bold">{TRANSLATES[language].LOGO}</h1>
+        <p className="leading-8 ">{TRANSLATES[language].ABOUT}</p>
       </div>
     </section>
   );

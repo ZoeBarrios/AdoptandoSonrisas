@@ -25,7 +25,7 @@ export default function FormRegisterOrganizartion() {
   const [location, setLocation] = useLocation();
   const { language } = useLanguageStore();
   const toggleForm = () => setLocation("/login");
-  const { mutate } = useMutation(registerOrganization, {
+  const { mutate, isLoading } = useMutation(registerOrganization, {
     onError: async (error) => {
       const { message } = await error.json();
 
@@ -87,9 +87,9 @@ export default function FormRegisterOrganizartion() {
                 <button
                   type="submit"
                   className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white hover:bg-orange hover:transition-colors duration-300"
-                  disabled={isSubmitting}
+                  disabled={isLoading}
                 >
-                  {isSubmitting ? (
+                  {isLoading ? (
                     <Loader />
                   ) : (
                     TRANSLATES[language].BUTTONS.REGISTER

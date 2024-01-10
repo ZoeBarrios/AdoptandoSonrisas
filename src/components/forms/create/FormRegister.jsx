@@ -23,7 +23,7 @@ export default function FormRegister() {
   const [location, setLocation] = useLocation();
   const { language } = useLanguageStore();
   const toggleForm = () => setLocation("/login");
-  const { mutate } = useMutation(registerUser, {
+  const { mutate, isLoading } = useMutation(registerUser, {
     onError: async (error) => {
       const err = await error.json();
       err.name == "UsuarioExistente"
@@ -88,13 +88,9 @@ export default function FormRegister() {
               <button
                 type="submit"
                 className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5 hover:bg-orange hover:transition-colors duration-300"
-                disabled={isSubmitting}
+                disabled={isLoading}
               >
-                {isSubmitting ? (
-                  <Loader />
-                ) : (
-                  TRANSLATES[language].BUTTONS.REGISTER
-                )}
+                {isLoading ? <Loader /> : TRANSLATES[language].BUTTONS.REGISTER}
               </button>
               <a
                 onClick={toggleForm}

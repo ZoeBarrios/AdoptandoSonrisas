@@ -12,8 +12,8 @@ const PanelMenu = ({ items, sectionActive, handleSectionActive }) => {
 
   return (
     <div
-      className={`bg-grey h-full w-72 fixed md:relative shadow-2xl z-30 flex flex-col items-center  ${
-        panelIsShown ? "showPanel" : "hidePanel"
+      className={` md:bg-grey h-full w-72 fixed md:relative shadow-2xl z-30 flex flex-col items-center  ${
+        panelIsShown ? "showPanel bg-grey" : "bg-none hidePanel"
       } group`}
     >
       <div className="h-5/6 md:h-full flex flex-col self-center justify-around ml-5 rounded ">

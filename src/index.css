@@ -59,8 +59,7 @@ option {
 }
 
 .buttons-form {
-  @apply py-2 px-4   bg-orange font-bold text-white rounded hover:bg-darkOrange transition duration-300;
-  min-width: 100px;
+  @apply min-w-fit py-2 px-4 text-xl md:text-2xl bg-orange font-bold text-white rounded hover:bg-darkOrange transition duration-300;
 }
 
 .title-no-info {

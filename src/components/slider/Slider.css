@@ -34,6 +34,7 @@
   font-size: 2em;
   cursor: pointer;
   transition: all 0.3s ease;
+
   &:hover {
     background: rgba(0, 0, 0, 0.8);
   }
@@ -49,5 +50,6 @@
 
   .slider-button {
     height: 10rem;
+    border-radius: 10px;
   }
 }

@@ -33,7 +33,7 @@ export default function CaseContainer() {
         <Loader />
       ) : (
         <>
-          <div className="w-full  md:w-9/12  flex flex-row items-center justify-around flex-wrap gap-5">
+          <div className="w-9/12  flex flex-row items-center justify-around flex-wrap gap-5">
             {data?.length > 0 && data ? (
               data?.map((item) => <CaseCard key={item?.id} itemcase={item} />)
             ) : (
