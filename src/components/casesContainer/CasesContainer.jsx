@@ -22,7 +22,7 @@ export default function CasesContainer() {
   }, [deleted, refetch]);
 
   return (
-    <section className="flex-container gap-5 h-5/6">
+    <section className="flex-container gap-5  h-4/5">
       <h2 className="title">{TRANSLATES[language].LIST_CASES.TITLE}</h2>
       <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
         <select onChange={handleChangeFilters} className="w-full md:w-fit">

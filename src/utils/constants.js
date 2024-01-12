@@ -15,6 +15,11 @@ export const AGE = {
   OLD: "OLD",
 };
 
+export const TYPES = {
+  DOG: "DOG",
+  CAT: "CAT",
+};
+
 export const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -26,6 +31,7 @@ export const SEARCH_ACTIONS = {
   SET_SIZE: "SET_SIZE",
   SET_GENRE: "SET_GENRE",
   SET_AGE: "SET_AGE",
+  SET_TYPE: "SET_TYPE",
   RESTART: "RESTART",
 };
 
@@ -69,7 +75,7 @@ export const PANEL_ACTIONS = {
       ENG: SECTION_NAMES.ENG.PROFILE,
       icon: "fa-solid fa-user",
     },
-    VOLUNTEER: {
+    VOLUNTEERS: {
       id: 2,
       ES: SECTION_NAMES.ES.VOLUNTEERS,
       ENG: SECTION_NAMES.ENG.VOLUNTEERS,
@@ -95,7 +101,7 @@ export const PANEL_ACTIONS = {
       ENG: SECTION_NAMES.ENG.PROFILE,
       icon: "fa-solid fa-user",
     },
-    FINANCIAL_INFO: {
+    FINANCIAL_SECTION: {
       id: 7,
       ES: SECTION_NAMES.ES.FINANCIAL_SECTION,
       ENG: SECTION_NAMES.ENG.FINANCIAL_SECTION,
@@ -126,7 +132,7 @@ export const PANEL_ACTIONS = {
       ENG: SECTION_NAMES.ENG.ADOPTIONS,
       icon: "fa-solid fa-heart",
     },
-    VOLUNTEER: {
+    VOLUNTEERS: {
       id: 6,
       ES: SECTION_NAMES.ES.VOLUNTEERS,
       ENG: SECTION_NAMES.ENG.VOLUNTEERS,
@@ -158,7 +164,7 @@ export const PANEL_ACTIONS = {
       ENG: SECTION_NAMES.ENG.ADOPTIONS,
       icon: "fa-solid fa-heart",
     },
-    VOLUNTEER: {
+    VOLUNTEERS: {
       id: 5,
       ES: SECTION_NAMES.ES.VOLUNTEERS,
       ENG: SECTION_NAMES.ENG.VOLUNTEERS,
@@ -172,7 +178,7 @@ export const PANEL_ACTIONS = {
       ENG: SECTION_NAMES.ENG.PROFILE,
       icon: "fa-solid fa-user",
     },
-    MANAGE_ORGANIZATIONS: {
+    CONTROL_ORGANIZATIONS: {
       id: 2,
       ES: SECTION_NAMES.ES.CONTROL_ORGANIZATIONS,
       ENG: SECTION_NAMES.ENG.CONTROL_ORGANIZATIONS,

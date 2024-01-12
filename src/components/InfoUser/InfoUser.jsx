@@ -48,8 +48,11 @@ export default function InfoUser() {
         setLocation("/");
       },
       onSuccess: async (data) => {
-        setToLocalStorage("organization", data[0]?.organization_id || null);
-        setOrganization(data[0]?.organization_id || null);
+        setToLocalStorage(
+          "organization",
+          (data && data[0] && data[0].organization_id) || null
+        );
+        setOrganization((data && data[0] && data[0].organization_id) || null);
       },
     }
   );

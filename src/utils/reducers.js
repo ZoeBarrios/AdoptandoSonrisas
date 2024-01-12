@@ -5,6 +5,7 @@ export const INITIAL_SEARCH_STATE = {
   size: "",
   genre: "",
   age: "",
+  type: "",
   limit: 6,
 };
 
@@ -19,6 +20,8 @@ export const searchReducer = (state, action) => {
       return { ...state, genre: payload, page: 1 };
     case SEARCH_ACTIONS.SET_AGE:
       return { ...state, age: payload, page: 1 };
+    case SEARCH_ACTIONS.SET_TYPE:
+      return { ...state, type: payload, page: 1 };
     case SEARCH_ACTIONS.RESTART:
       return INITIAL_SEARCH_STATE;
     default:

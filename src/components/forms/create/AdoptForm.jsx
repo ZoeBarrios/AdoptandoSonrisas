@@ -14,7 +14,7 @@ export default function AdoptForm({
   animal_id,
 }) {
   const { language } = useLanguageStore();
-  const { mutate, isLoading } = useMutation(registerAdoption, {
+  const { mutate } = useMutation(registerAdoption, {
     onSuccess: () => {
       closeModal();
       toast.success(TRANSLATES[language].MESSAGES.ADOPT.SUCCESS);

@@ -18,6 +18,7 @@ import Recover from "../../recover/Recover";
 import useModal from "../../../hooks/useModal";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import { PANEL_ACTIONS } from "../../../utils/constants";
 
 export default function FormLogin() {
   const { login } = useAuthStore();
@@ -33,7 +34,11 @@ export default function FormLogin() {
       };
       setObjToLocalStorage("user", user);
       setToLocalStorage("token", info.token);
-      login(user, info.token);
+      setObjToLocalStorage(
+        "panelSection",
+        PANEL_ACTIONS[user.role.toUpperCase()].PROFILE
+      );
+      login(user, info.token, PANEL_ACTIONS[user.role.toUpperCase()].PROFILE);
       toast.success(TRANSLATES[language].MESSAGES.LOGIN.SUCCESS);
       setLocation("/");
     },

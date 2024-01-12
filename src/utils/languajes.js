@@ -107,6 +107,7 @@ export const TRANSLATES = {
       PENDING: "Pendientes",
       ACCEPTED: "Aceptados",
       CANCELS: "Cancelados",
+      TYPE: "Tipo",
     },
     SEX: {
       MALE: "Macho",
@@ -157,6 +158,9 @@ export const TRANSLATES = {
       RECOVER: {
         SUCCESS: "Contraseña cambiada correctamente",
         ERROR: "Ha ocurrido un error al cambiar la contraseña",
+      },
+      VOLUNTEERING: {
+        SUCCESS: "Voluntariado eliminado correctamente",
       },
     },
     FORMS: {
@@ -269,6 +273,10 @@ export const TRANSLATES = {
       TITLE: "Organizaciones",
       NO_ORGANIZATIONS: "No hay organizaciones disponibles",
     },
+    TYPES: {
+      DOG: "Perro",
+      CAT: "Gato",
+    },
   },
 
   ENG: {
@@ -352,6 +360,7 @@ export const TRANSLATES = {
       PENDING: "Pending",
       ACCEPTED: "Accepted",
       CANCELS: "Canceled",
+      TYPE: "Type",
     },
     SEX: {
       MALE: "Male",
@@ -440,6 +449,10 @@ export const TRANSLATES = {
         REQUIRED_FIELD: "Required field",
         PASSWORD_MISSMATCH: "Passwords do not match",
       },
+      MANAGE_ORGANIZATIONS: {
+        ACTIVE_TITLE: "Active organizations",
+        PENDING_TITLE: "Pending organizations",
+      },
     },
     LABELS: {
       NAME: "Name",
@@ -514,13 +527,14 @@ export const TRANSLATES = {
     ADMINS: {
       NO_ADMINS: "No admins available",
     },
-    MANAGE_ORGANIZATIONS: {
-      ACTIVE_TITLE: "Active organizations",
-      PENDING_TITLE: "Pending organizations",
-    },
+
     ORGANIZATIONS: {
       TITLE: "Organizations",
       NO_ORGANIZATIONS: "No organizations available",
+    },
+    TYPES: {
+      DOG: "Dog",
+      CAT: "Cat",
     },
   },
 };

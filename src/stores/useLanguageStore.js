@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { LANGUAGES } from "../utils/languajes";
 
 const languageStore = create((set) => ({

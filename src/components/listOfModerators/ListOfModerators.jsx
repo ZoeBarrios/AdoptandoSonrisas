@@ -7,8 +7,8 @@ export default function ListOfModerators({ data, refetch }) {
   return (
     <section className="list-card shadow-card" style={{ minHeight: "20em" }}>
       {data?.length > 0 ? (
-        data.map((moderator) => (
-          <PersonCard key={moderator.id} person={moderator} refetch={refetch} />
+        data.map((moderator, index) => (
+          <PersonCard key={index} person={moderator} refetch={refetch} />
         ))
       ) : (
         <h2 className="title-no-info">

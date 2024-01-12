@@ -23,4 +23,5 @@ export const closeSession = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   localStorage.removeItem("organization");
+  localStorage.removeItem("panelSection");
 };

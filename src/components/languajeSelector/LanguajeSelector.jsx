@@ -29,20 +29,24 @@ export default function LanguageSelector() {
         } absolute bg-white w-24 p-3 rounded-lg shadow-lg z-10 right-2`}
       >
         <ul>
-          {Object.keys(LANGUAGES).map((lan) => (
-            <li key={lan} className="flex flex-row gap-3">
-              <input
-                type="radio"
-                checked={language === lan}
-                onChange={() => handleSetLanguage(lan)}
-                className="cursor-pointer font-bold"
-                id={lan}
-              />
-              <label className="cursor-pointer font-bold" htmlFor={lan}>
-                {lan}
-              </label>
-            </li>
-          ))}
+          {Object.keys(LANGUAGES).map((lan) => {
+            const uniqueId = `${lan}-radio`;
+            return (
+              <li key={lan + "key"} className="flex flex-row gap-3">
+                <input
+                  type="radio"
+                  checked={language === lan}
+                  onChange={() => handleSetLanguage(lan)}
+                  className="cursor-pointer font-bold"
+                  id={uniqueId}
+                  autoComplete="off"
+                />
+                <label className="cursor-pointer font-bold" htmlFor={uniqueId}>
+                  {lan}
+                </label>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

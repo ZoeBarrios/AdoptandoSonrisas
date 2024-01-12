@@ -35,7 +35,9 @@ export default function CaseContainer() {
         <>
           <div className="w-9/12  flex flex-row items-center justify-around flex-wrap gap-5">
             {data?.length > 0 && data ? (
-              data?.map((item) => <CaseCard key={item?.id} itemcase={item} />)
+              data?.map((item) => (
+                <CaseCard key={item.case_id} itemcase={item} />
+              ))
             ) : (
               <h2 className="text-3xl p-40 text-center">
                 {TRANSLATES[language].CASES.NO_CASES}

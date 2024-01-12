@@ -11,7 +11,7 @@ import ModeratorContainer from "../moderatorsContainer/ModeratorsContainer";
 import useLanguageStore from "../../stores/useLanguageStore";
 export default function ComponentToShow({ section }) {
   const { language } = useLanguageStore();
-  switch (section) {
+  switch (section[language]) {
     case SECTION_NAMES[language].PROFILE:
       return <InfoUser />;
     case SECTION_NAMES[language].ORGANIZATIONS:

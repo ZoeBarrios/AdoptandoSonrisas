@@ -16,13 +16,9 @@ export default function ListOfVolunteering({ data, refetch }) {
         </h2>
       ) : (
         <>
-          {data?.map((volunteering) => (
+          {data?.map((volunteering, index) => (
             <VolunteerCard
-              key={
-                user.role == ROLES.USER
-                  ? volunteering.organization_id
-                  : volunteering.person_id
-              }
+              key={index}
               volunteering={volunteering}
               refetch={refetch}
             />

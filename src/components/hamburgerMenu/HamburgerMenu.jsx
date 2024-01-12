@@ -1,5 +1,5 @@
 import { useSpring, animated } from "@react-spring/web";
-import { useState } from "react";
+
 import "./HamburgerMenu.css";
 
 export default function HamburgerMenu({
@@ -16,7 +16,7 @@ export default function HamburgerMenu({
   const handleOpen = () => {
     isOpen ? closeModal() : openModal();
 
-    setMenuProps({
+    setMenuProps.start({
       opacity: isOpen ? 0 : 1,
       display: isOpen ? "none" : "block",
     });

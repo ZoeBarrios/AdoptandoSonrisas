@@ -1,25 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PanelMenu from "../../components/panelMenu/PanelMenu";
 import useAuthStore from "../../stores/useAuthStore";
 import { PANEL_ACTIONS } from "../../utils/constants";
 import ComponentToShow from "../../components/componentToShow/ComponentToShow";
 import Header from "../../components/header/Header";
 import useLanguageStore from "../../stores/useLanguageStore";
+import { setObjToLocalStorage } from "../../utils/localStorageFunctions";
 
 export default function Profile() {
-  const { user } = useAuthStore();
+  const { user, setPanelSection, panelSection } = useAuthStore();
   const role = user?.role.toUpperCase();
   const { language } = useLanguageStore();
-  const [sectionActive, setSectionActive] = useState(
-    PANEL_ACTIONS[role].PROFILE[language]
-  );
 
   useEffect(() => {
-    setSectionActive(PANEL_ACTIONS[role].PROFILE[language]);
-  }, [language, role]);
+    !panelSection && setPanelSection(PANEL_ACTIONS[role].PROFILE);
+  }, [role, setPanelSection]);
 
   const handleSectionActive = (section) => {
-    setSectionActive(section);
+    setPanelSection(section);
+    setObjToLocalStorage("panelSection", section);
   };
 
   return (
@@ -28,11 +27,11 @@ export default function Profile() {
       <section className="md:h-screen max-h-full flex flex-row relative bg-white">
         <PanelMenu
           items={PANEL_ACTIONS[role]}
-          sectionActive={sectionActive}
+          sectionActive={panelSection}
           handleSectionActive={handleSectionActive}
         />
-        <div className="flex flex-col items-center justify-center w-full md:h-screen">
-          <ComponentToShow section={sectionActive} />
+        <div className="h-screen flex flex-col items-center justify-center w-full md:h-screen">
+          <ComponentToShow section={panelSection} />
         </div>
       </section>
     </>

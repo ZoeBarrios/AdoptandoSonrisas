@@ -24,7 +24,11 @@ export default function FinancialContainer() {
         ) : data ? (
           <FinancialForm
             update={true}
-            financialInfo={data}
+            financialInfo={{
+              cbu: data.cbu || "",
+              alias: data.alias || "",
+              mp_link: data.mp_link || "",
+            }}
             organization={organization}
             refetch={refetch}
           />

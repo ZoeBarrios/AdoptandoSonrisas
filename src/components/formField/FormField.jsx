@@ -12,9 +12,11 @@ export default function FormField({ type, name, label, disabled, min, max }) {
 
   const inputProps = {
     type: inputType,
+    id: name,
     name: name,
     label: label,
     disabled: disabled,
+    autoComplete: "off",
     className:
       "py-2 px-3 bg-white rounded-md border border-darkOrange focus:outline-orange focus:ring-darkOrange focus:border-transparent transition duration-300 ease-in-out flex-1",
     ...(type === "number" && min && max ? { min, max } : {}),

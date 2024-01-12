@@ -20,7 +20,7 @@ export default function ModeratorContainer() {
   const { showModal, closeModal, openModal } = useModal();
 
   return (
-    <section className="flex-container gap-5">
+    <section className="flex-container gap-5 h-4/5">
       <h2 className="title">{TRANSLATES[language].MODERATORS.TITLE}</h2>
 
       {isLoading ? (

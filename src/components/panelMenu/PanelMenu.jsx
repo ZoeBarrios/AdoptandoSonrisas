@@ -22,7 +22,7 @@ const PanelMenu = ({ items, sectionActive, handleSectionActive }) => {
             <PanelItem
               key={key}
               isActive={sectionActive.id === items[key].id}
-              onClick={() => handleSectionActive(items[key][language])}
+              onClick={() => handleSectionActive(items[key])}
               panelIsShow={`${!panelIsShown ? "opacity-0" : ""}`}
               icon={items[key].icon}
             >
