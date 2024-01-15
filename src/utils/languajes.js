@@ -100,6 +100,7 @@ export const TRANSLATES = {
       SEX: "Sexo",
       AGE: "Edad",
       SIZE: "Tamaño",
+      TYPE: "Tipo",
       CLEAN: "Limpiar filtros",
       ALL: "Todos",
       ACTIVE: "Activos",
@@ -107,8 +108,8 @@ export const TRANSLATES = {
       PENDING: "Pendientes",
       ACCEPTED: "Aceptados",
       CANCELS: "Cancelados",
-      TYPE: "Tipo",
     },
+
     SEX: {
       MALE: "Macho",
       FEMALE: "Hembra",
@@ -122,6 +123,10 @@ export const TRANSLATES = {
       SMALL: "Pequeño",
       MEDIUM: "Mediano",
       BIG: "Grande",
+    },
+    TYPES: {
+      DOG: "Perro",
+      CAT: "Gato",
     },
     MESSAGES: {
       ADOPT: {
@@ -222,6 +227,7 @@ export const TRANSLATES = {
       ALREADY_REGISTERED: "¿Ya estas registrado? Inicia sesión",
       NEW_PASSWORD: "Nueva contraseña",
       CONFIRM_PASSWORD: "Confirmar contraseña",
+      NO_INFO: "No hay información disponible",
     },
     INFO_USER: {
       DELETE_ACCOUNT: "Eliminar cuenta",
@@ -272,10 +278,6 @@ export const TRANSLATES = {
     ORGANIZATIONS: {
       TITLE: "Organizaciones",
       NO_ORGANIZATIONS: "No hay organizaciones disponibles",
-    },
-    TYPES: {
-      DOG: "Perro",
-      CAT: "Gato",
     },
   },
 
@@ -352,6 +354,7 @@ export const TRANSLATES = {
     FILTERS: {
       SEX: "Sex",
       AGE: "Age",
+      TYPE: "Type",
       SIZE: "Size",
       CLEAN: "Clean filters",
       ALL: "All",
@@ -360,7 +363,6 @@ export const TRANSLATES = {
       PENDING: "Pending",
       ACCEPTED: "Accepted",
       CANCELS: "Canceled",
-      TYPE: "Type",
     },
     SEX: {
       MALE: "Male",
@@ -375,6 +377,10 @@ export const TRANSLATES = {
       SMALL: "Small",
       MEDIUM: "Medium",
       BIG: "Big",
+    },
+    TYPES: {
+      DOG: "Dog",
+      CAT: "Cat",
     },
     MESSAGES: {
       ADOPT: {
@@ -477,6 +483,7 @@ export const TRANSLATES = {
       ALREADY_REGISTERED: "Already registered? Log in",
       NEW_PASSWORD: "New password",
       CONFIRM_PASSWORD: "Confirm password",
+      NO_INFO: "No information available",
     },
     INFO_USER: {
       DELETE_ACCOUNT: "Delete account",

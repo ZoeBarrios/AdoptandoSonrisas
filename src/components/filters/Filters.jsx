@@ -7,6 +7,7 @@ import {
 } from "../../utils/constants";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import DropDown from "../dropdown/DropDown";
 
 export default function Filters({ state, dispatch }) {
   const { language } = useLanguageStore();
@@ -28,57 +29,81 @@ export default function Filters({ state, dispatch }) {
   return (
     <div className="flex flex-col items-center gap-5 justify-center md:justify-between w-10/12 mb-5 md:flex-row">
       <div className="flex md:w-2/5 items-center justify-between gap-5">
-        <select
+        <DropDown
           name="genre"
           onChange={(e) => handleChange(e, SEARCH_ACTIONS.SET_GENRE)}
           value={state.genre}
-        >
-          <option value="" disabled defaultValue={state.genre}>
-            {translate.SEX}
-          </option>
-          <option value={GENDERS.F}>{TRANSLATES[language].SEX.FEMALE}</option>
-          <option value={GENDERS.M}>{TRANSLATES[language].SEX.MALE}</option>
-        </select>
-        <select
+          defaultValue={translate.SEX}
+          options={[
+            {
+              value: GENDERS.F,
+              label: TRANSLATES[language].SEX.FEMALE,
+            },
+            {
+              value: GENDERS.M,
+              label: TRANSLATES[language].SEX.MALE,
+            },
+          ]}
+        />
+
+        <DropDown
           name="size"
           onChange={(e) => handleChange(e, SEARCH_ACTIONS.SET_SIZE)}
           value={state.size}
-        >
-          <option value="" disabled defaultValue={state.size}>
-            {translate.SIZE}
-          </option>
-          <option value={SIZES.SMALL}>
-            {" "}
-            {TRANSLATES[language].SIZE.SMALL}
-          </option>
-          <option value={SIZES.MEDIUM}>
-            {TRANSLATES[language].SIZE.MEDIUM}
-          </option>
-          <option value={SIZES.BIG}>{TRANSLATES[language].SIZE.BIG}</option>
-        </select>
-        <select
+          defaultValue={translate.SIZE}
+          options={[
+            {
+              value: SIZES.SMALL,
+              label: TRANSLATES[language].SIZE.SMALL,
+            },
+            {
+              value: SIZES.MEDIUM,
+              label: TRANSLATES[language].SIZE.MEDIUM,
+            },
+            {
+              value: SIZES.BIG,
+              label: TRANSLATES[language].SIZE.BIG,
+            },
+          ]}
+        />
+
+        <DropDown
           name="age"
           onChange={(e) => handleChange(e, SEARCH_ACTIONS.SET_AGE)}
           value={state.age}
-        >
-          <option value="" disabled defaultValue={state.age}>
-            {translate.AGE}
-          </option>
-          <option value={AGE.PUPPY}>{TRANSLATES[language].AGE.PUPPY}</option>
-          <option value={AGE.ADULT}>{TRANSLATES[language].AGE.ADULT}</option>
-          <option value={AGE.OLD}>{TRANSLATES[language].AGE.OLD}</option>
-        </select>
-        <select
+          defaultValue={translate.AGE}
+          options={[
+            {
+              value: AGE.PUPPY,
+              label: TRANSLATES[language].AGE.PUPPY,
+            },
+            {
+              value: AGE.ADULT,
+              label: TRANSLATES[language].AGE.ADULT,
+            },
+            {
+              value: AGE.OLD,
+              label: TRANSLATES[language].AGE.OLD,
+            },
+          ]}
+        />
+
+        <DropDown
           name="type"
           onChange={(e) => handleChange(e, SEARCH_ACTIONS.SET_TYPE)}
           value={state.type}
-        >
-          <option value="" disabled defaultValue={state.type}>
-            {translate.TYPE}
-          </option>
-          <option value={TYPES.DOG}>{TRANSLATES[language].TYPES.DOG}</option>
-          <option value={TYPES.CAT}>{TRANSLATES[language].TYPES.CAT}</option>
-        </select>
+          defaultValue={translate.TYPE}
+          options={[
+            {
+              value: TYPES.DOG,
+              label: TRANSLATES[language].TYPES.DOG,
+            },
+            {
+              value: TYPES.CAT,
+              label: TRANSLATES[language].TYPES.CAT,
+            },
+          ]}
+        />
       </div>
       <div className="flex items-end gap-5 w-full md:w-auto">
         <button onClick={cleanFilters} className="buttons-form">

@@ -1,13 +1,14 @@
-import Modal from "../modal/Modal";
+import Modal from "../../../modal/Modal";
 import { useMutation } from "react-query";
-import { createRating } from "../../services/ratings";
-import TextArea from "../textArea/TextArea";
-import { showError, showSuccess } from "../../utils/userMessages";
+import { createRating } from "../../../../services/ratings";
+import TextArea from "../../../textArea/TextArea";
+import { showError, showSuccess } from "../../../../utils/userMessages";
 import { Field, Form, Formik } from "formik";
-import useAuthStore from "../../stores/useAuthStore";
-import FormField from "../formField/FormField";
-import useLanguageStore from "../../stores/useLanguageStore";
-import { TRANSLATES } from "../../utils/languajes";
+import useAuthStore from "../../../../stores/useAuthStore";
+import FormField from "../../../formField/FormField";
+import useLanguageStore from "../../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../../utils/languajes";
+import { registerCalificationValidationSchema } from "../../../../validationSchemas/validationSchemas";
 
 export default function RatingForm({ data, closeModal, showModal }) {
   const { user } = useAuthStore();
@@ -40,11 +41,14 @@ export default function RatingForm({ data, closeModal, showModal }) {
         <Formik
           initialValues={{
             animal_id: "",
-            rating: 1,
+            calification: 1,
             comment: "",
             rater_id: user.id,
           }}
           onSubmit={handleSubmit}
+          validationSchema={() =>
+            registerCalificationValidationSchema(language)
+          }
         >
           {({ isSubmitting }) => (
             <Form className="flex flex-col gap-5 p-5 items-center w-full">
@@ -72,7 +76,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
               </Field>
 
               <FormField
-                name="rating"
+                name="calification"
                 type="number"
                 label={TRANSLATES[language].LABELS.CALIFICATION}
                 min="1"
@@ -81,6 +85,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
               <TextArea
                 name="comment"
                 id="comment"
+                isRequired={true}
                 label={TRANSLATES[language].LABELS.COMMENT}
               />
               <div className="flex flex-row w-full items-center justify-around">

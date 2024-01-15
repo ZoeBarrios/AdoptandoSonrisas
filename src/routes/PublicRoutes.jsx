@@ -6,7 +6,7 @@ import Adopt from "../pages/Adoptions/Adopt";
 import Animal from "../pages/Animal/Animal";
 import FormRegisterOrganizartion from "../components/forms/create/FormRegisterOrganization";
 import Organization from "../pages/Organization/Organization";
-import Donar from "../pages/Donar/Donar";
+import Donar from "../pages/donate/Donate";
 import Volunteers from "../pages/Volunteers/Volunteers";
 import FormLogin from "../components/forms/create/FormLogin";
 export default function PublicRoutes() {

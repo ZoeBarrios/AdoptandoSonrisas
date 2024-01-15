@@ -28,8 +28,6 @@ export default function Case() {
   const imgs = data?.imgs?.map((img) => img.img_url);
   const age = getAge(data?.animal.birthdate, language);
 
-  console.log(data);
-
   return (
     <DefaultPage>
       {isLoading ? (
@@ -59,10 +57,7 @@ export default function Case() {
                   </p>
                 </div>
 
-                {user?.role !== ROLES.USER &&
-                user &&
-                organization_id &&
-                organization === organization_id ? (
+                {user?.role != ROLES.USER && organization == organization_id ? (
                   <>
                     <button
                       onClick={openModal}

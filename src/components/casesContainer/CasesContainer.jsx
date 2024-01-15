@@ -5,6 +5,7 @@ import ListOfCases from "../listOfCases/ListOfCases";
 import { useEffect, useState } from "react";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import DropDown from "../dropdown/DropDown";
 
 export default function CasesContainer() {
   const { organization } = useAuthStore();
@@ -25,11 +26,23 @@ export default function CasesContainer() {
     <section className="flex-container gap-5  h-4/5">
       <h2 className="title">{TRANSLATES[language].LIST_CASES.TITLE}</h2>
       <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
-        <select onChange={handleChangeFilters} className="w-full md:w-fit">
-          <option value={""}>{TRANSLATES[language].FILTERS.ALL}</option>
-          <option value={false}>{TRANSLATES[language].FILTERS.ACTIVE}</option>
-          <option value={true}>{TRANSLATES[language].FILTERS.DELETED}</option>
-        </select>
+        <DropDown
+          name="genre"
+          onChange={(e) => handleChangeFilters(e)}
+          value={""}
+          defaultValue={TRANSLATES[language].FILTERS.ALL}
+          defaultDisables={false}
+          options={[
+            {
+              value: false,
+              label: TRANSLATES[language].FILTERS.ACTIVE,
+            },
+            {
+              value: true,
+              label: TRANSLATES[language].FILTERS.DELETED,
+            },
+          ]}
+        />
       </div>
 
       <ListOfCases data={data} refetch={refetch} />

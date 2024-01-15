@@ -51,7 +51,7 @@ option {
 }
 
 .button-style {
-  @apply bg-ligthOrange text-xl text-white rounded-md text-center hover:bg-darkOrange transition duration-300 ease-in-out font-bold;
+  @apply bg-ligthOrange w-32 text-xl text-white rounded-md text-center hover:bg-darkOrange transition duration-300 ease-in-out font-bold;
 }
 
 .title {
@@ -59,7 +59,7 @@ option {
 }
 
 .buttons-form {
-  @apply min-w-fit py-2 px-4 text-xl  bg-orange font-bold text-white rounded hover:bg-darkOrange transition duration-300;
+  @apply w-32 min-w-fit py-2 px-4 text-xl  bg-orange font-bold text-white rounded hover:bg-darkOrange transition duration-300;
 }
 
 .title-no-info {

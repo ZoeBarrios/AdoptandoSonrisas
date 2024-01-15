@@ -12,7 +12,7 @@ export default function Footer() {
             className="fa-regular fa-envelope"
             style={{ color: "#000000" }}
           ></i>{" "}
-          AdoptandoSonrisas@outlook.com.ar
+          AdoptandoSonrisas@hotmail.com
         </p>
       </div>
     </footer>

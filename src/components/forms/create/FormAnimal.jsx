@@ -13,19 +13,20 @@ import SelectSex from "../../selectSex/SelectSex";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
 import Loader from "../../loader/Loader";
+import SelectType from "../../selectType/SelectType";
 
 export default function FormAnimal({ closeModal, refetch }) {
   const { organization } = useAuthStore();
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(createAnimal, {
+  const { mutate, isLoading } = useMutation(createAnimal, {
     onSuccess: () => {
       showSuccess("Animal creado", refetch);
       closeModal();
     },
     onError: showError,
   });
-  const handleSubmit = (values, { setSubmitting }) => {
-    setSubmitting(true);
+  const handleSubmit = (values) => {
+    console.log("SUBMIT");
     mutate(values);
   };
   return (
@@ -37,12 +38,13 @@ export default function FormAnimal({ closeModal, refetch }) {
         birthdate: "",
         size: "",
         image: "",
+        type: "",
         organization_id: organization,
       }}
       validationSchema={() => registerAnimalValidationSchema(language)}
       onSubmit={handleSubmit}
     >
-      {({ values, setFieldValue, isSubmitting }) => (
+      {({ values, setFieldValue }) => (
         <Form className="flex flex-col items-center p-3 gap-5">
           <h2 className="text-darkOrange font-bold text-xl p-3 ">
             {TRANSLATES[language].FORMS.NEW_ANIMAL.TITLE}
@@ -71,6 +73,11 @@ export default function FormAnimal({ closeModal, refetch }) {
             defaultValue={values.size}
           />
 
+          <SelectType
+            onChange={(e) => setFieldValue("type", e.target.value)}
+            defaultValue={values.type}
+          />
+
           <InputImages
             values={values}
             setFieldValue={setFieldValue}
@@ -78,16 +85,17 @@ export default function FormAnimal({ closeModal, refetch }) {
             isRequired={true}
           />
           <div className="flex flex-row w-full items-center justify-around">
-            <button type="button" className="buttons-form" onClick={closeModal}>
+            <button
+              type="button"
+              className={`buttons-form ${isLoading && "bg-grey"}`}
+              onClick={closeModal}
+              disabled={isLoading}
+            >
               {TRANSLATES[language].BUTTONS.CANCEL}
             </button>
 
-            <button
-              type="submit"
-              className="buttons-form"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
+            <button type="submit" className="buttons-form" disabled={isLoading}>
+              {isLoading ? (
                 <Loader isButtonLoader={true} />
               ) : (
                 TRANSLATES[language].BUTTONS.ADD_ANIMAL

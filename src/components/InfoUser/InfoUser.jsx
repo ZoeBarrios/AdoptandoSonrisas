@@ -66,7 +66,7 @@ export default function InfoUser() {
   };
 
   return (
-    <section className="flex-container h-screen">
+    <section className="flex-container h-full">
       {isLoading ? (
         <Loader />
       ) : (
@@ -89,9 +89,7 @@ export default function InfoUser() {
                   ? language == LANGUAGES.ES
                     ? "mi perfil"
                     : "my profile"
-                  : language === LANGUAGES.ES
-                  ? "organización"
-                  : "organization"}
+                  : "org"}
               </button>
             </>
           ) : (

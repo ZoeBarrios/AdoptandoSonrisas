@@ -90,7 +90,11 @@ export default function FormRegister() {
                 className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5 hover:bg-orange hover:transition-colors duration-300"
                 disabled={isLoading}
               >
-                {isLoading ? <Loader /> : TRANSLATES[language].BUTTONS.REGISTER}
+                {isLoading ? (
+                  <Loader isButtonLoader={true} />
+                ) : (
+                  TRANSLATES[language].BUTTONS.REGISTER
+                )}
               </button>
               <a
                 onClick={toggleForm}

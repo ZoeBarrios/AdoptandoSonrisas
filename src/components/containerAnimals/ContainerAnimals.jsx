@@ -8,6 +8,7 @@ import Modal from "../modal/Modal";
 import { useEffect, useState } from "react";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import DropDown from "../dropdown/DropDown";
 
 export default function ContainerAnimals() {
   const { organization } = useAuthStore();
@@ -42,15 +43,23 @@ export default function ContainerAnimals() {
     <section className="flex-container gap-5 h-4/5">
       <h2 className="title">{TRANSLATES[language].ANIMALS.TITLE}</h2>
       <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
-        <select
-          onChange={handleChangeFilters}
+        <DropDown
           name="isDeleted"
-          className="w-full md:w-fit"
-        >
-          <option value="">{TRANSLATES[language].FILTERS.ALL}</option>
-          <option value={true}>{TRANSLATES[language].FILTERS.DELETED}</option>
-          <option value={false}>{TRANSLATES[language].FILTERS.ACTIVE}</option>
-        </select>
+          onChange={(e) => handleChangeFilters(e)}
+          value={""}
+          defaultValue={TRANSLATES[language].FILTERS.ALL}
+          defaultDisables={false}
+          options={[
+            {
+              value: false,
+              label: TRANSLATES[language].FILTERS.ACTIVE,
+            },
+            {
+              value: true,
+              label: TRANSLATES[language].FILTERS.DELETED,
+            },
+          ]}
+        />
         <input
           type="text"
           placeholder={TRANSLATES[language].ANIMALS.PLACEHOLDER}

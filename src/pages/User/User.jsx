@@ -9,7 +9,6 @@ import ItemUser from "../../components/itemUser/ItemUser";
 import { getRatingsByPersonId } from "../../services/ratings";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
-import { ROLES } from "../../utils/constants";
 
 export default function User() {
   const { id } = useParams();
@@ -36,23 +35,17 @@ export default function User() {
         <Loader />
       ) : (
         <div
-          className={`p-5 mt-24 mb-10 md:mt-16 shadow-card bg-white w-11/12 ${
-            data.role !== ROLES.USER ? "md:w-6/12" : "md:w-11/12"
-          }  flex flex-col md:flex-row items-center rounded`}
+          className={`p-5 mt-24 mb-10 md:mt-16 shadow-card bg-white w-11/12 h-5/6  flex flex-col md:flex-row items-center rounded`}
         >
           <div className="w-full">
             <h2 className="title">
               {TRANSLATES[language].CALIFICATIONS.USER_TITLE}
             </h2>
             <div
-              className={`m-auto  w-9/12 rounded gap-5 flex flex-col ${
-                data.role !== ROLES.USER ? "items-center" : "items-start"
-              } justify-evenly p-5`}
+              className={`m-auto  w-9/12 rounded gap-5 flex flex-col flex-start justify-evenly p-5`}
             >
               <div
-                className={`flex flex-row w-full items-center gap-3 ${
-                  data.role !== ROLES.USER && "justify-center"
-                }`}
+                className={`flex flex-row w-full items-center gap-3 flex-start`}
               >
                 <img
                   src={data?.avatar || Avatar}
@@ -97,9 +90,8 @@ export default function User() {
               )}
             </div>
           </div>
-          {data.role == ROLES.USER && (
-            <ListOfRatings ratings={ratings} isLoading={ratingsLoading} />
-          )}
+
+          <ListOfRatings ratings={ratings} isLoading={ratingsLoading} />
         </div>
       )}
     </div>

@@ -57,6 +57,7 @@ export const registerAnimalValidationSchema = (language) =>
     organization_id: Yup.number().required(
       validationMessages[language].required
     ),
+    type: Yup.string().required(validationMessages[language].required),
   });
 
 export const registerCaseValidationSchema = (language) =>
@@ -65,3 +66,10 @@ export const registerCaseValidationSchema = (language) =>
     description: Yup.string().required(validationMessages[language].required),
     images: Yup.array().min(1, validationMessages[language].min(1)),
   });
+
+export const registerCalificationValidationSchema = (language) => {
+  return Yup.object().shape({
+    calification: Yup.number().required(validationMessages[language].required),
+    comment: Yup.string().required(validationMessages[language].required),
+  });
+};

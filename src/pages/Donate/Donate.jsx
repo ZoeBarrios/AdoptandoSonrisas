@@ -46,8 +46,14 @@ export default function Donar() {
               <h2 className="text-3xl font-bold ">
                 {TRANSLATES[language].DONATE.TRANSFERS}
               </h2>
-              <p className="text-xl">CBU: {org?.cbu}</p>
-              <p className="text-xl">Alias: {org?.alias}</p>
+              <p className="text-xl">
+                <span className="font-bold">CBU:</span>{" "}
+                {org?.cbu || TRANSLATES[language].LABELS.NO_INFO}
+              </p>
+              <p className="text-xl">
+                <span className="font-bold">Alias:</span>{" "}
+                {org?.alias || TRANSLATES[language].LABELS.NO_INFO}
+              </p>
             </div>
           )}
 

@@ -36,9 +36,7 @@ export default function FormUpdateOrganization({ data, refetch }) {
         <Loader />
       ) : (
         <div className="bg-white p-2 mt-5 shadow-card w-10/12 md:w-7/12  rounded-lg flex flex-col items-center justify-center">
-          <h2 className="title mt-3">
-            {TRANSLATES[language].FORMS.UPDATE_ORGANIZATION.TITLE}
-          </h2>
+          <h2 className="title mt-3">{data[0].name}</h2>
           <Formik
             initialValues={{
               ...data[0],

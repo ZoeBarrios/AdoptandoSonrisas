@@ -88,14 +88,21 @@ export default function AdoptionCard({ adoption, refetch }) {
               {TRANSLATES[language].BUTTONS.CANCELLED}
             </p>
           ) : (
-            <button
-              onClick={adoption.isAccepted ? handleCancel : handleAccept}
-              className="buttons-form flex-1"
-            >
-              {adoption.isAccepted
-                ? TRANSLATES[language].BUTTONS.CANCEL_ADOPTION
-                : TRANSLATES[language].BUTTONS.ACEPT_ADOPTION}
-            </button>
+            <>
+              <button
+                onClick={adoption.isAccepted ? handleCancel : handleAccept}
+                className="buttons-form flex-1"
+              >
+                {adoption.isAccepted
+                  ? TRANSLATES[language].BUTTONS.CANCEL_ADOPTION
+                  : TRANSLATES[language].BUTTONS.ACEPT_ADOPTION}
+              </button>
+              {!adoption.isAccepted && (
+                <button onClick={handleCancel} className="buttons-form flex-1">
+                  {TRANSLATES[language].BUTTONS.CANCEL_PETITION}
+                </button>
+              )}
+            </>
           )}
         </>
       )}

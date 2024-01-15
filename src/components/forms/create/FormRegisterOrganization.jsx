@@ -90,7 +90,7 @@ export default function FormRegisterOrganizartion() {
                   disabled={isLoading}
                 >
                   {isLoading ? (
-                    <Loader />
+                    <Loader isButtonLoader={true} />
                   ) : (
                     TRANSLATES[language].BUTTONS.REGISTER
                   )}

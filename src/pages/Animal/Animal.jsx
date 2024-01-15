@@ -25,7 +25,7 @@ export default function Animal() {
 
   return (
     <DefaultPage>
-      <section className="w-full h-full flex items-center justify-center p-5">
+      <section className="w-full h-screen flex items-center justify-center ">
         {isLoading ? (
           <Loader />
         ) : (
@@ -64,10 +64,8 @@ export default function Animal() {
                 >
                   {data?.organization.name}
                 </Link>
-                {user?.role !== ROLES.USER &&
-                user &&
-                data?.organization?.organization_id &&
-                organization === data?.organization?.organization_id ? (
+                {user?.role != ROLES.USER &&
+                organization == data.organization.organization_id ? (
                   <div>
                     <button onClick={openModal} className="buttons-form">
                       {TRANSLATES[language].BUTTONS.UPDATE}

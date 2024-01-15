@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import useModal from "../../hooks/useModal";
 import ListOfAdoptions from "../listOfAdoptions/ListOfAdoptions";
-import RatingForm from "../ratingForm/RatingForm";
+import RatingForm from "../forms/create/ratingForm/RatingForm";
 import { FILTERS_ACTIONS, ROLES } from "../../utils/constants";
 import useAuthStore from "../../stores/useAuthStore";
 import {
@@ -12,6 +12,7 @@ import { useEffect, useReducer } from "react";
 import { adoptionsReducer } from "../../utils/reducers";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import DropDown from "../dropDown/DropDown";
 
 export default function ContainerAdoptions() {
   const { language } = useLanguageStore();
@@ -42,22 +43,29 @@ export default function ContainerAdoptions() {
     <section className="flex-container gap-5 h-screen md:h-5/6">
       <h2 className="title">{TRANSLATES[language].ADOPTIONS.TITLE}</h2>
       <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
-        <select onClick={handleChangeFilters} className="w-full md:w-fit">
-          <option value={FILTERS_ACTIONS.RESET}>
-            {TRANSLATES[language].FILTERS.ALL}
-          </option>
-
-          <option value={FILTERS_ACTIONS.SET_REJECTED}>
-            {TRANSLATES[language].FILTERS.CANCELS}
-          </option>
-
-          <option value={FILTERS_ACTIONS.SET_PENDING}>
-            {TRANSLATES[language].FILTERS.PENDING}
-          </option>
-          <option value={FILTERS_ACTIONS.SET_APPROVED}>
-            {TRANSLATES[language].FILTERS.ACCEPTED}
-          </option>
-        </select>
+        <DropDown
+          name="adoptions"
+          defaultValue={TRANSLATES[language].FILTERS.ALL}
+          options={[
+            {
+              value: FILTERS_ACTIONS.RESET,
+              label: TRANSLATES[language].FILTERS.ALL,
+            },
+            {
+              value: FILTERS_ACTIONS.SET_REJECTED,
+              label: TRANSLATES[language].FILTERS.CANCELS,
+            },
+            {
+              value: FILTERS_ACTIONS.SET_PENDING,
+              label: TRANSLATES[language].FILTERS.PENDING,
+            },
+            {
+              value: FILTERS_ACTIONS.SET_APPROVED,
+              label: TRANSLATES[language].FILTERS.ACCEPTED,
+            },
+          ]}
+          onChange={handleChangeFilters}
+        />
       </div>
 
       <ListOfAdoptions data={data} refetch={refetch} isLoading={isLoading} />

@@ -1,7 +1,10 @@
+import { TRANSLATES } from "../../utils/languajes";
 import AdoptionCard from "../adoptionCard/AdoptionCard";
 import Loader from "../loader/Loader";
+import useLanguageStore from "../../stores/useLanguageStore";
 
 export default function ListOfAdoptions({ data, isLoading, refetch }) {
+  const { language } = useLanguageStore();
   return (
     <div className="list-card shadow-card">
       {isLoading ? (
@@ -17,7 +20,9 @@ export default function ListOfAdoptions({ data, isLoading, refetch }) {
               />
             ))
           ) : (
-            <h2 className="title-no-info">No hay adopciones registradas</h2>
+            <h2 className="title-no-info">
+              {TRANSLATES[language].LABELS.NO_INFO}
+            </h2>
           )}
         </>
       )}

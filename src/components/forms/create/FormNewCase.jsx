@@ -19,15 +19,14 @@ export default function FormNewCase({
   refetch,
 }) {
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(createCase, {
+  const { mutate, isLoading } = useMutation(createCase, {
     onSuccess: () => {
       showSuccess("Caso creado correctamente", refetch);
       closeModal();
     },
     onError: showError,
   });
-  const handleSubmit = (values, setSubmitting) => {
-    setSubmitting(true);
+  const handleSubmit = (values) => {
     mutate(values);
   };
   return (
@@ -42,7 +41,7 @@ export default function FormNewCase({
         onSubmit={handleSubmit}
         validationSchema={() => registerCaseValidationSchema(language)}
       >
-        {({ values, setFieldValue, isSubmitting }) => (
+        {({ values, setFieldValue }) => (
           <Form className="flex flex-col items-center justify-center gap-5 p-3">
             <h2 className="text-darkOrange font-bold text-xl p-3 ">
               {TRANSLATES[language].FORMS.NEW_CASE.TITLE}
@@ -65,16 +64,20 @@ export default function FormNewCase({
               isRequired={true}
             />
             <div className="flex flex-row w-full items-center justify-around">
-              <button type="submit" className="buttons-form">
+              <button
+                type="submit"
+                className={`buttons-form ${isLoading && "bg-grey"}`}
+                disabled={isLoading}
+              >
                 {TRANSLATES[language].BUTTONS.ADD_CASE}
               </button>
               <button
                 type="button"
                 className="buttons-form"
                 onClick={closeModal}
-                disabled={isSubmitting}
+                disabled={isLoading}
               >
-                {isSubmitting ? (
+                {isLoading ? (
                   <Loader isButtonLoader={true} />
                 ) : (
                   TRANSLATES[language].BUTTONS.CANCEL

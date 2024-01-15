@@ -2,7 +2,8 @@ import { Form, Formik } from "formik";
 import FormField from "../../formField/FormField";
 import { useMutation } from "react-query";
 import { createAdminOrModerator } from "../../../services/user";
-import { showError, showSuccess } from "../../../utils/userMessages";
+import { toast } from "react-toastify";
+import { showSuccess } from "../../../utils/userMessages";
 import { registerValidationSchema } from "../../../validationSchemas/validationSchemas";
 import { TRANSLATES } from "../../../utils/languajes";
 import useLanguageStore from "../../../stores/useLanguageStore";
@@ -24,7 +25,7 @@ export default function FormCreateAdminModerator({
       );
     },
     onError: () => {
-      showError(TRANSLATES[language].MESSAGES.NEW_USER.ERROR);
+      toast.error(TRANSLATES[language].MESSAGES.NEW_USER.ERROR);
     },
   });
 
