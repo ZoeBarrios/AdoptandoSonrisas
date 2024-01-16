@@ -12,7 +12,7 @@ import { useEffect, useReducer } from "react";
 import { adoptionsReducer } from "../../utils/reducers";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
-import DropDown from "../dropDown/DropDown";
+import DropDown from "../dropdown/DropDown";
 
 export default function ContainerAdoptions() {
   const { language } = useLanguageStore();
@@ -67,7 +67,6 @@ export default function ContainerAdoptions() {
               label: TRANSLATES[language].FILTERS.ACCEPTED,
             },
           ]}
-          onChange={handleChangeFilters}
         />
       </div>
 
