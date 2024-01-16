@@ -32,7 +32,11 @@ export default function ContainerAdoptions() {
 
   const handleChangeFilters = (e) => {
     const { value } = e.target;
-    console.log(value);
+    if (value === "") {
+      dispatch({ type: FILTERS_ACTIONS.RESET });
+      return;
+    }
+
     dispatch({ type: value });
   };
 
@@ -45,12 +49,11 @@ export default function ContainerAdoptions() {
       <div className="w-10/12 gap-3 flex flex-col md:flex-row items-center justify-between">
         <DropDown
           name="adoptions"
+          value={""}
+          onChange={(e) => handleChangeFilters(e)}
           defaultValue={TRANSLATES[language].FILTERS.ALL}
+          defaultDisables={false}
           options={[
-            {
-              value: FILTERS_ACTIONS.RESET,
-              label: TRANSLATES[language].FILTERS.ALL,
-            },
             {
               value: FILTERS_ACTIONS.SET_REJECTED,
               label: TRANSLATES[language].FILTERS.CANCELS,

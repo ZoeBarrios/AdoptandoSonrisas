@@ -167,6 +167,7 @@ export const TRANSLATES = {
       VOLUNTEERING: {
         SUCCESS: "Voluntariado eliminado correctamente",
       },
+      NO_ORGANIZATION: "No tiene una organización asignada",
     },
     FORMS: {
       NEW_ADOPTION: {
@@ -426,6 +427,7 @@ export const TRANSLATES = {
         SUCCESS: "Password changed correctly",
         ERROR: "An error has occurred while changing the password",
       },
+      NO_ORGANIZATION: "You do not have an assigned organization",
     },
     FORMS: {
       NEW_ADOPTION: {

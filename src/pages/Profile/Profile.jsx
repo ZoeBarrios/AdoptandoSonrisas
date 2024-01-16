@@ -4,13 +4,11 @@ import useAuthStore from "../../stores/useAuthStore";
 import { PANEL_ACTIONS } from "../../utils/constants";
 import ComponentToShow from "../../components/componentToShow/ComponentToShow";
 import Header from "../../components/header/Header";
-import useLanguageStore from "../../stores/useLanguageStore";
 import { setObjToLocalStorage } from "../../utils/localStorageFunctions";
 
 export default function Profile() {
   const { user, setPanelSection, panelSection } = useAuthStore();
   const role = user?.role.toUpperCase();
-  const { language } = useLanguageStore();
 
   useEffect(() => {
     !panelSection && setPanelSection(PANEL_ACTIONS[role].PROFILE);
