@@ -28,7 +28,7 @@ export default function CaseContainer() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-around flex-wrap">
+    <div className="w-full min-h-screen flex flex-col items-center justify-around mt-12">
       {isLoading ? (
         <Loader />
       ) : (

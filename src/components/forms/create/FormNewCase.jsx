@@ -1,7 +1,6 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import { useMutation } from "react-query";
 import { createCase } from "../../../services/cases";
-import { toast } from "react-toastify";
 import FormField from "../../formField/FormField";
 import TextArea from "../../textArea/TextArea";
 import InputImages from "../../inputImages/InputImages";
@@ -24,10 +23,14 @@ export default function FormNewCase({
       showSuccess("Caso creado correctamente", refetch);
       closeModal();
     },
-    onError: showError,
   });
-  const handleSubmit = (values) => {
-    mutate(values);
+  const handleSubmit = (values, { setSubmitting }) => {
+    mutate(values, {
+      onError: (error) => {
+        showError(error);
+        setSubmitting(false);
+      },
+    });
   };
   return (
     <Modal isOpen={showModal} setClose={closeModal}>
@@ -65,22 +68,22 @@ export default function FormNewCase({
             />
             <div className="flex flex-row w-full items-center justify-around">
               <button
-                type="submit"
-                className={`buttons-form ${isLoading && "bg-grey"}`}
+                type="button"
+                className={`buttons-form ${isLoading && "disabled"}`}
+                onClick={closeModal}
                 disabled={isLoading}
               >
-                {TRANSLATES[language].BUTTONS.ADD_CASE}
+                {TRANSLATES[language].BUTTONS.CANCEL}
               </button>
               <button
-                type="button"
-                className="buttons-form"
-                onClick={closeModal}
+                type="submit"
+                className={`buttons-form ${isLoading && "disabled"}`}
                 disabled={isLoading}
               >
                 {isLoading ? (
                   <Loader isButtonLoader={true} />
                 ) : (
-                  TRANSLATES[language].BUTTONS.CANCEL
+                  TRANSLATES[language].BUTTONS.ADD_CASE
                 )}
               </button>
             </div>

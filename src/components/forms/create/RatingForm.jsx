@@ -1,19 +1,19 @@
-import Modal from "../../../modal/Modal";
+import Modal from "../../modal/Modal";
 import { useMutation } from "react-query";
-import { createRating } from "../../../../services/ratings";
-import TextArea from "../../../textArea/TextArea";
-import { showError, showSuccess } from "../../../../utils/userMessages";
+import { createRating } from "../../../services/ratings";
+import TextArea from "../../textArea/TextArea";
+import { showError, showSuccess } from "../../../utils/userMessages";
 import { Field, Form, Formik } from "formik";
-import useAuthStore from "../../../../stores/useAuthStore";
-import FormField from "../../../formField/FormField";
-import useLanguageStore from "../../../../stores/useLanguageStore";
-import { TRANSLATES } from "../../../../utils/languajes";
-import { registerCalificationValidationSchema } from "../../../../validationSchemas/validationSchemas";
+import useAuthStore from "../../../stores/useAuthStore";
+import FormField from "../../formField/FormField";
+import useLanguageStore from "../../../stores/useLanguageStore";
+import { TRANSLATES } from "../../../utils/languajes";
+import { registerCalificationValidationSchema } from "../../../validationSchemas/validationSchemas";
 
 export default function RatingForm({ data, closeModal, showModal }) {
   const { user } = useAuthStore();
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(createRating, {
+  const { mutate, isLoading } = useMutation(createRating, {
     onSuccess: () => {
       showSuccess(TRANSLATES[language].MESSAGES.CALIFICATION.SUCCESS);
     },
@@ -50,7 +50,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
             registerCalificationValidationSchema(language)
           }
         >
-          {({ isSubmitting }) => (
+          {({ values }) => (
             <Form className="flex flex-col gap-5 p-5 items-center w-full">
               <Field
                 as="select"
@@ -91,15 +91,18 @@ export default function RatingForm({ data, closeModal, showModal }) {
               <div className="flex flex-row w-full items-center justify-around">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="buttons-form"
+                  disabled={isLoading}
+                  className={`buttons-form ${
+                    (isLoading || values.animal_id == "") && "disabled"
+                  }`}
                 >
                   {TRANSLATES[language].BUTTONS.ADD_CALIFICATION}
                 </button>
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="buttons-form"
+                  className={`buttons-form ${isLoading && "disabled"}`}
+                  disabled={isLoading}
                 >
                   {TRANSLATES[language].BUTTONS.CANCEL}
                 </button>

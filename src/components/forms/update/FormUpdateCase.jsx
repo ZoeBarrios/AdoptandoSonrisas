@@ -15,7 +15,7 @@ export default function FormUpdateCase({
   closeModal,
 }) {
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(updateCase, {
+  const { mutate, isLoading } = useMutation(updateCase, {
     onSuccess: () => {
       closeModal();
       showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
@@ -44,11 +44,16 @@ export default function FormUpdateCase({
               <button
                 type="button"
                 onClick={closeModal}
-                className="buttons-form w-1/2"
+                className={`buttons-form ${isLoading && "disabled"} w-1/2`}
+                disabled={isLoading}
               >
                 {TRANSLATES[language].BUTTONS.CANCEL}
               </button>
-              <button type="submit" className="buttons-form w-1/2">
+              <button
+                type="submit"
+                className={`buttons-form ${isLoading && "disabled"} w-1/2`}
+                disabled={isLoading}
+              >
                 {TRANSLATES[language].BUTTONS.UPDATE}
               </button>
             </Form>

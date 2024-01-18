@@ -7,12 +7,16 @@ const validationMessages = {
     email: "Email inválido",
     min: (min) => `Debe tener al menos ${min} caracteres`,
     max: (max) => `Debe tener como máximo ${max} caracteres`,
+    minImages: (min) => `Debe tener al menos ${min} imágenes`,
+    maxImages: (max) => `Debe tener como máximo ${max} imágenes`,
   },
   [LANGUAGES.ENG]: {
     required: "Field is required",
     email: "Invalid email",
     min: (min) => `Must be at least ${min} characters long`,
     max: (max) => `Must be at most ${max} characters long`,
+    minImages: (min) => `Must have at least ${min} images`,
+    maxImages: (max) => `Must have at most ${max} images`,
   },
 };
 export const loginValidationSchema = (language) =>
@@ -64,7 +68,10 @@ export const registerCaseValidationSchema = (language) =>
   Yup.object().shape({
     title: Yup.string().required(validationMessages[language].required),
     description: Yup.string().required(validationMessages[language].required),
-    images: Yup.array().min(1, validationMessages[language].min(1)),
+    images: Yup.array()
+      .min(1, validationMessages[language].minImages(1))
+      .max(3, validationMessages[language].maxImages(3))
+      .required(validationMessages[language].required),
   });
 
 export const registerCalificationValidationSchema = (language) => {

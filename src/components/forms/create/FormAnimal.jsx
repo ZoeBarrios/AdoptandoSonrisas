@@ -23,11 +23,14 @@ export default function FormAnimal({ closeModal, refetch }) {
       showSuccess("Animal creado", refetch);
       closeModal();
     },
-    onError: showError,
   });
-  const handleSubmit = (values) => {
-    console.log("SUBMIT");
-    mutate(values);
+  const handleSubmit = (values, { setSubmitting }) => {
+    mutate(values, {
+      onError: (error) => {
+        showError(error);
+        setSubmitting(false);
+      },
+    });
   };
   return (
     <Formik
@@ -87,14 +90,18 @@ export default function FormAnimal({ closeModal, refetch }) {
           <div className="flex flex-row w-full items-center justify-around">
             <button
               type="button"
-              className={`buttons-form ${isLoading && "bg-grey"}`}
+              className={`buttons-form ${isLoading && "disabled"}`}
               onClick={closeModal}
               disabled={isLoading}
             >
               {TRANSLATES[language].BUTTONS.CANCEL}
             </button>
 
-            <button type="submit" className="buttons-form" disabled={isLoading}>
+            <button
+              type="submit"
+              className={`buttons-form ${isLoading && "disabled"}`}
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <Loader isButtonLoader={true} />
               ) : (

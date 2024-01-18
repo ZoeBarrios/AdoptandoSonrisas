@@ -17,17 +17,19 @@ export default function UpdateAnimalForm({
   closeModal,
 }) {
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(updateAnimal, {
+  const { mutate, isLoading } = useMutation(updateAnimal, {
     onSuccess: () => {
       showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
       closeModal();
     },
-    onError: async () => {
-      toast.error(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
-    },
   });
-  const handleSubmit = (values) => {
-    mutate(values);
+  const handleSubmit = (values, { setSubmitting }) => {
+    mutate(values, {
+      onError: () => {
+        toast.error(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
+        setSubmitting(false);
+      },
+    });
   };
 
   return (
@@ -47,13 +49,18 @@ export default function UpdateAnimalForm({
             <InputImages values={values} setFieldValue={setFieldValue} />
 
             <div className="w-full flex flex-row justify-around">
-              <button type="submit" className="buttons-form">
+              <button
+                type="submit"
+                className={`buttons-form ${isLoading && "disabled"}`}
+                disabled={isLoading}
+              >
                 {TRANSLATES[language].BUTTONS.UPDATE}
               </button>
               <button
                 type="reset"
-                className="buttons-form"
+                className={`buttons-form ${isLoading && "disabled"}`}
                 onClick={closeModal}
+                disabled={isLoading}
               >
                 {TRANSLATES[language].BUTTONS.CANCEL}
               </button>

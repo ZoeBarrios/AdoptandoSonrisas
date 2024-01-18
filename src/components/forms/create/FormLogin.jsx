@@ -96,7 +96,7 @@ export default function FormLogin() {
                 <button
                   type="submit"
                   className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white mt-5 hover:bg-orange hover:transition-colors duration-300"
-                  disabled={isSubmitting}
+                  disabled={isLoading}
                 >
                   {isLoading ? (
                     <Loader isButtonLoader={true} />
@@ -122,11 +122,7 @@ export default function FormLogin() {
                   onClick={handleVolunteer}
                   className="text-base text-blacke cursor-pointer hover:text-darkOrange"
                 >
-                  {isSubmitting ? (
-                    <Loader />
-                  ) : (
-                    TRANSLATES[language].BUTTONS.REGISTER
-                  )}
+                  {TRANSLATES[language].BUTTONS.REGISTER}
                 </a>
               </div>
             </div>

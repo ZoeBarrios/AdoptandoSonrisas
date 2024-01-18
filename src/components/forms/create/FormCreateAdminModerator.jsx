@@ -15,7 +15,7 @@ export default function FormCreateAdminModerator({
   role,
 }) {
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(createAdminOrModerator, {
+  const { mutate, isLoading } = useMutation(createAdminOrModerator, {
     onSuccess: () => {
       showSuccess(
         `${
@@ -23,20 +23,27 @@ export default function FormCreateAdminModerator({
         } ${role.toLowerCase()} `,
         refetch
       );
-    },
-    onError: () => {
-      toast.error(TRANSLATES[language].MESSAGES.NEW_USER.ERROR);
+      closeModal();
     },
   });
 
   const handleCreateAdmin = (values, { setSubmitting }) => {
-    mutate({
-      person: { ...values },
-      role,
-    });
-    setSubmitting(false);
-    closeModal();
-    refetch();
+    mutate(
+      {
+        person: { ...values },
+        role,
+      },
+      {
+        onError: (error) => {
+          if (error.status == 400) {
+            toast.error(
+              TRANSLATES[language].MESSAGES.REGISTER.USER_ALREADY_EXISTS
+            );
+          } else toast.error(TRANSLATES[language].MESSAGES.NEW_USER.ERROR);
+          setSubmitting(false);
+        },
+      }
+    );
   };
   return (
     <Formik
@@ -66,10 +73,18 @@ export default function FormCreateAdminModerator({
           type="phone"
         />
         <div className="w-full flex flex-row justify-around items-center mt-5">
-          <button type="submit" className="buttons-form">
+          <button
+            type="submit"
+            className={`buttons-form ${isLoading && "disabled"}`}
+            disabled={isLoading}
+          >
             {TRANSLATES[language].BUTTONS.CREATE}
           </button>
-          <button className="buttons-form" onClick={closeModal}>
+          <button
+            className={`buttons-form ${isLoading && "disabled"}`}
+            onClick={closeModal}
+            disabled={isLoading}
+          >
             {TRANSLATES[language].BUTTONS.CANCEL}
           </button>
         </div>

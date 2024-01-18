@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import useModal from "../../hooks/useModal";
 import ListOfAdoptions from "../listOfAdoptions/ListOfAdoptions";
-import RatingForm from "../forms/create/ratingForm/RatingForm";
+import RatingForm from "../forms/create/RatingForm";
 import { FILTERS_ACTIONS, ROLES } from "../../utils/constants";
 import useAuthStore from "../../stores/useAuthStore";
 import {

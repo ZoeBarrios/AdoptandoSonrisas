@@ -12,7 +12,7 @@ export default function CaseCard({ itemcase }) {
       ? itemcase?.description.substring(0, 150) + "..."
       : itemcase?.description;
   return (
-    <div className="flex-col items-center w-full md:w-1/5 flex lg:flex-row bg-white shadow-card p-4 rounded-lg overflow-hidden grow">
+    <div className="flex-col items-center w-full md:w-2/5 md:min-h-72 flex lg:flex-row bg-white shadow-card p-4 rounded-lg overflow-hidden grow">
       <SliderCard images={onlyImages} />
       <div className=" text-center lg:text-left flex-1 h-auto ml-4 h-30 self-center flex flex-col justify-around h-40">
         <h5 className="font-bold text-xl mb-2">{itemcase?.title}</h5>
