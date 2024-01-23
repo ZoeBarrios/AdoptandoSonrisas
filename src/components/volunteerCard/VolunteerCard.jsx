@@ -13,9 +13,6 @@ export default function VolunteerCard({ volunteering, refetch }) {
   const { user, organization: org } = useAuthStore();
   const { language } = useLanguageStore();
   const { organization } = volunteering;
-  const { data, isLoading } = useQuery("activity", () =>
-    getActivity(volunteering.activity_id)
-  );
 
   const { mutate } = useMutation(deletePersonFromOrganization, {
     onSuccess: () => {
@@ -34,44 +31,34 @@ export default function VolunteerCard({ volunteering, refetch }) {
 
   return (
     <div className="flex flex-col md:flex-row text-center items-center justify-around p-5 bg-ligthOrange rounded w-full">
-      {isLoading ? (
-        <Loader />
+      {user.role == ROLES.USER ? (
+        <Link
+          to={`/organizacion/${organization?.organization_id}`}
+          className="font-bold"
+        >
+          {organization?.name}
+        </Link>
       ) : (
-        <>
-          {user.role == ROLES.USER ? (
-            <Link
-              to={`/organizacion/${organization?.organization_id}`}
-              className="font-bold"
-            >
-              {organization?.name}
-            </Link>
-          ) : (
-            <Link
-              to={`/usuario/${volunteering?.person?.person_id}`}
-              className="font-bold"
-            >
-              {volunteering?.person?.name}
-            </Link>
-          )}
+        <Link
+          to={`/usuario/${volunteering?.person?.person_id}`}
+          className="font-bold"
+        >
+          {volunteering?.person?.name}
+        </Link>
+      )}
 
-          <p>
-            {TRANSLATES[language].VOLUNTEERS.ADMISSION}:{" "}
-            {volunteering.joinedDate}
-          </p>
-          <p>
-            {TRANSLATES[language].VOLUNTEERS.ACTIVITY}:{" "}
-            {data?.data.activity_name}
-          </p>
-          {volunteering.isActive ? (
-            <button onClick={handleDelete} className="buttons-form">
-              {TRANSLATES[language].BUTTONS.REMOVE_VOLUNTEERING}
-            </button>
-          ) : (
-            <p className="text-red-500 font-bold">
-              {TRANSLATES[language].BUTTONS.REMOVED_VOLUNTEERING}
-            </p>
-          )}
-        </>
+      <p>
+        {TRANSLATES[language].VOLUNTEERS.ADMISSION}: {volunteering.joinedDate}
+      </p>
+
+      {volunteering.isActive ? (
+        <button onClick={handleDelete} className="buttons-form">
+          {TRANSLATES[language].BUTTONS.REMOVE_VOLUNTEERING}
+        </button>
+      ) : (
+        <p className="text-red-500 font-bold">
+          {TRANSLATES[language].BUTTONS.REMOVED_VOLUNTEERING}
+        </p>
       )}
     </div>
   );

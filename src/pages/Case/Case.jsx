@@ -30,14 +30,14 @@ export default function Case() {
 
   return (
     <DefaultPage>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className="mt-5 w-full  lg:h-screen flex items-center justify-center">
-          <section className="flex flex-col lg:flex-row w-10/12 p-5 bg-green mb-5 justify-between rounded shadow-2xl gap-5">
-            <div className="flex flex-col items-center h-1/4">
+      <section className="w-full h-screen flex items-center justify-center ">
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className="w-9/12 bg-green flex flex-col md:flex-row  p-5 rounded gap-5">
+            <div className="flex w-full md:w-9/12 h-full flex-col items-center justify-center gap-5">
               <Slider images={imgs} />
-              <div className="w-full flex items-center justify-around mt-3 font-bold">
+              <div className="flex flex-row w-full md:w-9/12 justify-between items-center h-38">
                 <SexItem sex={sex} />
                 <span className="ml-2">
                   {language == LANGUAGES.ES
@@ -48,11 +48,11 @@ export default function Case() {
                 <span className="ml-2">{age}</span>
               </div>
             </div>
-            <div className="w-full lg:w-8/12 flex flex-row bg-white shadow-2xl p-4 rounded-lg overflow-hidden">
-              <div className="w-full flex flex-col justify-between">
+            <div className="bg-white rounded shadow-card flex flex-col w-full p-3 items-start justify-between">
+              <div className="w-full h-full flex flex-col justify-between">
                 <div>
                   <h1 className="text-4xl font-bold mb-3">{data.title}</h1>
-                  <p className="text-base lg:text-lg max-h-80 overflow-y-auto">
+                  <p className="text-base lg:text-lg max-h-64 overflow-y-auto">
                     {data.description}
                   </p>
                 </div>
@@ -82,9 +82,9 @@ export default function Case() {
                 )}
               </div>
             </div>
-          </section>
-        </div>
-      )}
+          </div>
+        )}
+      </section>
     </DefaultPage>
   );
 }

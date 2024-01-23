@@ -1,8 +1,10 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export default function NavItem({ children, href }) {
+  const [location] = useLocation();
+
   return (
-    <li className="nav-item">
+    <li className={`${location == href ? "text-white" : "text-black"}`}>
       <Link to={href}>{children}</Link>
     </li>
   );

@@ -16,13 +16,13 @@ export default function OrganizationManageCard({
   const { language } = useLanguageStore();
   const { mutate: deleteOrg } = useMutation(deleteOrganization, {
     onSuccess: () => {
-      toast.success("Organización eliminada");
+      toast.success(TRANSLATES[language].ORGANIZATIONS.DELETED_ORGANIZATION);
       refetch();
     },
   });
   const { mutate: acceptOrg } = useMutation(acceptOrganization, {
     onSuccess: () => {
-      toast.success("Organización aceptada");
+      toast.success(TRANSLATES[language].ORGANIZATIONS.ACEPTED_ORGANIZATION);
       refetch();
     },
   });
@@ -48,7 +48,10 @@ export default function OrganizationManageCard({
         </button>
       ) : (
         <div className="flex w-full md:w-3/6 items-center justify-around flex-row">
-          <button onClick={handleAccept} className="buttons-form">
+          <button
+            onClick={handleAccept}
+            className="text-white font-bold py-2 px-4 rounded transition duration-300 bg-orange hover:bg-darkOrange"
+          >
             {TRANSLATES[language].BUTTONS.ACCEPT}
           </button>
           <button onClick={handleDelete} className="delete-button">

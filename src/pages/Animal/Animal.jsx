@@ -52,7 +52,7 @@ export default function Animal() {
             <div className="bg-white rounded shadow-card flex flex-col w-full p-3 items-start justify-between">
               <div className="text-start">
                 <h1 className="text-4xl font-bold mb-3">{data.name}</h1>
-                <p className="text-base lg:text-lg max-h-80 overflow-y-auto">
+                <p className="text-base lg:text-lg max-h-64 overflow-y-auto">
                   {data.description}
                 </p>
               </div>

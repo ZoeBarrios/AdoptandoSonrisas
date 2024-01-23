@@ -1,7 +1,10 @@
 import AnimalCard from "../animalCard/AnimalCard";
 import Loader from "../loader/Loader";
+import useLanguageStore from "../../stores/useLanguageStore";
+import { TRANSLATES } from "../../utils/languajes";
 
 export default function ListOfAnimals({ data, error, loading }) {
+  const { language } = useLanguageStore();
   return (
     <div
       className="flex min-h-60 items-center justify-center flex-wrap gap-10 w-full flex-col md:flex-row "
@@ -12,7 +15,7 @@ export default function ListOfAnimals({ data, error, loading }) {
       ) : (
         data?.length === 0 && (
           <h1 className="text-2xl text-orange font-bold">
-            No se encontraron resultados
+            {TRANSLATES[language].ANIMALS.NO_ANIMALS}
           </h1>
         )
       )}

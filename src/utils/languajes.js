@@ -279,6 +279,8 @@ export const TRANSLATES = {
     ORGANIZATIONS: {
       TITLE: "Organizaciones",
       NO_ORGANIZATIONS: "No hay organizaciones disponibles",
+      DELETED_ORGANIZATION: "Organización eliminada correctamente",
+      ACEPTED_ORGANIZATION: "Organización aceptada correctamente",
     },
   },
 
@@ -540,10 +542,8 @@ export const TRANSLATES = {
     ORGANIZATIONS: {
       TITLE: "Organizations",
       NO_ORGANIZATIONS: "No organizations available",
-    },
-    TYPES: {
-      DOG: "Dog",
-      CAT: "Cat",
+      DELETED_ORGANIZATION: "Organization deleted correctly",
+      ACEPTED_ORGANIZATION: "Organization accepted correctly",
     },
   },
 };
