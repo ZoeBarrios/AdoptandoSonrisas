@@ -1,12 +1,10 @@
 import { Form, Formik } from "formik";
 import Modal from "../../modal/Modal";
 import FormField from "../../formField/FormField";
-import { useMutation } from "react-query";
-import { updateCase } from "../../../services/cases";
-import { showError, showSuccess } from "../../../utils/userMessages";
 import useUpdateForm from "../../../hooks/useUpdateForm";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import { useUpdateCase } from "../../../hooks/mutations/case/useUpdateCase";
 
 export default function FormUpdateCase({
   data,
@@ -15,13 +13,7 @@ export default function FormUpdateCase({
   closeModal,
 }) {
   const { language } = useLanguageStore();
-  const { mutate, isLoading } = useMutation(updateCase, {
-    onSuccess: () => {
-      closeModal();
-      showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
-    },
-    onError: showError,
-  });
+  const { mutate, isLoading } = useUpdateCase(closeModal, refetch);
 
   const { setFormRef, handleUpdate } = useUpdateForm(mutate, data);
   return (

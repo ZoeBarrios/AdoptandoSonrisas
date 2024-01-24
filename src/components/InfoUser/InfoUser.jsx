@@ -3,34 +3,19 @@ import useAuthStore from "../../stores/useAuthStore";
 import { ROLES } from "../../utils/constants";
 import FormUpdateOrganization from "../forms/update/FormUpdateOrganization";
 import FormUpdateUser from "../forms/update/FormUpdateUser";
-import { useMutation } from "react-query";
-import { useLocation } from "wouter";
-import { useAuth } from "../../hooks/useAuth";
-import { deletePersonAccount } from "../../services/user";
-import { showError } from "../../utils/userMessages";
 import Modal from "../modal/Modal";
 import useModal from "../../hooks/useModal";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { LANGUAGES, TRANSLATES } from "../../utils/languajes";
+import { useDeletePerson } from "../../hooks/mutations/person/useDeletePerson";
 
 export default function InfoUser({ data, refetch }) {
   const { user } = useAuthStore();
   const { language } = useLanguageStore();
-  const { handleLogout } = useAuth();
+  const { handleDeleteAccount } = useDeletePerson(user.id);
+
   const [showOrgForm, setShowOrgForm] = useState(false);
   const { showModal, closeModal, openModal } = useModal();
-  const [__, setLocation] = useLocation();
-  const { mutate } = useMutation(deletePersonAccount, {
-    onSuccess: () => {
-      handleLogout();
-      setLocation("/");
-    },
-    onError: showError,
-  });
-
-  const handleDeleteAccount = () => {
-    mutate(user.id);
-  };
 
   const handleClicked = () => {
     setShowOrgForm(!showOrgForm);

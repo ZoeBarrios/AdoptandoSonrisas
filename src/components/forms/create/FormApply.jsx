@@ -1,10 +1,7 @@
 import { useRef } from "react";
-import useAuthStore from "../../../stores/useAuthStore";
 import Modal from "../../modal/Modal";
-import { useMutation } from "react-query";
-import { applyToOrganization } from "../../../services/user";
-import { showError, showSuccess } from "../../../utils/userMessages";
 import SelectActivity from "../../selectActivity/SelectActivity";
+import { useApplyOrganization } from "../../../hooks/mutations/organization/useApplyOrganization";
 
 export default function FormApply({
   organization,
@@ -12,23 +9,14 @@ export default function FormApply({
   isOpen,
   refetch,
 }) {
-  const { user } = useAuthStore();
   const selectRef = useRef(null);
-  const { mutate } = useMutation(applyToOrganization, {
-    onSuccess: () => {
-      setIsOpen(false);
-      showSuccess("¡Aplicación enviada!", refetch);
-    },
-    onError: showError,
-  });
+  const { handleApply } = useApplyOrganization(
+    setIsOpen,
+    selectRef,
+    organization,
+    refetch
+  );
 
-  const handleApply = () => {
-    mutate({
-      activity_id: selectRef.current.value,
-      organization_id: organization.organization_id,
-      person_id: user.id,
-    });
-  };
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="p-10 h-full w-full bg-white flex flex-col items-center justify-center gap-5 rounded-lg">

@@ -1,4 +1,4 @@
-import CaseContainer from "../../components/caseContainer/CaseContainer";
+import CaseContainer from "../../components/containers/caseContainer/CaseContainer";
 import DefaultPage from "../defaultPage/DefaultPage";
 export default function Cases() {
   return (

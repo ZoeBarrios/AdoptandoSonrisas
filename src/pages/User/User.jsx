@@ -1,24 +1,19 @@
-import { useQuery } from "react-query";
 import { useParams } from "wouter";
-import { getUserById } from "../../services/user";
 import Loader from "../../components/loader/Loader";
-import ListOfRatings from "../../components/listOfRatings/ListOfRatings";
+import ListOfRatings from "../../components/lists/listOfRatings/ListOfRatings";
 import BackButton from "../../components/backButton/BackButton";
 import Avatar from "/imgs/avatar.png";
 import ItemUser from "../../components/itemUser/ItemUser";
-import { getRatingsByPersonId } from "../../services/ratings";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import { usePerson } from "../../hooks/querys/person/usePerson";
+import { useRatings } from "../../hooks/querys/rating/useRatings";
 
 export default function User() {
   const { id } = useParams();
   const { language } = useLanguageStore();
-  const { data, isLoading } = useQuery(["user", id], () => getUserById(id), {
-    enabled: !!id,
-  });
-  const { data: ratings, isLoading: ratingsLoading } = useQuery("ratings", () =>
-    getRatingsByPersonId(id)
-  );
+  const { userData: data, isLoading } = usePerson(id);
+  const { ratings, ratingsLoading } = useRatings(id);
   const average =
     ratings?.reduce((acc, rating) => acc + rating.rating, 0) / ratings?.length;
 

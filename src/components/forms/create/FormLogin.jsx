@@ -1,59 +1,26 @@
 import { useLocation } from "wouter";
-import { handleLogin } from "../../../services/auth";
 import loginImg from "/imgs/login.avif";
-import { useMutation } from "react-query";
-import { toast } from "react-toastify";
 import { Formik } from "formik";
 import { loginValidationSchema } from "../../../validationSchemas/validationSchemas";
 import Loader from "../../loader/Loader";
 import FormField from "../../formField/FormField";
 import FormBase from "../../formBase/FormBase";
 import BackButton from "../../backButton/BackButton";
-import {
-  setToLocalStorage,
-  setObjToLocalStorage,
-} from "../../../utils/localStorageFunctions";
-import useAuthStore from "../../../stores/useAuthStore";
 import Recover from "../../recover/Recover";
 import useModal from "../../../hooks/useModal";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
-import { PANEL_ACTIONS } from "../../../utils/constants";
+import { useLogin } from "../../../hooks/mutations/auth/useLogin";
 
 export default function FormLogin() {
-  const { login } = useAuthStore();
   const { language } = useLanguageStore();
   const [__, setLocation] = useLocation();
+  const { handleSubmit, isLoading } = useLogin();
   const { showModal, openModal, closeModal } = useModal();
-
-  const { mutate, isLoading } = useMutation(handleLogin, {
-    onSuccess: (info) => {
-      const user = {
-        id: info.id,
-        role: info.role,
-      };
-      setObjToLocalStorage("user", user);
-      setToLocalStorage("token", info.token);
-      setObjToLocalStorage(
-        "panelSection",
-        PANEL_ACTIONS[user.role.toUpperCase()].PROFILE
-      );
-      login(user, info.token, PANEL_ACTIONS[user.role.toUpperCase()].PROFILE);
-      toast.success(TRANSLATES[language].MESSAGES.LOGIN.SUCCESS);
-      setLocation("/");
-    },
-    onError: () => {
-      toast.error(TRANSLATES[language].MESSAGES.LOGIN.ERROR);
-    },
-  });
 
   const initialValues = {
     nameOrEmail: "",
     password: "",
-  };
-
-  const handleSubmit = async (values) => {
-    mutate(values);
   };
 
   const handleVolunteer = () => {

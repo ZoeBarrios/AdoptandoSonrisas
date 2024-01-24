@@ -1,11 +1,10 @@
-import { useQuery } from "react-query";
-import { getActivities } from "../../services/activity";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { LANGUAGES } from "../../utils/languajes";
 import { ACTIVITY_TRANSLATE } from "../../utils/translate";
+import { useActivities } from "../../hooks/querys/activities/useActivities";
 
 export default function SelectActivity({ selectRef, onChange = undefined }) {
-  const { data: activities } = useQuery("activities", getActivities);
+  const { activities } = useActivities();
   const { language } = useLanguageStore();
   let options = {
     className: "p-2 bg-white rounded font-bold",

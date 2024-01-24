@@ -1,41 +1,17 @@
-import { useMutation } from "react-query";
 import { useParams } from "wouter";
-import { changePassword } from "../../services/auth";
-import { useLocation } from "wouter";
-import { toast } from "react-toastify";
 import { Form, Formik } from "formik";
 import FormField from "../../components/formField/FormField";
-import useAuthStore from "../../stores/useAuthStore";
-import { closeSession } from "../../utils/localStorageFunctions";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import { useNewPassword } from "../../hooks/mutations/password/useNewPassword";
 
 export default function Reset() {
   const { token } = useParams();
-  const { logout } = useAuthStore();
-  const [__, setLocation] = useLocation();
-  const { language } = useLanguageStore();
-  const { mutate } = useMutation(changePassword, {
-    onSuccess: () => {
-      toast.success(TRANSLATES[language].FORMS.RECOVER.SUCCESS);
-      logout();
-      closeSession();
-      setLocation("/");
-    },
-    onError: async (error) => {
-      console.error(error);
-      toast.error(TRANSLATES[language].FORMS.RECOVER.ERROR);
-    },
-  });
+  const { handleSubmit } = useNewPassword(token);
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    mutate({ password: values.newPassword, token });
-    setSubmitting(false);
-  };
+  const { language } = useLanguageStore();
 
   const validate = (values) => {
-    console.log(values);
-
     const errors = {};
     if (!values.newPassword) {
       errors.newPassword = TRANSLATES[language].FORMS.RECOVER.REQUIRED_FIELD;

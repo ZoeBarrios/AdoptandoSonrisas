@@ -1,36 +1,17 @@
-import { useMutation, useQuery } from "react-query";
-import { getUserById, updateUser } from "../../../services/user";
 import Loader from "../../loader/Loader";
 import { Form, Formik } from "formik";
 import FormField from "../../formField/FormField";
 import useUpdateForm from "../../../hooks/useUpdateForm";
 import ChangePasswordInput from "../../changePasswordInput/ChangePasswordInput";
-import { showSuccess } from "../../../utils/userMessages";
-import { useAuth } from "../../../hooks/useAuth";
-import { toast } from "react-toastify";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import { useUpdateUser } from "../../../hooks/mutations/person/useUpdateUser";
+import { usePerson } from "../../../hooks/querys/person/usePerson";
 
 export default function FormUpdateUser({ user }) {
-  const {
-    data: userData,
-    isLoading,
-    refetch,
-  } = useQuery(["user"], () => getUserById(Number(user.id)));
   const { language } = useLanguageStore();
-  const { handleLogout } = useAuth();
-  const { mutate } = useMutation(updateUser, {
-    onSuccess: () => {
-      showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
-    },
-    onError: async (error) => {
-      if (error.response.status === 401) {
-        handleLogout();
-        toast.error(TRANSLATES[language].MESSAGES.EXPIRED);
-      }
-      toast.error(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
-    },
-  });
+  const { userData, isLoading, refetch } = usePerson(user.id);
+  const { mutate } = useUpdateUser(refetch);
 
   const { isEditable, setFormRef, handleUpdate, handleEdit } = useUpdateForm(
     mutate,

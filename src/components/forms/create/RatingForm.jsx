@@ -1,35 +1,18 @@
 import Modal from "../../modal/Modal";
-import { useMutation } from "react-query";
-import { createRating } from "../../../services/ratings";
 import TextArea from "../../textArea/TextArea";
-import { showError, showSuccess } from "../../../utils/userMessages";
 import { Field, Form, Formik } from "formik";
 import useAuthStore from "../../../stores/useAuthStore";
 import FormField from "../../formField/FormField";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
 import { registerCalificationValidationSchema } from "../../../validationSchemas/validationSchemas";
+import { useRegisterRating } from "../../../hooks/mutations/rating/useRegisterRating";
 
 export default function RatingForm({ data, closeModal, showModal }) {
   const { user } = useAuthStore();
   const { language } = useLanguageStore();
-  const { mutate, isLoading } = useMutation(createRating, {
-    onSuccess: () => {
-      showSuccess(TRANSLATES[language].MESSAGES.CALIFICATION.SUCCESS);
-    },
-    onError: showError,
-  });
-  const handleSubmit = (values, { setSubmitting }) => {
-    const person = data.find(
-      (adoption) =>
-        adoption.animal.animal_id == values.animal_id &&
-        adoption.isAccepted &&
-        !adoption.isCancelled
-    );
 
-    mutate({ ...values, person_id: person.person_id });
-    setSubmitting(false);
-  };
+  const { handleSubmit, isLoading } = useRegisterRating(data);
 
   return (
     <Modal isOpen={showModal} setClose={closeModal}>

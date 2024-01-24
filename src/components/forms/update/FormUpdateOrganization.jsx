@@ -1,25 +1,15 @@
-import { useMutation } from "react-query";
-import { updateOrganization } from "../../../services/organization";
 import Loader from "../../loader/Loader";
 import { Form, Formik } from "formik";
 import FormField from "../../formField/FormField";
 import useUpdateForm from "../../../hooks/useUpdateForm";
-import { toast } from "react-toastify";
 import TextArea from "../../textArea/TextArea";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import { useUpdateOrganization } from "../../../hooks/mutations/organization/useUpdateOrganization";
 
 export default function FormUpdateOrganization({ data, refetch }) {
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(updateOrganization, {
-    onSuccess: () => {
-      toast.success(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS);
-      refetch();
-    },
-    onError: async () => {
-      toast.error(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
-    },
-  });
+  const { mutate } = useUpdateOrganization(refetch);
 
   const { setFormRef, handleUpdate, handleEdit, isEditable } = useUpdateForm(
     mutate,

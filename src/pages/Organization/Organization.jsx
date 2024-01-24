@@ -1,21 +1,16 @@
 import { Link, useParams } from "wouter";
-import { getOrganization } from "../../services/organization";
-import "../../components/caseCard/CaseCard.css";
-import { useQuery } from "react-query";
 import DefaultPage from "../defaultPage/DefaultPage";
 import useAuthStore from "../../stores/useAuthStore";
 import { ROLES } from "../../utils/constants";
 import Loader from "../../components/loader/Loader";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import { useOrganization } from "../../hooks/querys/organization/useOrganization";
 export default function Organization() {
   const { id } = useParams();
   const { user } = useAuthStore();
   const { language } = useLanguageStore();
-
-  const { data, isLoading, isError } = useQuery(["organization", id], () =>
-    getOrganization(id)
-  );
+  const { data, isLoading } = useOrganization(id);
 
   const handleSocialMedia = (e) => {
     const name = e.target.getAttribute("name");

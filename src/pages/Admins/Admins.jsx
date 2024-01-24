@@ -1,7 +1,5 @@
-import { useQuery } from "react-query";
 import { useParams } from "wouter";
-import { getAdminsByOrganizationId } from "../../services/organization";
-import PersonCard from "../../components/personCard/PersonCard";
+import PersonCard from "../../components/cards/personCard/PersonCard";
 import Modal from "../../components/modal/Modal";
 import useModal from "../../hooks/useModal";
 import BackButton from "../../components/backButton/BackButton";
@@ -9,14 +7,13 @@ import FormCreateAdminModerator from "../../components/forms/create/FormCreateAd
 import { ROLES } from "../../utils/constants";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import { useAdmins } from "../../hooks/querys/person/useAdmins";
 
 export default function Admins() {
   const { id } = useParams();
   const { language } = useLanguageStore();
+  const { data, refetch } = useAdmins(id);
   const { showModal, closeModal, openModal } = useModal();
-  const { data, refetch } = useQuery("admins", () =>
-    getAdminsByOrganizationId(id)
-  );
 
   return (
     <section className="bg-grey w-full min-h-screen flex flex-col items-center justify-evenly">

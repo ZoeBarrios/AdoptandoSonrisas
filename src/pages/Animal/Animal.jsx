@@ -1,7 +1,5 @@
 import { Link, useParams } from "wouter";
-import { getAnimal } from "../../services/animals";
-import { useQuery } from "react-query";
-import "../../components/caseCard/CaseCard.css";
+import "../../components/cards/caseCard/CaseCard.css";
 import SexItem from "../../components/sexItem/SexItem";
 import getAge from "../../utils/getAge";
 import DefaultPage from "../defaultPage/DefaultPage";
@@ -14,13 +12,12 @@ import UpdateAnimalForm from "../../components/forms/update/UpdateAnimalForm";
 import Loader from "../../components/loader/Loader";
 import { LANGUAGES, TRANSLATES } from "../../utils/languajes";
 import useLanguageStore from "../../stores/useLanguageStore";
+import { useAnimal } from "../../hooks/querys/animal/useAnimal";
 export default function Animal() {
   const { id } = useParams();
   const { language } = useLanguageStore();
   const { user, organization } = useAuthStore();
-  const { data, isLoading, refetch } = useQuery(["animal", { id }], () =>
-    getAnimal(Number(id))
-  );
+  const { data, isLoading, refetch } = useAnimal(id);
   const { showModal, openModal, closeModal } = useModal();
 
   return (

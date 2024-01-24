@@ -1,23 +1,13 @@
-import { useQuery } from "react-query";
-import {
-  getActiveOrganizations,
-  getPendingOrganizations,
-} from "../../services/organization";
 import useLanguageStore from "../../stores/useLanguageStore";
-import ListOfOrganizationManage from "../listOrganizationManage/ListOrganizationManage";
+import ListOfOrganizationManage from "../lists/listOrganizationManage/ListOrganizationManage";
 import { TRANSLATES } from "../../utils/languajes";
+import { useActiveOrganizations } from "../../hooks/querys/organization/useActiveOrganizations";
+import { usePendingOrganizations } from "../../hooks/querys/organization/usePendingOrganizations";
 
 export default function ManageOrganizations() {
   const { language } = useLanguageStore();
-  const { data: active, refetch: refetchActive } = useQuery(
-    "activeOrganizations",
-    getActiveOrganizations
-  );
-  const { data: pending, refetch: refetchPending } = useQuery(
-    "pendingOrganizations",
-    getPendingOrganizations
-  );
-
+  const { active, refetchActive } = useActiveOrganizations();
+  const { pending, refetchPending } = usePendingOrganizations();
   const refetchBothQueries = () => {
     refetchActive();
     refetchPending();

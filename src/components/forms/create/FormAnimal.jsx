@@ -1,11 +1,8 @@
 import { Formik, Form } from "formik";
-import { useMutation } from "react-query";
 import FormField from "../../formField/FormField";
 import TextArea from "../../textArea/TextArea";
 import InputImages from "../../inputImages/InputImages";
-import { createAnimal } from "../../../services/animals";
 import useAuthStore from "../../../stores/useAuthStore";
-import { showError, showSuccess } from "../../../utils/userMessages";
 import { registerAnimalValidationSchema } from "../../../validationSchemas/validationSchemas";
 import YearInput from "../../yearInput/YearInput";
 import SelectSize from "../../selectSize/SelectSize";
@@ -14,24 +11,13 @@ import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
 import Loader from "../../loader/Loader";
 import SelectType from "../../selectType/SelectType";
+import { useRegisterAnimal } from "../../../hooks/mutations/animal/useRegisterAnimal";
 
 export default function FormAnimal({ closeModal, refetch }) {
   const { organization } = useAuthStore();
   const { language } = useLanguageStore();
-  const { mutate, isLoading } = useMutation(createAnimal, {
-    onSuccess: () => {
-      showSuccess("Animal creado", refetch);
-      closeModal();
-    },
-  });
-  const handleSubmit = (values, { setSubmitting }) => {
-    mutate(values, {
-      onError: (error) => {
-        showError(error);
-        setSubmitting(false);
-      },
-    });
-  };
+  const { handleSubmit, isLoading } = useRegisterAnimal(closeModal, refetch);
+
   return (
     <Formik
       initialValues={{

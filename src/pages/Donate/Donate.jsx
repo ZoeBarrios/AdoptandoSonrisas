@@ -1,27 +1,20 @@
 import { useParams } from "wouter";
-import { useQuery } from "react-query";
-import { getOrganizations } from "../../services/organization";
 import Select from "../../components/select/Select";
-import { getFinancialInfo } from "../../services/financialInfo";
 import DonarImg from "/imgs/donar.jpg";
 import MpBoton from "../../components/mpBoton/MpBoton";
 import { useState } from "react";
 import DefaultPage from "../defaultPage/DefaultPage";
 import Loader from "../../components/loader/Loader";
 import useLanguageStore from "../../stores/useLanguageStore";
+import { useOrganizationFinancialInfo } from "../../hooks/querys/organization/useOrganizationFinancialInfo";
 import { TRANSLATES } from "../../utils/languajes";
+import { useOrganizations } from "../../hooks/querys/organization/useOrganizations";
 export default function Donar() {
   const { id } = useParams();
   const { language } = useLanguageStore();
   const [idOrg, setIdOrg] = useState(id || 0);
-  const { data, isLoading } = useQuery("organizations", getOrganizations);
-  const {
-    data: org,
-    isLoading: isLoadingOrg,
-    refetch,
-  } = useQuery(["organization", idOrg], () => getFinancialInfo(idOrg), {
-    enabled: !!idOrg,
-  });
+  const { data, isLoading } = useOrganizations();
+  const { data: org, refetch } = useOrganizationFinancialInfo(idOrg);
 
   const handleOrganizationChange = (e) => {
     setIdOrg(e.target.value);

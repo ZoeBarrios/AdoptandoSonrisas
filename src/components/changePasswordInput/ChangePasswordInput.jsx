@@ -1,27 +1,14 @@
-import { useMutation } from "react-query";
-import { toast } from "react-toastify";
-import { sendEmailToChangePassword } from "../../services/email";
 import Modal from "../modal/Modal";
 import useModal from "../../hooks/useModal";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { TRANSLATES } from "../../utils/languajes";
+import { useChangePassword } from "../../hooks/mutations/password/useChangePassword";
 
 export default function ChangePasswordInput({ email }) {
   const { showModal, openModal, closeModal } = useModal();
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(sendEmailToChangePassword, {
-    onSuccess: () => {
-      toast.success(TRANSLATES[language].CHANGE_PASSWORD.SUCCESS);
-    },
-    onError: async () => {
-      toast.error(TRANSLATES[language].CHANGE_PASSWORD.ERROR);
-    },
-  });
+  const { handleClick } = useChangePassword(email, closeModal);
 
-  const handleClick = async () => {
-    mutate(email);
-    closeModal();
-  };
   return (
     <>
       <a

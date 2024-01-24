@@ -4,14 +4,11 @@ import FormField from "../../formField/FormField";
 import FormBase from "../../formBase/FormBase";
 import registerImg from "/imgs/register.jpg";
 import TextArea from "../../textArea/TextArea";
-import { useLocation } from "wouter";
 import { registerOrganizationValidationSchema } from "../../../validationSchemas/validationSchemas";
-import { registerOrganization } from "../../../services/organization";
-import { useMutation } from "react-query";
-import { toast } from "react-toastify";
 import BackButton from "../../backButton/BackButton";
 import { TRANSLATES } from "../../../utils/languajes";
 import useLanguageStore from "../../../stores/useLanguageStore";
+import { useRegisterOrganization } from "../../../hooks/mutations/organization/useRegisterOrganization";
 
 const initialValues = {
   name: "",
@@ -22,27 +19,9 @@ const initialValues = {
   facebook_link: "",
 };
 export default function FormRegisterOrganizartion() {
-  const [location, setLocation] = useLocation();
   const { language } = useLanguageStore();
-  const toggleForm = () => setLocation("/login");
-  const { mutate, isLoading } = useMutation(registerOrganization, {
-    onError: async (error) => {
-      const { message } = await error.json();
+  const { handleSubmit, isLoading } = useRegisterOrganization();
 
-      toast.error(message);
-    },
-    onSuccess: () => {
-      toast.success(TRANSLATES[language].MESSAGES.REGISTER.ORGANIZATION, {
-        position: "top-center",
-      });
-      toggleForm();
-    },
-  });
-
-  const handleSubmit = async (values, { setSubmitting }) => {
-    mutate(values);
-    setSubmitting(false);
-  };
   return (
     <div className="h-screen p-5 flex flex-col items-center justify-center bg-orange">
       <BackButton />

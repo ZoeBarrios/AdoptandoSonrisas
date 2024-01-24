@@ -1,6 +1,4 @@
 import { Link, useParams } from "wouter";
-import { getCase } from "../../services/cases";
-import { useQuery } from "react-query";
 import Slider from "../../components/slider/Slider";
 import SexItem from "../../components/sexItem/SexItem";
 import getAge from "../../utils/getAge";
@@ -8,22 +6,19 @@ import DefaultPage from "../defaultPage/DefaultPage";
 import { SIZE_TRANSLATE } from "../../utils/translate";
 import useAuthStore from "../../stores/useAuthStore";
 import { ROLES } from "../../utils/constants";
-
 import FormUpdateCase from "../../components/forms/update/FormUpdateCase";
 import useModal from "../../hooks/useModal";
 import Loader from "../../components/loader/Loader";
 import useLanguageStore from "../../stores/useLanguageStore";
 import { LANGUAGES, TRANSLATES } from "../../utils/languajes";
+import { useCase } from "../../hooks/querys/cases/useCase";
 
 export default function Case() {
   const { id } = useParams();
   const { language } = useLanguageStore();
   const { showModal, openModal, closeModal } = useModal();
   const { user, organization } = useAuthStore();
-  const { data, isLoading, refetch } = useQuery(["case", { id }], () =>
-    getCase(Number(id))
-  );
-
+  const { data, isLoading, refetch } = useCase(id);
   const { sex, size, organization_id } = data?.animal ?? {};
   const imgs = data?.imgs?.map((img) => img.img_url);
   const age = getAge(data?.animal.birthdate, language);

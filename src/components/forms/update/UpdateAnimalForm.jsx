@@ -1,14 +1,11 @@
 import { Formik, Form } from "formik";
 import Modal from "../../modal/Modal";
 import FormField from "../../formField/FormField";
-import { useMutation } from "react-query";
-import { updateAnimal } from "../../../services/animals";
-import { toast } from "react-toastify";
 import InputImages from "../../inputImages/InputImages";
 import TextArea from "../../textArea/TextArea";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
-import { showSuccess } from "../../../utils/userMessages";
+import { useUpdateAnimal } from "../../../hooks/mutations/animal/useUpdateAnimal";
 
 export default function UpdateAnimalForm({
   animal,
@@ -17,20 +14,7 @@ export default function UpdateAnimalForm({
   closeModal,
 }) {
   const { language } = useLanguageStore();
-  const { mutate, isLoading } = useMutation(updateAnimal, {
-    onSuccess: () => {
-      showSuccess(TRANSLATES[language].MESSAGES.UPDATE.SUCCESS, refetch);
-      closeModal();
-    },
-  });
-  const handleSubmit = (values, { setSubmitting }) => {
-    mutate(values, {
-      onError: () => {
-        toast.error(TRANSLATES[language].MESSAGES.UPDATE.ERROR);
-        setSubmitting(false);
-      },
-    });
-  };
+  const { handleSubmit, isLoading } = useUpdateAnimal(refetch, closeModal);
 
   return (
     <Modal setClose={closeModal} isOpen={showModal}>

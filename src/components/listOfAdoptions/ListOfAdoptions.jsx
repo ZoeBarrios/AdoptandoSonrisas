@@ -1,5 +1,5 @@
 import { TRANSLATES } from "../../utils/languajes";
-import AdoptionCard from "../adoptionCard/AdoptionCard";
+import AdoptionCard from "../../components/cards/adoptionCard/AdoptionCard";
 import Loader from "../loader/Loader";
 import useLanguageStore from "../../stores/useLanguageStore";
 

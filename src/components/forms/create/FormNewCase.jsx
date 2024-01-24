@@ -1,15 +1,13 @@
 import { Formik, Form } from "formik";
-import { useMutation } from "react-query";
-import { createCase } from "../../../services/cases";
 import FormField from "../../formField/FormField";
 import TextArea from "../../textArea/TextArea";
 import InputImages from "../../inputImages/InputImages";
 import { registerCaseValidationSchema } from "../../../validationSchemas/validationSchemas";
 import Modal from "../../modal/Modal";
-import { showError, showSuccess } from "../../../utils/userMessages";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
 import Loader from "../../loader/Loader";
+import { useRegisterCase } from "../../../hooks/mutations/case/useRegisterCase";
 
 export default function FormNewCase({
   animal,
@@ -18,20 +16,8 @@ export default function FormNewCase({
   refetch,
 }) {
   const { language } = useLanguageStore();
-  const { mutate, isLoading } = useMutation(createCase, {
-    onSuccess: () => {
-      showSuccess("Caso creado correctamente", refetch);
-      closeModal();
-    },
-  });
-  const handleSubmit = (values, { setSubmitting }) => {
-    mutate(values, {
-      onError: (error) => {
-        showError(error);
-        setSubmitting(false);
-      },
-    });
-  };
+  const { handleSubmit, isLoading } = useRegisterCase(closeModal, refetch);
+
   return (
     <Modal isOpen={showModal} setClose={closeModal}>
       <Formik

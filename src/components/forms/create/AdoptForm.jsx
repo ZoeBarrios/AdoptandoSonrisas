@@ -1,9 +1,7 @@
-import { useMutation } from "react-query";
 import Modal from "../../modal/Modal";
-import { registerAdoption } from "../../../services/adoptions";
-import { toast } from "react-toastify";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import { useRegisterAdoption } from "../../../hooks/mutations/adoption/useRegisterAdoption";
 
 export default function AdoptForm({
   name,
@@ -14,26 +12,8 @@ export default function AdoptForm({
   animal_id,
 }) {
   const { language } = useLanguageStore();
-  const { mutate } = useMutation(registerAdoption, {
-    onSuccess: () => {
-      closeModal();
-      toast.success(TRANSLATES[language].MESSAGES.ADOPT.SUCCESS);
-    },
-    onError: () => {
-      toast.error(TRANSLATES[language].MESSAGES.ADOPT.ERROR);
-    },
-  });
+  const { handleAdopt } = useRegisterAdoption(closeModal, animal_id, person_id);
 
-  const handleAdopt = () => {
-    if (!person_id) {
-      toast.error(TRANSLATES[language].MESSAGES.ADOPT.NEED_LOGIN);
-      return;
-    }
-    mutate({
-      animal_id: animal_id,
-      person_id: person_id,
-    });
-  };
   return (
     <Modal setIsOpen={openModal} isOpen={isShow} setClose={closeModal}>
       <div className="h-full flex flex-col items-center justify-between gap-5 p-5 text-center">
