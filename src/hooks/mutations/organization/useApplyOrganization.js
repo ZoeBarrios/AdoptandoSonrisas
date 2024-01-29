@@ -2,6 +2,8 @@ import { useMutation } from "react-query";
 import useAuthStore from "../../../stores/useAuthStore";
 import { applyToOrganization } from "../../../services/user";
 import { showError, showSuccess } from "../../../utils/userMessages";
+import { TRANSLATES } from "../../../utils/languajes";
+import useLanguageStore from "../../../stores/useLanguageStore";
 
 export function useApplyOrganization(
   setIsOpen,
@@ -10,10 +12,11 @@ export function useApplyOrganization(
   refetch
 ) {
   const { user } = useAuthStore();
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(applyToOrganization, {
     onSuccess: () => {
       setIsOpen(false);
-      showSuccess("¡Aplicación enviada!", refetch);
+      showSuccess(TRANSLATES[language].MESSAGES.APPLY.SUCCESS, refetch);
     },
     onError: showError,
   });

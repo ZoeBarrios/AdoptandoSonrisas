@@ -68,7 +68,7 @@ export default function FormUpdateOrganization({ data, refetch }) {
                     name="facebook_link"
                     disabled={!isEditable}
                   />
-                  <div className="flex flex-row-reverse items-center justify-between w-8/12">
+                  <div className="flex flex-row-reverse items-center justify-between w-96">
                     <button onClick={handleEdit} className="buttons-form">
                       {isEditable
                         ? TRANSLATES[language].BUTTONS.RETURN

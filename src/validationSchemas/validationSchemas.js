@@ -76,7 +76,7 @@ export const registerCaseValidationSchema = (language) =>
 
 export const registerCalificationValidationSchema = (language) => {
   return Yup.object().shape({
-    calification: Yup.number().required(validationMessages[language].required),
+    rating: Yup.number().required(validationMessages[language].required),
     comment: Yup.string().required(validationMessages[language].required),
   });
 };

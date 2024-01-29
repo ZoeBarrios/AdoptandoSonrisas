@@ -24,7 +24,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
         <Formik
           initialValues={{
             animal_id: "",
-            calification: 1,
+            rating: 1,
             comment: "",
             rater_id: user.id,
           }}
@@ -59,7 +59,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
               </Field>
 
               <FormField
-                name="calification"
+                name="rating"
                 type="number"
                 label={TRANSLATES[language].LABELS.CALIFICATION}
                 min="1"

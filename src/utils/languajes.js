@@ -91,6 +91,9 @@ export const TRANSLATES = {
     CASES: {
       NO_CASES: "No hay mas casos disponibles",
       YEARS: "años",
+      DELETED: "Caso eliminado correctamente",
+      ERROR_DELETED: "Ha ocurrido un error al eliminar el caso",
+      CREATED: "Caso creado correctamente",
     },
     DONATE: {
       TITLE: "¡Por mas sonrisas!",
@@ -129,8 +132,20 @@ export const TRANSLATES = {
       DOG: "Perro",
       CAT: "Gato",
     },
+    ANIMAL: {
+      DELETED: "Animal eliminado correctamente",
+      CREATED: "Animal creado correctamente",
+    },
     MESSAGES: {
+      APPLY: {
+        SUCCESS: "Aplicación enviada correctamente",
+        ERROR: "Ha ocurrido un error al enviar la aplicación",
+        NEED_LOGIN: "Necesitas iniciar sesión para realizar esta acción",
+      },
+
       ADOPT: {
+        ACCEPTED: "Adopción aceptada",
+        CANCEL: "Adopción cancelada",
         SUCCESS:
           "La organización ha sido notificada de tu solicitud de adopción",
         ERROR:
@@ -350,6 +365,9 @@ export const TRANSLATES = {
     CASES: {
       NO_CASES: "No more cases available",
       YEARS: "years",
+      DELETED: "Case deleted correctly",
+      ERROR_DELETED: "An error has occurred while deleting the case",
+      CREATED: "Case created correctly",
     },
     DONATE: {
       TITLE: "For more smiles!",
@@ -387,8 +405,14 @@ export const TRANSLATES = {
       DOG: "Dog",
       CAT: "Cat",
     },
+    ANIMAL: {
+      DELETED: "Animal deleted correctly",
+      CREATED: "Animal created correctly",
+    },
     MESSAGES: {
       ADOPT: {
+        ACCEPTED: "Adoption accepted",
+        CANCEL: "Adoption canceled",
         SUCCESS: "The organization has been notified of your adoption request",
         ERROR:
           "You do not have the necessary permissions to perform this action",

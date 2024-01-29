@@ -1,11 +1,14 @@
 import { useMutation } from "react-query";
 import { cancelAdoption } from "../../../services/adoptions";
 import { showSuccess } from "../../../utils/userMessages";
+import { TRANSLATES } from "../../../utils/languajes";
+import useLanguageStore from "../../../stores/useLanguageStore";
 
 export function useCancelAdoption(refetch, animal, adoption) {
+  const { language } = useLanguageStore();
   const { mutate } = useMutation(cancelAdoption, {
     onSuccess: () => {
-      showSuccess("Adopción cancelada", refetch);
+      showSuccess(TRANSLATES[language].MESSAGES.ADOPT.CANCEL, refetch);
     },
   });
 

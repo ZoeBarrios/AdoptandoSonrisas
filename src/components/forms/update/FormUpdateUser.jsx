@@ -56,9 +56,9 @@ export default function FormUpdateUser({ user }) {
                     name="phone"
                     disabled={!isEditable}
                   />
-                  <div className="flex flex-col w-full items-center justify-center">
+                  <div className="flex flex-col w-96 items-center justify-center ">
                     <ChangePasswordInput email={userData.email} />
-                    <div className="flex flex-row-reverse items-center justify-between w-8/12">
+                    <div className="flex flex-row-reverse items-center justify-between w-full ">
                       <button onClick={handleEdit} className="buttons-form">
                         {isEditable
                           ? TRANSLATES[language].BUTTONS.RETURN
