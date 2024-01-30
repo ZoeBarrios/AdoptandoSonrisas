@@ -87,7 +87,7 @@ export const TRANSLATES = {
       DESCRIPTION:
         "Si quieres registrar tu organización, puedes hacerlo a traves de nuestro formulario de registro. Es importante que tengas en cuenta que para poder registrar tu organización, se te contactara para verificar la información que nos has proporcionado.",
     },
-    FOOTER: "Desarrollado por Zoe Barrios",
+    FOOTER: "Desarrollado por: Zoe Barrios",
     CASES: {
       NO_CASES: "No hay mas casos disponibles",
       YEARS: "años",
@@ -150,6 +150,7 @@ export const TRANSLATES = {
           "La organización ha sido notificada de tu solicitud de adopción",
         ERROR:
           "No cuenta con los permisos necesarios para realizar esta acción",
+        ADOPTION_EXISTS: "Ya existe una solicitud de adopción para este animal",
         NEED_LOGIN: "Necesitas iniciar sesión para realizar esta acción",
       },
       UPDATE: {
@@ -361,7 +362,7 @@ export const TRANSLATES = {
         "If you want to register your organization, you can do it through our registration form. It is important to keep in mind that in order to register your organization, you will be contacted to verify the information you have provided.",
     },
 
-    FOOTER: " Developed by Zoe Barrios",
+    FOOTER: "Developed by: Zoe Barrios",
     CASES: {
       NO_CASES: "No more cases available",
       YEARS: "years",
@@ -416,6 +417,7 @@ export const TRANSLATES = {
         SUCCESS: "The organization has been notified of your adoption request",
         ERROR:
           "You do not have the necessary permissions to perform this action",
+        ADOPTION_EXISTS: "There is already an adoption request for this animal",
         NEED_LOGIN: "You need to log in to perform this action",
       },
       UPDATE: {

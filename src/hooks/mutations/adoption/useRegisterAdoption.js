@@ -11,8 +11,11 @@ export function useRegisterAdoption(closeModal, animal_id, person_id) {
       closeModal();
       toast.success(TRANSLATES[language].MESSAGES.ADOPT.SUCCESS);
     },
-    onError: () => {
-      toast.error(TRANSLATES[language].MESSAGES.ADOPT.ERROR);
+    onError: async (er) => {
+      const error = await er.json();
+      if (error.name == "AdopciónExistente")
+        toast.error(TRANSLATES[language].MESSAGES.ADOPT.ADOPTION_EXISTS);
+      else toast.error(TRANSLATES[language].MESSAGES.ADOPT.ERROR);
     },
   });
 
