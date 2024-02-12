@@ -21,7 +21,7 @@ export default function DonationInfo() {
       </div>
 
       <section className="donation-info">
-        <div className="donation-info-text">
+        <div className="donation-info-text animate__fadeIn">
           <h2>{TRANSLATES[language].DONATION_SECTION.TITLE}</h2>
           <p>{TRANSLATES[language].DONATION_SECTION.DESCRIPTION}</p>
         </div>

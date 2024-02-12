@@ -11,17 +11,20 @@ export function useDeletePersonFromOrganization(
   { organization_id, person_id }
 ) {
   const { language } = useLanguageStore();
-  const { user, organization: org } = useAuthStore();
+  const { user, organization } = useAuthStore();
   const { mutate } = useMutation(deletePersonFromOrganization, {
     onSuccess: () => {
       showSuccess(TRANSLATES[language].MESSAGES.VOLUNTEERING.SUCCESS, refetch);
     },
     onError: showError,
   });
-
+  console.log(organization_id);
   const handleDelete = () => {
     mutate({
-      organization_id: user.role == ROLES.USER ? organization_id : org,
+      organization_id:
+        user.role == ROLES.USER || user.role == ROLES.SUPERADMIN
+          ? organization_id
+          : organization,
       person_id: person_id,
     });
   };

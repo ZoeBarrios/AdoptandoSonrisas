@@ -38,6 +38,7 @@ export function useOrganizationByUser() {
           "organization",
           (data && data[0] && data[0].organization_id) || null
         );
+
         setOrganization((data && data[0] && data[0].organization_id) || null);
       },
     }

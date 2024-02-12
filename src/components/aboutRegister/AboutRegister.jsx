@@ -6,8 +6,8 @@ import { TRANSLATES } from "../../utils/languajes";
 export default function AboutRegister() {
   const { language } = useLanguageStore();
   return (
-    <section className="about-register">
-      <div className="about-register-info">
+    <section className="about-register animate__fadeIn">
+      <div className="about-register-info ">
         <div className="about-register-text">
           <h2>{TRANSLATES[language].REGISTER_SECTION.TITLE}</h2>
           <p>{TRANSLATES[language].REGISTER_SECTION.DESCRIPTION}</p>

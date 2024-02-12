@@ -14,7 +14,7 @@ export default function AdoptionCard({ adoption, refetch }) {
   const { handleCancel } = useCancelAdoption(refetch, animal, adoption);
 
   return (
-    <div className="bg-ligthOrange p-5 w-full rounded flex items-center flex-col md:flex-row justify-between gap-3 text-center ">
+    <div className="bg-ligthOrange p-5 w-full rounded flex items-center flex-col md:flex-row justify-between gap-3 text-center">
       <div className="flex flex-row items-center gap-3 flex-1">
         <div className="w-24 h-24 overflow-hidden rounded ">
           <img

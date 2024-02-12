@@ -35,3 +35,19 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ffa500;
 }
+
+.animate__fadeIn {
+  animation: fadeIn 0.5s linear both;
+  animation-timeline: view();
+  animation-range-start: 5%;
+  animation-range-end: 30%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
