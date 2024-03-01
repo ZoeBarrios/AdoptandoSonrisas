@@ -11,7 +11,7 @@ export default function ListOfRatings({ ratings, isLoading }) {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="bg-white flex flex-col items-center gap-5 shadow-card p-5  rounded-lg overflow-y-auto h-64 w-10/12">
+        <div className="bg-white flex flex-col items-center gap-5 shadow-card p-5  rounded-lg overflow-y-auto h-96 w-10/12">
           {ratings.length > 0 ? (
             ratings.map((rating) => (
               <RatingCard rating={rating} key={rating.date} />

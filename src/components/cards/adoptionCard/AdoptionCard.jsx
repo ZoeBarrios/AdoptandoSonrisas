@@ -27,7 +27,7 @@ export default function AdoptionCard({ adoption, refetch }) {
       </div>
 
       <p className="flex-1">
-        <span className="font-bold flex-1">
+        <span className="font-bold flex-1 text-base">
           {TRANSLATES[language].LABELS.DATE_APPLY}:{" "}
         </span>
         {new Date(adoption.adoption_date).toLocaleDateString()}
@@ -35,7 +35,7 @@ export default function AdoptionCard({ adoption, refetch }) {
       {user.role != ROLES.USER && (
         <Link
           to={`/usuario/${adoption.person_id}`}
-          className="text-base flex-1"
+          className="text-xl flex-1 hover:text-white"
         >
           {TRANSLATES[language].LABELS.ADOPTER}
         </Link>

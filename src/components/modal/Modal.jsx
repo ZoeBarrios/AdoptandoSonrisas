@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-export default function Modal({ children, isOpen, setClose }) {
+export default function Modal({
+  children,
+  isOpen,
+  setClose,
+  smallModal = false,
+}) {
   const modalRef = useRef();
 
   const closeModal = (e) => {
@@ -31,8 +36,9 @@ export default function Modal({ children, isOpen, setClose }) {
           onClick={closeModal}
         >
           <div
-            className="mt-10 min-h-64 max-h-96  bg-white w-full  md:max-w-md mx-auto rounded shadow-lg  overflow-y-auto"
+            className="mt-10 min-h-64 max-h-96 bg-white w-full   mx-auto rounded shadow-lg  overflow-y-auto"
             ref={modalRef}
+            style={{ maxWidth: smallModal ? "400px" : "800px" }}
           >
             {children}
           </div>

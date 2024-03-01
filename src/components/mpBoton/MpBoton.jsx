@@ -5,7 +5,7 @@ export default function MpBoton({ mp_link, title }) {
         {title}
       </h2>
       {mp_link && (
-        <a href={mp_link} target="_blank" rel="noreferrer">
+        <a href={`https://${mp_link}`} target="_blank" rel="noreferrer">
           <button className="bg-white text-blue-500 py-2 px-4 rounded-md border border-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out">
             Mercado Pago
           </button>

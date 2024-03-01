@@ -9,6 +9,7 @@ const validationMessages = {
     max: (max) => `Debe tener como máximo ${max} caracteres`,
     minImages: (min) => `Debe tener al menos ${min} imágenes`,
     maxImages: (max) => `Debe tener como máximo ${max} imágenes`,
+    phone: "Teléfono inválido",
   },
   [LANGUAGES.ENG]: {
     required: "Field is required",
@@ -35,7 +36,9 @@ export const registerValidationSchema = (language) =>
     email: Yup.string()
       .email(validationMessages[language].email)
       .required(validationMessages[language].required),
-    phone: Yup.string().required(validationMessages[language].required),
+    phone: Yup.string()
+      .required(validationMessages[language].required)
+      .matches(/^\d{10}$/, validationMessages[language].phone),
   });
 
 export const registerOrganizationValidationSchema = (language) =>
@@ -45,7 +48,9 @@ export const registerOrganizationValidationSchema = (language) =>
     email: Yup.string()
       .email(validationMessages[language].email)
       .required(validationMessages[language].required),
-    phone: Yup.string().optional(),
+    phone: Yup.string()
+      .optional()
+      .matches(/^\d{10}$/, validationMessages[language].phone),
     instagram_link: Yup.string().optional(),
     facebook_link: Yup.string().optional(),
   });

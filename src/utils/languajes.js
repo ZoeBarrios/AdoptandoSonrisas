@@ -52,7 +52,7 @@ export const TRANSLATES = {
       YES: "Si",
       ADD_MODERATOR: "Agregar moderador",
       ADD_ADMIN: "Agregar administrador",
-      REGISTER: "Registrarse",
+      REGISTER: "Quiero registrarme",
       CREATE: "Crear",
       ACTIVATE: "Activar",
       DEACTIVATE: "Desactivar",
@@ -99,6 +99,7 @@ export const TRANSLATES = {
       TITLE: "¡Por mas sonrisas!",
       TRANSFERS: "Transferencias",
       MP: "Donar con Mercado Pago",
+      SELECT: "Selecciona una organización",
     },
     FILTERS: {
       SEX: "Sexo",
@@ -185,6 +186,10 @@ export const TRANSLATES = {
         SUCCESS: "Voluntariado eliminado correctamente",
       },
       NO_ORGANIZATION: "No tiene una organización asignada",
+      CALIFICATION: {
+        SUCCESS: "Calificación agregada correctamente",
+        ERROR: "Ha ocurrido un error al agregar la calificación",
+      },
     },
     FORMS: {
       NEW_ADOPTION: {
@@ -327,7 +332,7 @@ export const TRANSLATES = {
       YES: "Yes",
       ADD_MODERATOR: "Add moderator",
       ADD_ADMIN: "Add admin",
-      REGISTER: "Register",
+      REGISTER: "I want to register",
       CREATE: "Create",
       ACTIVATE: "Activate",
       DEACTIVATE: "Deactivate",
@@ -374,6 +379,7 @@ export const TRANSLATES = {
       TITLE: "For more smiles!",
       TRANSFERS: "Transfers",
       MP: "Donate with Mercado Pago",
+      SELECT: "Select an organization",
     },
     FILTERS: {
       SEX: "Sex",

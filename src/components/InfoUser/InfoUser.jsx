@@ -39,7 +39,7 @@ export default function InfoUser({ data, refetch }) {
           <div className="flex flex-col items-center">{formToRender}</div>
           <button
             onClick={handleClicked}
-            className="absolute top-0 left-50  md:right-1 button-style mt-2 px-2 md:px-5 py-2 text-base"
+            className="absolute top-0 left-50 md:right-1 button-style mt-2 px-2 md:px-5 py-2 text-base"
           >
             {TRANSLATES[language].BUTTONS.UPDATE}{" "}
             {showOrgForm
@@ -60,7 +60,7 @@ export default function InfoUser({ data, refetch }) {
         <i className="fa-solid fa-trash"></i>{" "}
         {TRANSLATES[language].INFO_USER.DELETE_ACCOUNT}
       </button>
-      <Modal isOpen={showModal} setClose={closeModal}>
+      <Modal isOpen={showModal} setClose={closeModal} smallModal={true}>
         <div className="flex flex-col items-center justify-center p-5">
           <h1 className="title">{TRANSLATES[language].INFO_USER.WARNING}</h1>
           <div className="w-full flex flex-row justify-around">

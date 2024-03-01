@@ -31,7 +31,7 @@ export default function Donar() {
           <Select id={idOrg} data={data} onChange={handleOrganizationChange} />
         </div>
 
-        <div className="w-9/12 h-96 flex flex-row items-center justify-between bg-orange p-5 rounded flex-col md:flex-row">
+        <div className="w-9/12 h-96 flex flex-row items-center justify-evenly bg-orange p-5 rounded flex-col md:flex-row">
           {isLoading ? (
             <Loader />
           ) : (

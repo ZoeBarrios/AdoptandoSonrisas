@@ -25,7 +25,10 @@ export default function FormUpdateOrganization({ data, refetch }) {
       {!data ? (
         <Loader />
       ) : (
-        <div className="bg-white p-2 mt-5 shadow-card w-10/12 md:w-7/12  rounded-lg flex flex-col items-center justify-center">
+        <div
+          className="bg-white p-2 mt-5 shadow-card md:w-7/12  rounded-lg flex flex-col items-center justify-center"
+          style={{ maxWidth: "60%" }}
+        >
           <h2 className="title mt-3">{data[0].name}</h2>
           <Formik
             initialValues={{
@@ -68,7 +71,10 @@ export default function FormUpdateOrganization({ data, refetch }) {
                     name="facebook_link"
                     disabled={!isEditable}
                   />
-                  <div className="flex flex-row-reverse items-center justify-between w-96">
+                  <div
+                    className="flex flex-row-reverse items-center justify-between"
+                    style={{ width: "32rem" }}
+                  >
                     <button onClick={handleEdit} className="buttons-form">
                       {isEditable
                         ? TRANSLATES[language].BUTTONS.RETURN

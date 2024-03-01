@@ -8,7 +8,6 @@ export const getAnimals = async (search) => {
       url.searchParams.append(term, search[term]);
     }
   }
-  console.log(url);
   const response = await fetch(url);
   return checkResponse(response);
 };
@@ -26,7 +25,6 @@ export const getAnimalsByOrganizationId = async (id, filters) => {
       url.searchParams.append(term, filters[term]);
     }
   }
-  console.log(url);
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",

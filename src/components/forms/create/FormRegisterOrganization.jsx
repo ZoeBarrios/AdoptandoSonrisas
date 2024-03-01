@@ -32,7 +32,7 @@ export default function FormRegisterOrganizartion() {
       >
         {({ isSubmitting }) => (
           <FormBase>
-            <div className="w-full overflow-hidden hidden md:block">
+            <div className="w-full  overflow-hidden hidden md:block">
               <img
                 src={registerImg}
                 alt="login"
@@ -62,7 +62,7 @@ export default function FormRegisterOrganizartion() {
                 label={TRANSLATES[language].LABELS.PHONE}
               />
 
-              <div className="flex flex-col w-full items-center justify-center text-center">
+              <div className="flex flex-col gap-5 w-full items-center justify-center text-center mt-2">
                 <button
                   type="submit"
                   className="font-bold text-xl p-3 w-8/12 bg-darkOrange rounded text-white hover:bg-orange hover:transition-colors duration-300"

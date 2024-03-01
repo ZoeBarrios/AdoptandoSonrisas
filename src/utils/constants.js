@@ -51,7 +51,7 @@ export const SECTION_NAMES = {
     MODERATORS: "Moderadores",
     CASES: "Casos",
     ANIMALS: "Animales",
-    CONTROL_ORGANIZATIONS: "Control de estado",
+    CONTROL_ORGANIZATIONS: "Gestión de organizaciones",
     FINANCIAL_SECTION: "Sección financiera",
   },
   ENG: {
@@ -62,7 +62,7 @@ export const SECTION_NAMES = {
     MODERATORS: "Moderators",
     CASES: "Cases",
     ANIMALS: "Animals",
-    CONTROL_ORGANIZATIONS: "Control of status",
+    CONTROL_ORGANIZATIONS: "Control organizations",
     FINANCIAL_SECTION: "Financial section",
   },
 };

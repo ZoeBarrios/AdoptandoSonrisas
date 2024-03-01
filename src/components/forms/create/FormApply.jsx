@@ -18,8 +18,8 @@ export default function FormApply({
   );
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <div className="p-10 h-full w-full bg-white flex flex-col items-center justify-center gap-5 rounded-lg">
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} smallModal={true}>
+      <div className="mx-auto p-10 h-full w-full bg-white flex flex-col items-center justify-center gap-5 rounded-lg">
         <h1 className="title">¡Elije la actividad a la que quieras aplicar!</h1>
         <SelectActivity selectRef={selectRef} />
         <div className="w-full flex flex-row items-center justify-between gap-5">

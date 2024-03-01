@@ -3,6 +3,7 @@ import { ROLES } from "../../../utils/constants";
 import { Link } from "wouter";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
+import parseDate from "../../../utils/parseDate";
 import { useDeletePersonFromOrganization } from "../../../hooks/mutations/person/useDeletePersonFromOrganization";
 
 export default function VolunteerCard({ volunteering, refetch }) {
@@ -17,6 +18,8 @@ export default function VolunteerCard({ volunteering, refetch }) {
   );
   const { language } = useLanguageStore();
   const { organization } = volunteering;
+
+  console.log(volunteering);
 
   return (
     <div className="flex flex-col md:flex-row text-center items-center justify-around p-5 bg-ligthOrange rounded w-full">
@@ -37,7 +40,8 @@ export default function VolunteerCard({ volunteering, refetch }) {
       )}
 
       <p>
-        {TRANSLATES[language].VOLUNTEERS.ADMISSION}: {volunteering.joinedDate}
+        {TRANSLATES[language].VOLUNTEERS.ADMISSION}:{" "}
+        {parseDate(volunteering.joinedDate)}
       </p>
 
       {volunteering.isActive ? (

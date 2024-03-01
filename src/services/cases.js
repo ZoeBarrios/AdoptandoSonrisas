@@ -14,7 +14,6 @@ export const getCase = async (id) => {
 };
 
 export const getCasesByOrganizationId = async (id, deleted) => {
-  console.log(deleted);
   let url = new URL(`${API_URL}/cases/organization/${id}`);
   if (deleted) {
     url.searchParams.append("deleted", deleted);
@@ -26,7 +25,6 @@ export const getCasesByOrganizationId = async (id, deleted) => {
 
 export const updateCase = async (updateCase) => {
   const token = getFromLocalStorage("token");
-  console.log(updateCase);
   const response = await fetch(`${API_URL}/cases/${updateCase.case_id}`, {
     method: "PUT",
     headers: {

@@ -15,7 +15,12 @@ export default function AdoptForm({
   const { handleAdopt } = useRegisterAdoption(closeModal, animal_id, person_id);
 
   return (
-    <Modal setIsOpen={openModal} isOpen={isShow} setClose={closeModal}>
+    <Modal
+      setIsOpen={openModal}
+      isOpen={isShow}
+      setClose={closeModal}
+      smallModal={true}
+    >
       <div className="h-full flex flex-col items-center justify-between gap-5 p-5 text-center">
         <h1 className="text-2xl font-bold mb-3">
           {TRANSLATES[language].FORMS.NEW_ADOPTION.TITLE} {name}?

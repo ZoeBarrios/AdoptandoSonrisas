@@ -23,7 +23,10 @@ export default function FormUpdateUser({ user }) {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="bg-white p-5 mt-5 shadow-card w-10/12 md:w-7/12  rounded-lg flex flex-col items-center justify-center">
+        <div
+          className="bg-white p-5 mt-5 shadow-card w-10/12 md:w-7/12  rounded-lg flex flex-col items-center justify-center"
+          style={{ maxWidth: "60%" }}
+        >
           <h2 className="title">
             {TRANSLATES[language].FORMS.UPDATE_USER.TITLE}
           </h2>
@@ -56,7 +59,10 @@ export default function FormUpdateUser({ user }) {
                     name="phone"
                     disabled={!isEditable}
                   />
-                  <div className="flex flex-col w-96 items-center justify-center ">
+                  <div
+                    className="flex flex-col items-center justify-center"
+                    style={{ width: "30rem" }}
+                  >
                     <ChangePasswordInput email={userData.email} />
                     <div className="flex flex-row-reverse items-center justify-between w-full ">
                       <button onClick={handleEdit} className="buttons-form">

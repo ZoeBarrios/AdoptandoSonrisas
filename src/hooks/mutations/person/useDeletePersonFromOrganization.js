@@ -18,7 +18,6 @@ export function useDeletePersonFromOrganization(
     },
     onError: showError,
   });
-  console.log(organization_id);
   const handleDelete = () => {
     mutate({
       organization_id:

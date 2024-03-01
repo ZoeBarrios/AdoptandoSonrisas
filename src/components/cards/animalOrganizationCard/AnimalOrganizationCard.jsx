@@ -23,7 +23,7 @@ export default function AnimalOrganizationCard({ animal, refetch }) {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <h2 className="text-white">{animal.name}</h2>
+        <h2>{animal.name}</h2>
       </Link>
 
       <div className="flex items-center">

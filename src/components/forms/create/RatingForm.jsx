@@ -12,7 +12,7 @@ export default function RatingForm({ data, closeModal, showModal }) {
   const { user } = useAuthStore();
   const { language } = useLanguageStore();
 
-  const { handleSubmit, isLoading } = useRegisterRating(data);
+  const { handleSubmit, isLoading } = useRegisterRating(data, closeModal);
 
   return (
     <Modal isOpen={showModal} setClose={closeModal}>

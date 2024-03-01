@@ -4,11 +4,12 @@ import { showError, showSuccess } from "../../../utils/userMessages";
 import { TRANSLATES } from "../../../utils/languajes";
 import useLanguageStore from "../../../stores/useLanguageStore";
 
-export function useRegisterRating(data) {
+export function useRegisterRating(data, closeModal) {
   const { language } = useLanguageStore();
   const { mutate, isLoading } = useMutation(createRating, {
     onSuccess: () => {
       showSuccess(TRANSLATES[language].MESSAGES.CALIFICATION.SUCCESS);
+      closeModal();
     },
     onError: showError,
   });

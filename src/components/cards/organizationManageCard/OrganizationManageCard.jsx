@@ -16,7 +16,7 @@ export default function OrganizationManageCard({
   );
   const { handleAccept } = useAcceptOrganization(
     refetch,
-    organization.organization_i
+    organization.organization_id
   );
 
   return (

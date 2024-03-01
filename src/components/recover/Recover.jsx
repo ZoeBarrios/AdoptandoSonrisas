@@ -12,7 +12,12 @@ export default function Recover({ showModal, closeModal, openModal }) {
   };
 
   return (
-    <Modal isOpen={showModal} setIsOpen={openModal} setClose={closeModal}>
+    <Modal
+      isOpen={showModal}
+      setIsOpen={openModal}
+      setClose={closeModal}
+      smallModal={true}
+    >
       <div className="flex flex-col items-center justify-center gap-5 p-5">
         <h1 className="title">{TRANSLATES[language].FORMS.RECOVER.TITLE}</h1>
         <p className="text-base text-darkOrange">
