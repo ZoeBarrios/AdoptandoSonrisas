@@ -10,7 +10,7 @@ export function useChangePassword(email, closeModal) {
     onSuccess: () => {
       toast.success(TRANSLATES[language].CHANGE_PASSWORD.SUCCESS);
     },
-    onError: async () => {
+    onError: () => {
       toast.error(TRANSLATES[language].CHANGE_PASSWORD.ERROR);
     },
   });

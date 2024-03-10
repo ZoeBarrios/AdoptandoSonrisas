@@ -17,8 +17,8 @@ export default function ChangePasswordInput({ email }) {
       >
         {TRANSLATES[language].CHANGE_PASSWORD.TITLE}
       </a>
-      <Modal isOpen={showModal} setClose={closeModal}>
-        <div className="flex flex-col items-center justify-center p-5 text-center gap-5">
+      <Modal isOpen={showModal} setClose={closeModal} smallModal={true}>
+        <div className="flex flex-col items-center justify-center p-16 text-center gap-5">
           <h2 className="text-darkOrange text-xl font-bold">
             {TRANSLATES[language].CHANGE_PASSWORD.WARNING}
           </h2>

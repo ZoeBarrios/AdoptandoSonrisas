@@ -54,7 +54,7 @@ export default function InfoUser({ data, refetch }) {
       )}
 
       <button
-        className="absolute bottom-5 right-1/2 md:right-5 delete-button"
+        className="absolute bottom-5 right-50 md:right-5 delete-button"
         onClick={openModal}
       >
         <i className="fa-solid fa-trash"></i>{" "}

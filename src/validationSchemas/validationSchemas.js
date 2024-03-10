@@ -10,6 +10,7 @@ const validationMessages = {
     minImages: (min) => `Debe tener al menos ${min} imágenes`,
     maxImages: (max) => `Debe tener como máximo ${max} imágenes`,
     phone: "Teléfono inválido",
+    number: "Número inválido",
   },
   [LANGUAGES.ENG]: {
     required: "Field is required",
@@ -18,6 +19,8 @@ const validationMessages = {
     max: (max) => `Must be at most ${max} characters long`,
     minImages: (min) => `Must have at least ${min} images`,
     maxImages: (max) => `Must have at most ${max} images`,
+    phone: "Invalid phone",
+    number: "Invalid number",
   },
 };
 export const loginValidationSchema = (language) =>
@@ -81,7 +84,12 @@ export const registerCaseValidationSchema = (language) =>
 
 export const registerCalificationValidationSchema = (language) => {
   return Yup.object().shape({
-    rating: Yup.number().required(validationMessages[language].required),
+    rating: Yup.number()
+      .typeError(validationMessages[language].number)
+      .integer(validationMessages[language].number)
+      .min(1, validationMessages[language].number)
+      .max(5, validationMessages[language].number)
+      .required(validationMessages[language].required),
     comment: Yup.string().required(validationMessages[language].required),
   });
 };

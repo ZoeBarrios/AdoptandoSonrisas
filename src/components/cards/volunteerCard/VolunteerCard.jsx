@@ -8,14 +8,13 @@ import { useDeletePersonFromOrganization } from "../../../hooks/mutations/person
 
 export default function VolunteerCard({ volunteering, refetch }) {
   const { user } = useAuthStore();
-  const { handleDelete } = useDeletePersonFromOrganization(
-    refetch,
-
-    {
-      organization_id: volunteering.organization_id,
-      person_id: volunteering.person_id,
-    }
-  );
+  const { handleDelete } = useDeletePersonFromOrganization(refetch, {
+    organization_id: volunteering.organization_id,
+    person_id:
+      user.role == ROLES.USER
+        ? volunteering.person_id
+        : volunteering.person.person_id,
+  });
   const { language } = useLanguageStore();
   const { organization } = volunteering;
 

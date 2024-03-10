@@ -25,12 +25,16 @@ export default function FormUpdateUser({ user }) {
       ) : (
         <div
           className="bg-white p-5 mt-5 shadow-card w-10/12 md:w-7/12  rounded-lg flex flex-col items-center justify-center"
-          style={{ maxWidth: "60%" }}
+          style={{ maxWidth: "80%" }}
         >
           <h2 className="title">
             {TRANSLATES[language].FORMS.UPDATE_USER.TITLE}
           </h2>
-          <Formik initialValues={userData} onSubmit={handleUpdate}>
+          <Formik
+            initialValues={userData}
+            onSubmit={handleUpdate}
+            enableReinitialize={true}
+          >
             {({ setValues }) => {
               setFormRef.current = setValues;
               return (

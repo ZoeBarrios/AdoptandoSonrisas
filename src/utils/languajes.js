@@ -288,8 +288,8 @@ export const TRANSLATES = {
       TITLE: "Adopciones",
     },
     VOLUNTEERS: {
-      TITLE: "Voluntarios",
-      NO_VOLUNTEERS: "No hay voluntarios disponibles",
+      TITLE: "Voluntariados",
+      NO_VOLUNTEERS: "No hay voluntariados registrados",
       ADMISSION: "Ingreso",
       ACTIVITY: "Actividad",
     },

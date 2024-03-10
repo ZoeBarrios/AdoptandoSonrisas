@@ -5,6 +5,7 @@ import useUpdateForm from "../../../hooks/useUpdateForm";
 import useLanguageStore from "../../../stores/useLanguageStore";
 import { TRANSLATES } from "../../../utils/languajes";
 import { useUpdateCase } from "../../../hooks/mutations/case/useUpdateCase";
+import TextArea from "../../textArea/TextArea";
 
 export default function FormUpdateCase({
   data,
@@ -28,26 +29,28 @@ export default function FormUpdateCase({
                 name="title"
                 label={TRANSLATES[language].LABELS.TITLE}
               />
-              <FormField
-                type="text"
+              <TextArea
+                isRequired={true}
                 name="description"
                 label={TRANSLATES[language].LABELS.DESCRIPTION}
               />
-              <button
-                type="button"
-                onClick={closeModal}
-                className={`buttons-form ${isLoading && "disabled"} w-1/2`}
-                disabled={isLoading}
-              >
-                {TRANSLATES[language].BUTTONS.CANCEL}
-              </button>
-              <button
-                type="submit"
-                className={`buttons-form ${isLoading && "disabled"} w-1/2`}
-                disabled={isLoading}
-              >
-                {TRANSLATES[language].BUTTONS.UPDATE}
-              </button>
+              <div className="w-9/12 flex flex-col gap-5 md:flex-row items-center justify-between">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className={`buttons-form ${isLoading && "disabled"} w-1/2`}
+                  disabled={isLoading}
+                >
+                  {TRANSLATES[language].BUTTONS.CANCEL}
+                </button>
+                <button
+                  type="submit"
+                  className={`buttons-form ${isLoading && "disabled"} w-1/2`}
+                  disabled={isLoading}
+                >
+                  {TRANSLATES[language].BUTTONS.UPDATE}
+                </button>
+              </div>
             </Form>
           );
         }}

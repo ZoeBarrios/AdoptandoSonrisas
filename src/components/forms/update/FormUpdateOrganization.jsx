@@ -27,7 +27,7 @@ export default function FormUpdateOrganization({ data, refetch }) {
       ) : (
         <div
           className="bg-white p-2 mt-5 shadow-card md:w-7/12  rounded-lg flex flex-col items-center justify-center"
-          style={{ maxWidth: "60%" }}
+          style={{ maxWidth: "80%" }}
         >
           <h2 className="title mt-3">{data[0].name}</h2>
           <Formik
